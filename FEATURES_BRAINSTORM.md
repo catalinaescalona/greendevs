@@ -20,7 +20,7 @@ Potential pages for project website:
 
 # Brandon
 
-**Potential tools for Pollaris:
+Potential tools for Pollaris:
 
 Frontend:  
 * HTML - Provide structure  
