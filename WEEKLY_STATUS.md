@@ -23,6 +23,7 @@ Scrum Master: Cat
 #### Sprint Planning / Action Points:
 * Research initial tools we need for building the app
 * Brainstorm ideas for app features
+* Submit Milestone 2: Agile Meeting Recording
 
 ## SPRINT 2 (October 2 - October 9)
 
