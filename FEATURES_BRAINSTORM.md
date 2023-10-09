@@ -59,3 +59,12 @@ Additional tools not mentioned above:
   * Seaborn for heatmap of poll results
 
 # Cat
+
+General brainstorming ideas, in no particular order:
+* Database tables should include info about users, polls, questions, responses. We need to really consider the relationships between the tables well before implementing them
+* Seaborn / D3.js for data visualization
+* Personal interest: integrate some graphics from p5.js for a more creative coding element, to visualize the data from the polls in a more artistic way than just traditional graphs
+* Maybe we can find a way to trigger emails/messages/notifications to be sent to the user and/or their friends/network when a poll has been made, a poll is closed and ready to visualize, someone comments on the poll, etc.
+* Is there a way to ensure that a user only votes in a poll once?
+* We need to consider the different question types (ex: multiple choice, text input) and how the user can make them customizable
+* I think we need to pick the most important features that we would consider as a "bare minimum" to make a poll, and prioritize building those features first
