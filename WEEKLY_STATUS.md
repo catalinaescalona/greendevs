@@ -50,7 +50,7 @@ Scrum Master: Greg
 #### Sprint Planning / Action Points:
 * Create individual design vision for homepage
 * Meet over the weekend to share designs and agree upon basic homepage design/structure and a few basic features
-* Everyone create at least 1 user story based on Sunday meeting
+* Everyone prepare at least 1 user story based on Sunday meeting for Monday Sprint meeting
 
 ## SPRINT 3 (October 9 - October 16)
 
