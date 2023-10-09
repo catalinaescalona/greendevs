@@ -29,6 +29,24 @@ Scrum Master: Cat
 
 Scrum Master: Greg 
 
+#### Weekly Standup:
+<img width="458" alt="What did I do" src="https://github.com/catalinaescalona/greendevs/assets/120431515/d1f173a1-b0d3-4460-aab8-643f82ec0d87">
+<img width="454" alt="What Will I Do" src="https://github.com/catalinaescalona/greendevs/assets/120431515/3a82dde4-31cf-4010-9f1d-1b8cc1fe9436">
+<img width="457" alt="Obstacles" src="https://github.com/catalinaescalona/greendevs/assets/120431515/4a3fc507-85c8-4f64-9028-7bd2b36ea61c">
+
+#### Sprint Demo / What We Accomplished:
+<img width="433" alt="Demo Topics" src="https://github.com/catalinaescalona/greendevs/assets/120431515/52f7f9e6-b492-4216-99ec-06f2451721cc">
+
+#### Sprint Retro:
+<img width="455" alt="Went Well" src="https://github.com/catalinaescalona/greendevs/assets/120431515/06c892a1-9051-4ab6-bafe-93f6bc351be0">
+<img width="457" alt="Didn't Work" src="https://github.com/catalinaescalona/greendevs/assets/120431515/83809e8d-5a3b-4094-8e42-03f528ccb9ef">
+<img width="429" alt="Improve" src="https://github.com/catalinaescalona/greendevs/assets/120431515/8cffd810-9893-4c51-a0ad-7533133f1515">
+
+#### Sprint Planning / Action Points:
+* Create individual design vision for homepage
+* Meet over the weekend to share designs and agree upon basic homepage design/structure and a few basic features
+* Everyone create at least 1 user story based on Sunday meeting
+
 ## SPRINT 3 (October 9 - October 16)
 
 Scrum Master: Ryan
