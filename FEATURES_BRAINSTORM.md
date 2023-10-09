@@ -49,4 +49,13 @@ Website Layout:
 
 # Greg
 
+Features:
+  * After creating a poll, share on social media (maybe too much?) and email to increase participation.
+  * Password recovery
+  * add demographic info questions to polls to get an aggregate view of who is completing polls
+  * anonymous response option
+
+Additional tools not mentioned above:
+  * Seaborn for heatmap of poll results
+
 # Cat
