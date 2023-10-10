@@ -26,9 +26,9 @@ Scrum Master: Cat
 
 
 #### Sprint Planning / Action Points:
+* Submit Milestone 2: Agile Meeting Recording
 * Research initial tools we need for building the app
 * Brainstorm ideas for app features
-* Submit Milestone 2: Agile Meeting Recording
 
 ## SPRINT 2 (October 2 - October 9)
 
@@ -48,6 +48,7 @@ Scrum Master: Greg
 <img width="429" alt="Improve" src="https://github.com/catalinaescalona/greendevs/assets/120431515/8cffd810-9893-4c51-a0ad-7533133f1515">
 
 #### Sprint Planning / Action Points:
+* Submit Milestone 3: Weekly Status
 * Create individual design vision for homepage
 * Meet over the weekend to share designs and agree upon basic homepage design/structure and a few basic features
 * Everyone prepare at least 1 user story based on Sunday meeting for Monday Sprint meeting
