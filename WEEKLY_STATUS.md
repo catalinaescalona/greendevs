@@ -57,6 +57,18 @@ Scrum Master: Greg
 
 Scrum Master: Ryan
 
+#### Weekly Standup:
+
+
+#### Sprint Demo / What We Accomplished:
+
+
+#### Sprint Planning / Action Points:
+* Update Weekly Status document with meeting notes
+* 
+
+
+
 ## SPRINT 4 (October 16 - October 23)
 
 Scrum Master: Brandon
