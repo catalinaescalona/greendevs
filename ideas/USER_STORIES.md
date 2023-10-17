@@ -80,7 +80,7 @@ As a Pollaris user, I want to be able to create a new poll on the site. The crea
 
 # Brandon
 
-# User Story for "Take a Poll" page
+### User Story for "Take a Poll" Page
 
 As a Pollaris user,
 I want to view and participate in polls created by other users,
