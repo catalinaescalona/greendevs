@@ -31,6 +31,31 @@ As a Pollaris user, I want to be able to access and take a poll that has already
 
 # Ryan
 
+### Page: Create a Poll
+
+#### User Story:
+As a Pollaris user, I want to be able to create a new poll on the site. The create a poll page should be simple, intuitive, and easy to use. There should be individual sections that accept text input where I can create a poll title, add a poll description, and create the poll answer options. There should be a ‘create poll’ button at the bottom of the page that submits the data and creates the poll on the site with a unique URL.
+
+#### Acceptance Criteria:
+* Access - once logged in, there should be a create a poll link in the website menu
+* Creation - there should be a form that has fields for creating the question, description, and answer options. (can add or remove number of answer fields)
+* Preview - there should be a button at the bottom of the page to allow for previewing the poll before submitting to the site. The preview page should allow for the user to go back and edit the poll if necessary.
+* Validation - the page should validate that each setion is filled out correctly and give an error if not (500 characters max per field, text only, cannot be blank)
+* Confirmation - there should be a confirmation message stating the poll has been created after the user clicks the submit button.
+* Sharing - there should be a unique URL and ‘click to copy’ button in the confirmation message.
+
+#### Mockups:
+
+![Screenshot 2023-10-17 at 9 24 14 AM](https://github.com/catalinaescalona/greendevs/assets/143199876/8a843699-1e02-41d6-9797-a7fd8b4fd058)
+
+![Screenshot 2023-10-17 at 9 24 41 AM](https://github.com/catalinaescalona/greendevs/assets/143199876/73a311b1-b0be-48ce-8bea-823c431ce034)
+
+![Screenshot 2023-10-17 at 9 24 54 AM](https://github.com/catalinaescalona/greendevs/assets/143199876/ee32ced6-8fb2-46d2-8c6a-b3e22631c3f1)
+
+
 # Greg
 
 # Brandon
+
+
+
