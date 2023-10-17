@@ -97,8 +97,8 @@ So that I can contribute my opinion and see the results of other polls.
 * After voting, I should immediately see the current results of the poll, and then a button below that saying "Take another poll!" which takes me back to the "Take a Poll" page.
 
 #### Mockup
-[mockup.pdf](https://github.com/catalinaescalona/greendevs/files/12936867/mockup.pdf)
 
+![mockup](https://github.com/catalinaescalona/greendevs/assets/143830239/ed13b508-5317-4d09-bb60-30f5a2ff682e)
 
 
 
