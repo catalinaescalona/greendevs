@@ -55,21 +55,21 @@ As a Pollaris user, I want to be able to create a new poll on the site. The crea
 
 # Greg
 
-As a user
-I want to be able to enter my username and password to be able to securely access my account
-So I can access my account information and polls
+* As a user
+* I want to be able to enter my username and password to be able to securely access my account
+* So I can access my account information and polls
 
-As a user
-I want to be able to create an account
-So I can change settings and have all of my polls saved in one place
+* As a user
+* I want to be able to create an account
+* So I can change settings and have all of my polls saved in one place
 
-As a system administrator
-I want there to be an automated way for users to change their password if they forget it
-So that they can change password efficiently with no manual processes that gets in the way
+* As a system administrator
+* I want there to be an automated way for users to change their password if they forget it
+* So that they can change password efficiently with no manual processes that gets in the way
 
-As a system administrator
-I want to ensure that an account exists and can only be accessed with the correct credentials
-So that we can be sure users are only able to access their data
+* As a system administrator
+* I want to ensure that an account exists and can only be accessed with the correct credentials
+* So that we can be sure users are only able to access their data
 
 # Brandon
 
