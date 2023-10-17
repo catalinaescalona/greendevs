@@ -86,7 +86,7 @@ As a Pollaris user,
 I want to view and participate in polls created by other users,
 So that I can contribute my opinion and see the results of other polls.
 
-Acceptance Criteria:
+#### Acceptance Criteria:
 
 * When I navigate to the "Take a Poll" page on Pollaris, I should see a list of available polls to take created by others.
 * I should be able to rank the polls by Popularity, Trending, or New.
@@ -96,9 +96,8 @@ Acceptance Criteria:
 * I can select an option and click on a "Vote" button to cast my vote if I am logged in. If not, I will be prompted to login.
 * After voting, I should immediately see the current results of the poll, and then a button below that saying "Take another poll!" which takes me back to the "Take a Poll" page.
 
-
-
-
+#### Mockup
+[mockup.pdf](https://github.com/catalinaescalona/greendevs/files/12936867/mockup.pdf)
 
 
 
