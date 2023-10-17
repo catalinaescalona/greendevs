@@ -96,7 +96,7 @@ So that I can contribute my opinion and see the results of other polls.
 * I can select an option and click on a "Vote" button to cast my vote if I am logged in. If not, I will be prompted to login.
 * After voting, I should immediately see the current results of the poll, and then a button below that saying "Take another poll!" which takes me back to the "Take a Poll" page.
 
-#### Mockup
+#### Mockup:
 
 ![mockup](https://github.com/catalinaescalona/greendevs/assets/143830239/ed13b508-5317-4d09-bb60-30f5a2ff682e)
 
