@@ -63,16 +63,24 @@ Scrum Master: Ryan
 ![Screenshot 2023-10-17 at 10 10 49 PM](https://github.com/catalinaescalona/greendevs/assets/143199876/e0930ce6-35cb-43ac-ad53-b6c6d6094d31)
 
 #### Sprint Demo / What We Accomplished:
+![Screenshot 2023-10-17 at 10 16 03 PM](https://github.com/catalinaescalona/greendevs/assets/143199876/20bf122b-74e3-4818-a1bb-dfbca18eb442)
+
+#### Sprint Retro:
+![Screenshot 2023-10-17 at 10 12 58 PM](https://github.com/catalinaescalona/greendevs/assets/143199876/d997e380-71b6-49a2-80d8-ce43d91bd1c2)
+![Screenshot 2023-10-17 at 10 13 05 PM](https://github.com/catalinaescalona/greendevs/assets/143199876/f488b81b-4f0d-4f00-a3f0-7c7ded12aa00)
+![Screenshot 2023-10-17 at 10 13 18 PM](https://github.com/catalinaescalona/greendevs/assets/143199876/ab13169c-acb0-4e0c-bac4-1e8bfebcf743)
 
 
 #### Sprint Planning / Action Points:
 * Update Weekly Status document with meeting notes
-* 
+* Create more detailed page mockups for next meeting
 
 
 
 ## SPRINT 4 (October 16 - October 23)
 
 Scrum Master: Brandon
+
+
 
 
