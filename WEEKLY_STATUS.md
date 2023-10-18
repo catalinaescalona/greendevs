@@ -58,7 +58,9 @@ Scrum Master: Greg
 Scrum Master: Ryan
 
 #### Weekly Standup:
-
+![Screenshot 2023-10-17 at 10 10 03 PM](https://github.com/catalinaescalona/greendevs/assets/143199876/665f4892-a1f0-499d-8186-624859596c66)
+![Screenshot 2023-10-17 at 10 10 27 PM](https://github.com/catalinaescalona/greendevs/assets/143199876/2c12862d-0705-4b3a-87cd-5f9e22def2f9)
+![Screenshot 2023-10-17 at 10 10 49 PM](https://github.com/catalinaescalona/greendevs/assets/143199876/e0930ce6-35cb-43ac-ad53-b6c6d6094d31)
 
 #### Sprint Demo / What We Accomplished:
 
@@ -72,3 +74,5 @@ Scrum Master: Ryan
 ## SPRINT 4 (October 16 - October 23)
 
 Scrum Master: Brandon
+
+
