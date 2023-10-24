@@ -7,6 +7,11 @@ As a Pollaris user, I want to be able to access and take a poll that has already
 
 #### Mockup / Visualization:
 ![2023-10-17](https://github.com/catalinaescalona/greendevs/assets/68168149/83d034a4-7f09-4809-972a-856b556262da)
+![Pollaris - take individual poll](https://github.com/catalinaescalona/greendevs/assets/68168149/b41565cf-4f97-4766-bdb5-d52d14e122a0)
+![Pollaris - individual poll results](https://github.com/catalinaescalona/greendevs/assets/68168149/73de2fa6-5892-419a-8c9e-cd39b19eaa69)
+![Pollaris - share poll results](https://github.com/catalinaescalona/greendevs/assets/68168149/81c6af38-7ba4-4843-b232-71c2a70b5585)
+
+
 
 
 #### Acceptance Criteria (Verification List):
