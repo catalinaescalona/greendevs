@@ -4,6 +4,7 @@
 ### Parameters needed for the page
 ### Data needed to render the page
 ### Link destinations for the page
+### User Tests
 
 # Create a Poll
 ### Page Title
@@ -11,6 +12,7 @@
 ### Parameters needed for the page
 ### Data needed to render the page
 ### Link destinations for the page
+### User Tests
 
 # Take An Existing Poll By Another User
 ### Page Title
@@ -18,6 +20,7 @@
 ### Parameters needed for the page
 ### Data needed to render the page
 ### Link destinations for the page
+### User Tests
 
 # Login
 ### Page Title
@@ -25,6 +28,7 @@
 ### Parameters needed for the page
 ### Data needed to render the page
 ### Link destinations for the page
+### User Tests
 
 # Popular Polls
 ### Page Title: Popular Polls
@@ -66,3 +70,13 @@ The Popular Polls page will list polls already created by other users. The user 
 * Contact Us
 * Privacy Policy
 * Terms of Service
+### User Tests
+* Create account testing
+* Login testing
+* Poll creation testing
+* Voting testing
+* Moderation testing
+* Share Poll testing
+* User Engagement Test
+* Test different browers
+
