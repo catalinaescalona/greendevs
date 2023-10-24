@@ -38,7 +38,8 @@ Wireframe slides: https://docs.google.com/presentation/d/1sW2sKaVMMQkeEu7C5ovWAT
 ### Page Title: Popular Polls
 ### Page Description: (Include a mockup or handdrawn image of page)
 The Popular Polls page will list polls already created by other users. The user will be able to choose to sort the polls by popular, trending, and new. The user will then be able to vote on the polls, see the results, and share them. 
-![Screenshot 2023-10-24 084828](https://github.com/catalinaescalona/greendevs/assets/143830239/1994cc85-a8e5-46a8-bd8e-bf2f4a3c9fdc)
+
+![Screenshot 2023-10-24 155822](https://github.com/catalinaescalona/greendevs/assets/143830239/e7db0e96-4743-4c53-ab4a-5210dc0f56c2)
 
 ### Parameters needed for the page
 * User Registration
