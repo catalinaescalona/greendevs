@@ -1,5 +1,5 @@
 # Home
-#### Page Title
+### Page Title
 #### Page Description: (Include a mockup or handdrawn image of page)
 #### Parameters needed for the page
 #### Data needed to render the page
