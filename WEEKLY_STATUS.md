@@ -81,6 +81,18 @@ Scrum Master: Ryan
 
 Scrum Master: Brandon
 
-
-
-
+#### Weekly Standup:
+![Screenshot 2023-10-24 142609](https://github.com/catalinaescalona/greendevs/assets/143830239/575c242f-a95e-4ebe-a4dd-c5ac99807835)
+![Screenshot 2023-10-24 142813](https://github.com/catalinaescalona/greendevs/assets/143830239/2b4ec241-93cd-47a1-8d5c-9d568c4987de)
+![Screenshot 2023-10-24 142900](https://github.com/catalinaescalona/greendevs/assets/143830239/e4252651-1b5a-4172-b4bd-550dfcc65eaa)
+#### Sprint Demo / What We Accomplished:
+![Screenshot 2023-10-24 143007](https://github.com/catalinaescalona/greendevs/assets/143830239/9694983f-5522-4159-babc-79ff8e588550)
+#### Sprint Retro:
+![Screenshot 2023-10-24 143112](https://github.com/catalinaescalona/greendevs/assets/143830239/83cb7be0-2cf8-4360-ad2a-268ccceca8c7)
+![Screenshot 2023-10-24 143247](https://github.com/catalinaescalona/greendevs/assets/143830239/d22a0b82-ea25-4cb6-a551-61cdcdad0026)
+![Screenshot 2023-10-24 143333](https://github.com/catalinaescalona/greendevs/assets/143830239/b4b8a608-0dc6-4959-bb69-1d5bf55427ea)
+#### Sprint Planning / Action Points:
+* Update Weekly Status document
+* Update PAGE_TESTING.md with Milestone 4 requirements
+* Submit Milestone 4: Web Pages Design
+* Brainstorm SQL ideas for next meeting
