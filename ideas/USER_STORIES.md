@@ -44,6 +44,42 @@ As a Pollaris user, I want to be able to create a new poll on the site. The crea
 * Confirmation - there should be a confirmation message stating the poll has been created after the user clicks the submit button.
 * Sharing - there should be a unique URL and ‘click to copy’ button in the confirmation message.
 
+#### Parameters:
+* Question input
+* Answer options (multiple choice only)
+* Poll duration (30, 60, 90 days)
+* User authentication (must be logged in to create poll)
+* Sharing options
+* Data security (HTTPS, encryption, secure storage of user data)
+* Results visibility (real time vs when poll has ended)
+* Moderation (remove spam, bad content, etc)
+
+#### Data:
+* User account info (username, password)
+* Poll info (question, answers, poll ID, poll status, creation/expiration timestamps)
+* Privacy settings (public, private)
+* Poll visibility (real time vs when poll has ended)
+* Session tokens (user session tracking)
+* Auth tokens (secure client/server communication)
+* IP addresses (user IP addresses)
+
+#### Tests:
+* Test registration (user can make new account)
+* Test login (user can login)
+* Test poll creation
+* Test answer additions
+* Test question and answer length
+* Test visibility (public vs private)
+* Test sharing
+* Test poll expiration
+* Test HTTPS
+* Test data encryption
+* Test accessibility (screen readers)
+* Test different browsers
+* Test database connectivity
+* Test data integrity
+
+
 #### Mockups:
 
 ![Screenshot 2023-10-17 at 9 24 14 AM](https://github.com/catalinaescalona/greendevs/assets/143199876/8a843699-1e02-41d6-9797-a7fd8b4fd058)
