@@ -134,7 +134,8 @@ So that I can contribute my opinion and see the results of other polls.
 
 #### Mockup:
 
-![mockup](https://github.com/catalinaescalona/greendevs/assets/143830239/ed13b508-5317-4d09-bb60-30f5a2ff682e)
+![Screenshot 2023-10-24 084828](https://github.com/catalinaescalona/greendevs/assets/143830239/663421a3-bbc0-4464-a29d-2ecd30302876)
+
 
 
 
