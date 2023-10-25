@@ -34,6 +34,8 @@ Wireframe slides: https://docs.google.com/presentation/d/1sW2sKaVMMQkeEu7C5ovWAT
 ### Page Description and Mockup
 This page displays a poll already created by another user. The title of the poll is displayed at the top, followed by a poll description and information about who created the poll and when. The poll questions are listed in the page and the user can select one answer. If the poll taker is logged in, they should be able to hit the save button to save their responses. After answering all of the questions on the page, the poll taker can hit the submit button. This will take them to the poll results page. If the user is logged in, the poll should be saved to the user profile dashboard to record the history of polls they have taken. If they are not logged in, the poll results should be saved under "Guest" user.
 
+<img width="901" alt="Screen Shot 2023-10-25 at 14 30 52" src="https://github.com/catalinaescalona/greendevs/assets/68168149/3c84760d-7e6e-4338-a9ba-afcc1bf32f41">
+
 ### Parameters needed for the page
 * unique poll ID
 * user authentication status (check if user is logged in or not)
