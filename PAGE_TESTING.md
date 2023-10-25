@@ -23,13 +23,42 @@ Wireframe slides: https://docs.google.com/presentation/d/1sW2sKaVMMQkeEu7C5ovWAT
 # Page 3 - Create a Poll
 ### Page Title: Create a Poll
 ### Page Description and Mockup
+The create a poll page enables a user to make a new poll. The user will input a poll title, poll description, and poll answers within the body of the page. The user will be able to preview the poll before publishing by clicking the preview button and will then be able to publish the poll by clicking the submit button. 
 
 ![Screenshot 2023-10-25 at 1 40 08 PM](https://github.com/catalinaescalona/greendevs/assets/143199876/47dd53dd-e0ea-48a6-a8d4-465023090d61)
 
 ### Parameters needed for the page
+* User authentication (must be logged in to create poll)
+* Poll questions, description, and answer options (multiple choice only)
+* Sharing options
+
 ### Data needed to render the page
+* User authentication
+* Unique poll ID
+* User generated poll title
+* User generated poll description
+* User generated poll answers
+* Poll creation timestamp
+
 ### Link destinations for the page
+* Homepage
+* Login
+* User profile
+* Poll preview page
+* Poll submitted page (with sharing)
+* Contact Us
+* Privacy Policy
+* Terms of Service
+  
 ### List of tests for verifying the rendering of the page
+* Test registration (user can make new account)
+* Test login (user can login)
+* Test poll creation
+* Test question and answer length
+* Test sharing
+* Test different browsers
+* Test database connectivity
+
 
 ---
 # Page 4 - Take a Poll
