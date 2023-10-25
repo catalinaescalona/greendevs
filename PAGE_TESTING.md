@@ -21,8 +21,11 @@ Wireframe slides: https://docs.google.com/presentation/d/1sW2sKaVMMQkeEu7C5ovWAT
 
 ---
 # Page 3 - Create a Poll
-### Page Title
+### Page Title: Create a Poll
 ### Page Description and Mockup
+
+![Screenshot 2023-10-25 at 1 40 08 PM](https://github.com/catalinaescalona/greendevs/assets/143199876/47dd53dd-e0ea-48a6-a8d4-465023090d61)
+
 ### Parameters needed for the page
 ### Data needed to render the page
 ### Link destinations for the page
