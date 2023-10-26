@@ -18,7 +18,7 @@ A web app where users can create their own polls, share them with others, and an
 * Catalina Escalona, Catalina.Escalona@colorado.edu, catalinaescalona
 
 #### Weekly Team Meeting Info
-* Mondays at 12pm MST on Zoom
+* Tuesdays at 12pm MST on Zoom
 * Zoom meeting link: https://dieangewandte-at.zoom.us/j/2935285911?pwd=VDEyMEN3Ukg3OUtWL2F4aitoOG1qZz09
 
 #### Vision Statement
