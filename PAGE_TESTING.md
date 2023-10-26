@@ -3,21 +3,93 @@
 Wireframe slides: https://docs.google.com/presentation/d/1sW2sKaVMMQkeEu7C5ovWATHitEbHIE86Xp1X2B5vn9s/edit?usp=sharing
 ---
 # Page 1 - Home
-### Page Title
+### Page Title: Pollaris Home Page
+
 ### Page Description and Mockup
+
+<img width="567" alt="Pollaris_Home_Final" src="https://github.com/catalinaescalona/greendevs/assets/120431515/1132d345-4109-46ec-8569-525df52a21e8">
+
+The Homepage is a central page that allows user to navigate to anywhere on the website. Users can get to the log in page and the sign up page to create an account. They can access the take a poll page to take public polls, as well as select from various featured public polls displayed at the bottom of the website. If they recieved a Poll ID they can enter it directly on the home page to go to the poll they are wanting to access. There is also a menu button that allows users to access additional information that we still need to decide on (about, privacy policy, contact, etc.)
+
 ### Parameters needed for the page
+
+* Featured random/popular poll IDs to be displayed
+
 ### Data needed to render the page
+
+* Featured random/popular poll unique IDs that are displayed on the bottom of the page
+
 ### Link destinations for the page
+
+* Homepage
+* Login page
+* Take a poll page
+* Sign up page to create account
+* Menu with menu options still tbd (contact, terms of service, about, privacy policy, etc.)
+* Text box to enter a shared poll id to take specific poll
+* Button to go to entered poll id
+* Various links to featured polls
+* Bubble icons to move through featured polls at bottom of page
+* Take a Poll page
+
+
 ### List of tests for verifying the rendering of the page
+
+* Test that expected polls populate the bottom of the page
+* Test that clicking featured polls redirects to correct poll page
+* Test that entered poll id exists when searching for a poll
+* Test that entered poll id throws error if invalid
+* Test that valid poll id sends user to correct poll page
+* Test that sign in and sign up buttons redirect to correct pages
+* Test that the Pollaris logo redirects to/reloads home page
+* Test that menu drops down and proper links are included
+* Test menu links redirect to correct pages
+* Test that 5(?) navigation bubbles shift the featured polls correctly
+* Test that take a poll button redirects to the take a poll page
 
 ---
 # Page 2 - Login
-### Page Title
+### Page Title: Pollaris Sign In/Login Page
+
 ### Page Description and Mockup
+
+<img width="688" alt="Polaris_Login" src="https://github.com/catalinaescalona/greendevs/assets/120431515/63c60c22-c941-447c-9106-82f56875bc38">
+
+The Login/Sign In page allows users to access their account. The main functionality includes two text boxes for username and password, and a button to sign in and be redirected to the user's individual dashboard. The header is fixed to the page, so they can access the home page by clicking the logo, reload the sign in page, and access the menu. There is also a link to the Sign Up page to create an account. Also password a recovery option.
+
 ### Parameters needed for the page
+
+* Username
+* Password
+
 ### Data needed to render the page
+
+* No specific data needed to render the page
+
 ### Link destinations for the page
+
+* Home Page
+* Sign In Page (reload)
+* Menu
+* Sign Up page to create an account
+* Log in Button to redirect to user dashboard
+* Forgot Password link for password recovery
+* Username text input box
+* Password text input box
+  
 ### List of tests for verifying the rendering of the page
+
+* Test for valid username
+* Test for valid password
+* Test invalid username throws error
+* Test invalid password throws error
+* Test that user is redirected to correct user dashboard when entering valid credentials
+* Test that the logo button in header sends user to home page
+* Test that Sign In button in header reloads page/sends user to Sign In
+* Test that Sign Up button sends user to Sign Up page to create an account
+* Test that Forgot Password prompts user for email to complete that process
+* Test that menu drops down
+* Test that correct links are in the menu and redirect to correct pages
 
 ---
 # Page 3 - Create a Poll
