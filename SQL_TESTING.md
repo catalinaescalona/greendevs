@@ -1,6 +1,88 @@
 # Pollaris - Project Tables and Tests
 
+
 ## <ins>Table #1</ins>
+
+### Table Name: 
+
+Users Table
+
+### Description:
+
+This table stores individual user information.
+
+### Table Fields:
+
+* user_id - primary key
+* username - login id
+* email - user email address
+* password - user password
+* user_created - account creation timestamp
+
+### Table verification tests
+
+* User registration test
+* Username/email validity test
+* Password hashing test
+
+### Data access test pre-conditions:
+
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+
+### Test steps:
+
+* User registration test
+  * Create a new user and enter it into the Users Table.
+  * Retrieve the new user from the Users Table using an SQL query.
+* Username/email validity test
+  * Attempt to register a user that already exists in the database.
+  * Confirm the system prevents duplicate user registration.
+* Password hashing test
+  * Create a new user with password and enter it into the Users Table.
+  * Retrieve the hashed password from the Users Table using an SQL query and confirm validity.
+
+### Expected result:
+
+* User registration test
+  * Entering the new user into the Users Table works without errors.
+  * The SQL query retrieves the correct new user from the Users Table.
+* Username/email validity test
+  * The website prevents registration if username or password is not unique.
+* Password hashing test
+  * The stored password matches the newly hashed password.
+
+### Actual result:
+
+* User registration test
+  * The new user is entered into the Users Table successfully.
+  * The SQL query retrieves the correct new user from the Users Table.
+* Username/email validity test
+  * The website prevents registration if username or email address is not unique.
+* Password hashing test
+  * The stored password matches the newly hashed password.
+
+### Status:
+
+Pass
+
+### Notes:
+
+This test confirms that the following:
+  * new users are correctly entered into and retrieved from the Users Table.
+  * new users are registered with a unique username and email address.
+  * new users passwords are stored accurately in the database.
+
+### Post-conditions:
+
+* The new user is contained within the Users Table.
+* The new user is successfully registered in the system.
+* The new users password is stored correctly.
+
+<br></br>
+
+
+## <ins>Table #2</ins>
 
 ### Table Name: 
 
@@ -12,8 +94,8 @@ This table stores individual poll information.
 
 ### Table Fields:
 
-* poll_id - primary key
-* user_id - foreign key to Users Table
+* poll_id - primary key (unique for each poll)
+* user_id - foreign key to Users Table (one user_id per poll)
 * question - text questions
 * options - JSON column to store options as arrays
 * poll_created - poll creation timestamp
@@ -25,7 +107,6 @@ This table stores individual poll information.
 * Poll update test
 * Poll deletion test
 * Foreign key validity test
-* Data accuracy test
 
 ### Data access test pre-conditions:
 
@@ -34,18 +115,45 @@ This table stores individual poll information.
 
 ### Test steps:
 
-* Create a new poll and enter it into the Polls Table.
-* Retrieve the new poll from the Polls Table using an SQL query.
+* Poll creation test
+  * Create a new poll and enter it into the Polls Table.
+  * Retrieve the new poll from the Polls Table using an SQL query.
+* Poll update test
+  * Update existing poll and with new data in the Polls Table.
+  * Confirm the accuracy of new data in the Polls Table.
+* Poll deletion test
+  * Delete an existing poll from the Polls Table.
+  * Confirm the removal of existing poll from the Polls Table.
+* Foreign key validity test
+  * Verify the user_id in the Polls Table references a valid user_id in the Users Table.
 
 ### Expected result:
 
-* Entering the new poll into the Polls Table works without errors.
-* The SQL query retrieves the correct new poll from the Polls Table.
+* Poll creation test
+  * Entering the new poll into the Polls Table works without errors.
+  * The SQL query retrieves the correct new poll from the Polls Table.
+* Poll update test
+  * Updating an existing poll in the Polls Table works without errors.
+  * The updated poll data is reflected in the Polls Table.
+* Poll deletion test
+  * Delete an existing poll from the Polls Table works without errors.
+  * Confirm the poll is removed from the Polls Table.
+* Foreign key validity test
+  * The user_id in the Polls Table references a valid user_id in the Users Table.
 
 ### Actual result:
 
-* The new poll is entered into the Polls Table successfully.
-* The SQL query retrieves the correct new poll from the Polls Table.
+* Poll creation test
+  * The new poll is entered into the Polls Table successfully.
+  * The SQL query retrieves the correct new poll from the Polls Table.
+* Poll update test
+  * The existing poll in the Polls Table is updated successfully.
+  * The updated poll data is reflected in the Polls Table.
+* Poll deletion test
+  * The existing poll in the Polls Table is deleted successfully.
+  * The poll is removed from the Polls Table.
+* Foreign key validity test
+  * The user_id in the Polls Table references a valid user_id in the Users Table.
 
 ### Status:
 
@@ -64,7 +172,7 @@ This test confirms that new polls are correctly entered into and retrieved from 
 
 
 
-## <ins>Table #2</ins>
+## <ins>Table #3</ins>
 
 ### Table Name: 
 
@@ -72,12 +180,12 @@ Votes Table
 
 ### Description:
 
-This table stores poll votes by users.
+This table stores votes by users.
 
 ### Table Fields:
 
-* vote_id - primary key
-* user_id - foreign key to Users Table
+* vote_id - primary key (one user_id and poll_id per vote)
+* user_id - foreign key to Users Table 
 * poll_id - foreign key to Polls Table
 * option_id - selected options 
 * vote_created - vote timestamp
@@ -88,7 +196,7 @@ This table stores poll votes by users.
 * Multiple votes test
 * Data accuracy test
 
-### Data access test pre-conditions:
+### Test pre-conditions:
 
 * The user is logged in.
 * A connection to the database is established.
@@ -121,65 +229,7 @@ This test confirms that new votes are correctly entered into and retrieved from 
 * The vote is contained within the Votes Table and is linked to the correct poll.
 * The vote is added to the total number of votes collected for a specific poll.
 
-<br></br>
 
 
 
-## <ins>Table #3</ins>
-
-### Table Name: 
-
-Users Table
-
-### Description:
-
-This table stores individual user information.
-
-### Table Fields:
-
-* user_id - primary key
-* username - login id for user authentication
-* email - user email address
-* password - user password
-* user_created - vote timestamp
-
-### Table verification tests
-
-* User registration test
-* User authentication test
-* Username/email validity test
-* Password hashing test
-
-### Data access test pre-conditions:
-
-* The website and data are functional and properly configured.
-* A connection to the database is established.
-
-### Test steps:
-
-* Create a new user and enter it into the Users Table.
-* Retrieve the new user from the Users Table using an SQL query.
-
-### Expected result:
-
-* Entering the new user into the Users Table works without errors.
-* The SQL query retrieves the correct new user from the Users Table.
-
-### Actual result:
-
-* The new user is entered into the Users Table successfully.
-* The SQL query retrieves the correct new user from the Users Table.
-
-### Status:
-
-Pass
-
-### Notes:
-
-This test confirms that new users are correctly entered into and retrieved from the Users Table.
-
-### Post-conditions:
-
-* The new user is contained within the Users Table.
-* The new user is successfully registered in the system.
 
