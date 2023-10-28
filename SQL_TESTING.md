@@ -198,6 +198,7 @@ This table stores votes by users.
 
 * Vote recording test
 * Multiple votes test
+* Foreign key validity test
 
 ### Test pre-conditions:
 
@@ -212,6 +213,9 @@ This table stores votes by users.
 * Multiple votes test
    * Attempt to cast multiple votes for the same user and poll.
    * Confirm the system prevents duplicate votes.
+* Foreign key validity test
+  * Verify the user_id in the Votes Table references a valid user_id in the Users Table.
+  * Verify the poll_id in the Votes Table references a valid poll_id in the Polls Table.
 
 ### Expected result:
 
@@ -220,6 +224,9 @@ This table stores votes by users.
    * The SQL query retrieves the correct vote from the Votes Table.
 * Multiple votes test
    * The website prevents casting multiple votes for the same user and poll.
+* Foreign key validity test
+  * The user_id in the Votes Table references a valid user_id in the Users Table.
+  * The poll_id in the Votes Table references a valid poll_id in the Polls Table.
 
 ### Actual result:
 
@@ -228,6 +235,9 @@ This table stores votes by users.
    * The SQL query retrieves the correct vote from the Votes Table.
 * Multiple votes test
    * The website prevents casting multiple votes for the same user and poll.
+* Foreign key validity test
+  * The user_id in the Votes Table references a valid user_id in the Users Table.
+  * The poll_id in the Votes Table references a valid poll_id in the Polls Table.
 
 ### Status:
 
@@ -238,6 +248,8 @@ Pass
 These tests confirm the following:
   * new votes are correctly entered into and retrieved from the Votes Table.
   * user are unable to cast multiple votes for the same poll.
+  * A valid user_id is referenced for each vote in the Votes Table.
+  * A valid poll_id is referenced for each vote in the Votes Table.
 
 ### Post-conditions:
 
