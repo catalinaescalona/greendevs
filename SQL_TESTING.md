@@ -68,7 +68,7 @@ Pass
 
 ### Notes:
 
-This test confirms that the following:
+These tests confirm the following:
   * new users are correctly entered into and retrieved from the Users Table.
   * new users are registered with a unique username and email address.
   * new users passwords are stored accurately in the database.
@@ -161,11 +161,15 @@ Pass
 
 ### Notes:
 
-This test confirms that new polls are correctly entered into and retrieved from the Polls Table.
+These tests confirm the following:
+  * new polls are correctly entered into and retrieved from the Polls Table.
+  * poll updates are reflected accurately in the Polls Table.
+  * poll deletions are performed successfully on the Polls Table.
+  * A valid user_id is referenced for each poll in the Polls Table.
 
 ### Post-conditions:
 
-* The new poll is contained within the Polls Table.
+* New polls are created, updated, or deleted and accurately reflected in the Polls Table.
 * The website correctly displays the poll to users.
 
 <br></br>
@@ -194,7 +198,6 @@ This table stores votes by users.
 
 * Vote recording test
 * Multiple votes test
-* Data accuracy test
 
 ### Test pre-conditions:
 
@@ -203,18 +206,28 @@ This table stores votes by users.
 
 ### Test steps:
 
-* Cast a vote and enter it into the Votes Table.
-* Retrieve the vote from the Votes Table using an SQL query.
+* Vote recording test
+   * Cast a vote and enter it into the Votes Table.
+   * Retrieve the vote from the Votes Table using an SQL query.
+* Multiple votes test
+   * Attempt to cast multiple votes for the same user and poll.
+   * Confirm the system prevents duplicate votes.
 
 ### Expected result:
 
-* Casting a vote and entering it into the Votes Table works without errors.
-* The SQL query retrieves the correct vote from the Votes Table.
+* Vote recording test
+   * Casting a vote and entering it into the Votes Table works without errors.
+   * The SQL query retrieves the correct vote from the Votes Table.
+* Multiple votes test
+   * The website prevents casting multiple votes for the same user and poll.
 
 ### Actual result:
 
-* The vote is entered into the Votes Table successfully.
-* The SQL query retrieves the correct vote from the Votes Table.
+* Vote recording test
+   * The vote is entered into the Votes Table successfully.
+   * The SQL query retrieves the correct vote from the Votes Table.
+* Multiple votes test
+   * The website prevents casting multiple votes for the same user and poll.
 
 ### Status:
 
@@ -222,7 +235,9 @@ Pass
 
 ### Notes:
 
-This test confirms that new votes are correctly entered into and retrieved from the Votes Table.
+These tests confirm the following:
+  * new votes are correctly entered into and retrieved from the Votes Table.
+  * user are unable to cast multiple votes for the same poll.
 
 ### Post-conditions:
 
