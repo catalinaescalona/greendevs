@@ -1,5 +1,5 @@
 # WEEKLY STATUS
-
+---
 ## SPRINT 1 (September 26 - October 2)
 
 Scrum Master: Cat
@@ -30,6 +30,8 @@ Scrum Master: Cat
 * Research initial tools we need for building the app
 * Brainstorm ideas for app features
 
+---
+
 ## SPRINT 2 (October 2 - October 9)
 
 Scrum Master: Greg 
@@ -53,6 +55,8 @@ Scrum Master: Greg
 * Meet over the weekend to share designs and agree upon basic homepage design/structure and a few basic features
 * Everyone prepare at least 1 user story based on Sunday meeting for Monday Sprint meeting
 
+---
+
 ## SPRINT 3 (October 9 - October 16)
 
 Scrum Master: Ryan
@@ -75,9 +79,9 @@ Scrum Master: Ryan
 * Update Weekly Status document with meeting notes
 * Create more detailed page mockups for next meeting
 
+---
 
-
-## SPRINT 4 (October 16 - October 23)
+## SPRINT 4 (October 16 - October 24)
 
 Scrum Master: Brandon
 
@@ -96,3 +100,72 @@ Scrum Master: Brandon
 * Update PAGE_TESTING.md with Milestone 4 requirements
 * Submit Milestone 4: Web Pages Design
 * Brainstorm SQL ideas for next meeting
+
+---
+
+## SPRINT 5 (October 24 - October 31)
+
+Scrum Master: Cat
+
+#### Weekly Standup:
+<img width="609" alt="Screen Shot 2023-10-31 at 19 58 10" src="https://github.com/catalinaescalona/greendevs/assets/68168149/c94594ff-f21c-4a73-9afd-7407df5a22b4">
+<img width="575" alt="Screen Shot 2023-10-31 at 19 58 28" src="https://github.com/catalinaescalona/greendevs/assets/68168149/520d8198-72eb-41ad-a5c3-a3a1bb496fab">
+<img width="575" alt="Screen Shot 2023-10-31 at 19 58 42" src="https://github.com/catalinaescalona/greendevs/assets/68168149/296fcf41-ec3a-44f7-a9bc-02e60b518dad">
+
+#### Sprint Demo / What We Accomplished:
+<img width="575" alt="Screen Shot 2023-10-31 at 19 59 44" src="https://github.com/catalinaescalona/greendevs/assets/68168149/ffe9a730-a5db-4e68-b5a5-892b2afcb760">
+
+#### Sprint Retro:
+<img width="572" alt="Screen Shot 2023-10-31 at 20 00 25" src="https://github.com/catalinaescalona/greendevs/assets/68168149/089f5a0c-43ef-43b4-b4ef-f34712a9c01c">
+<img width="571" alt="Screen Shot 2023-10-31 at 20 00 37" src="https://github.com/catalinaescalona/greendevs/assets/68168149/725c15db-95dd-46f9-9a0d-62fbf114d651">
+<img width="577" alt="Screen Shot 2023-10-31 at 20 00 50" src="https://github.com/catalinaescalona/greendevs/assets/68168149/ea0a731e-c457-44c2-8141-baf1945d49e0">
+
+#### Sprint Planning / Action Points:
+* Each person creates a branch of SQL_TESTING.md 
+* Each person brainstorms and fills in the gaps of SQL design for Milestone 4
+* Each person comes prepared to present their SQL ideas
+* Goal is to have everything ready to submit Milestone 4 early so we can start developing Pollaris
+
+---
+
+## SPRINT 6 (October 31 - November 7)
+
+Scrum Master: Greg
+
+#### Weekly Standup:
+
+#### Sprint Demo / What We Accomplished:
+
+#### Sprint Retro:
+
+#### Sprint Planning / Action Points:
+
+---
+
+## SPRINT 7 (November 7 - November 14)
+
+Scrum Master: Ryan
+
+#### Weekly Standup:
+
+#### Sprint Demo / What We Accomplished:
+
+#### Sprint Retro:
+
+#### Sprint Planning / Action Points:
+
+---
+
+## SPRINT 8 (November 14 - November 21)
+
+Scrum Master: Brandon
+
+#### Weekly Standup:
+
+#### Sprint Demo / What We Accomplished:
+
+#### Sprint Retro:
+
+#### Sprint Planning / Action Points:
+
+---
