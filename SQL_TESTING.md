@@ -246,8 +246,8 @@ Pass
 ### Notes:
 
 These tests confirm the following:
-  * new votes are correctly entered into and retrieved from the Votes Table.
-  * users are unable to cast multiple votes for the same poll.
+  * New votes are correctly entered into and retrieved from the Votes Table.
+  * Users are unable to cast multiple votes for the same poll.
   * A valid user_id is referenced for each vote in the Votes Table.
   * A valid poll_id is referenced for each vote in the Votes Table.
 
