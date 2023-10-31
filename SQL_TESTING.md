@@ -77,7 +77,7 @@ These tests confirm the following:
 
 * The new user is contained within the Users Table.
 * The new user is successfully registered in the system.
-* The new users password is stored correctly.
+* The new user's password is stored correctly.
 
 <br></br>
 
@@ -247,7 +247,7 @@ Pass
 
 These tests confirm the following:
   * new votes are correctly entered into and retrieved from the Votes Table.
-  * user are unable to cast multiple votes for the same poll.
+  * users are unable to cast multiple votes for the same poll.
   * A valid user_id is referenced for each vote in the Votes Table.
   * A valid poll_id is referenced for each vote in the Votes Table.
 
