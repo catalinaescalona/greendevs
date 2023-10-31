@@ -100,6 +100,8 @@ This table stores individual poll information.
 * options - JSON column to store options as arrays
 * poll_created - poll creation timestamp
 * poll_expiration - poll expiration date
+* poll_num - number of times users have taken that poll
+* option_num - number of times users have selected specific answer
 
 ### Table verification tests
 
