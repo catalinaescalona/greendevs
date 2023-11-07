@@ -192,11 +192,13 @@ This table stores votes by users.
 
 ### Table Fields:
 
-* vote_id - primary key (one user_id and poll_id per vote)
-* user_id - foreign key to Users Table 
-* poll_id - foreign key to Polls Table
-* option_id - selected options 
-* vote_created - vote timestamp
+* vote_id - int identity [primary key], unique voting ID where only one one user_id and one poll_id are allowed per vote
+* user_id - int identity [foreign key], unique user ID
+* poll_id - int identity [foreign key], unique poll ID
+* option_id - int, stores the ID for each option that the user picked
+* vote_created - timestamp, time when votes were submitted
+* ip_address - varchar(45), stores source of the vote, to verify that user only votes once from that device
+* is_anonymous - boolean, stores if vote was submitted anonymously
 
 ### Table verification tests
 
