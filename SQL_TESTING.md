@@ -15,6 +15,8 @@ This table stores individual user information.
 
 * user_id - identity [primary key]
 * username - varchar(30)
+* first_name - varchar(50)
+* last_name - varchar(50)
 * email - varchar(100)
 * password - varchar(60)
 * user_created - timestamp
