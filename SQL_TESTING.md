@@ -27,6 +27,51 @@ This table stores individual user information.
 * Username/email validity test
 * Password hashing test
 
+
+---
+#### (Cat's idea for how to format / write more detail in table verification tests)
+
+### USERNAME VALIDITY TEST:
+
+#### Method Name
+GetUserByUsername(username)
+#### Description
+Get a  user's information based on their username
+#### Parameters
+username
+#### Return values
+User information (user_id, username, first_name, last_name, email, user_created) or null if the user does not exist
+
+### Test 1: Valid User
+#### Description
+Get an existing user by providing a valid username
+#### Precondition
+User with specified username exists in DB
+#### Test Steps
+Call GetUserByUsername and pass a valid username
+#### Expected Result
+User's information is returned
+#### Actual Result
+User information is successfully retrieved
+#### Status
+Pass
+
+### Test 2: Invalid User
+#### Description
+Try to get user information from an invalid/non-existing username
+#### Precondition
+User with specified username does not exist in DB
+#### Test Steps
+Call GetUserByUsername and pass an invalid username
+#### Expected Result
+Null is returned
+#### Actual Result
+Null is returned, which means user does not exist
+#### Status
+Pass
+
+---
+
 ### Data access test pre-conditions:
 
 * The website and database are functional and properly configured.
