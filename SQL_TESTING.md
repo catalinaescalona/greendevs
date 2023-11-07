@@ -13,13 +13,13 @@ This table stores individual user information.
 
 ### Table Fields:
 
-* user_id - identity [primary key]
-* username - varchar(30)
-* first_name - varchar(50)
-* last_name - varchar(50)
-* email - varchar(100)
-* password - varchar(60)
-* user_created - timestamp
+* user_id - int identity [primary key], unique user ID
+* username - varchar(30), username created by user
+* first_name - varchar(50), first name of user
+* last_name - varchar(50), last name of user
+* email - varchar(100), user's email address
+* password - varchar(60), password created by user
+* user_created - timestamp, time when user profile was created
 
 ### Table verification tests
 
@@ -96,14 +96,14 @@ This table stores individual poll information.
 
 ### Table Fields:
 
-* poll_id - primary key (unique for each poll)
-* user_id - foreign key to Users Table (one user_id per poll)
-* question - text questions
-* options - JSON column to store options as arrays
-* poll_created - poll creation timestamp
-* poll_expiration - poll expiration date
-* poll_num - number of times users have taken that poll
-* option_num - number of times users have selected specific answer
+* poll_id - int identity [primary key], poll ID unique for each poll
+* user_id - int identity [foreign key], ID of user who created poll
+* question - text, stores the poll questions 
+* options - JSON, stores the answer options of the poll questions
+* poll_created - timestamp, time when poll was created
+* poll_expiration - timestamp, time when poll expires
+* poll_num - int, number of users who have taken that poll
+* option_num - int, number of times a user selected a specific response option
 
 ### Table verification tests
 
