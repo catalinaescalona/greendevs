@@ -31,17 +31,54 @@ This table stores individual user information.
 ---
 #### (Cat's idea for how to format / write more detail in table verification tests)
 
-### USERNAME VALIDITY TEST:
-
+### USER REGISTRATION TEST:
 #### Method Name
-GetUserByUsername(username)
+CreateUser
 #### Description
-Get a  user's information based on their username
+Create a new user and insert information into Users table
+#### Parameters
+username, first_name, last_name, email, password
+#### Return Values
+user_id, user_created
+### Test 1: Valid User
+#### Description
+Create a new user with valid information
+#### Precondition
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+#### Test Steps
+Call CreateUser with valid user information
+#### Expected Result
+New user is successfully created and user_id and user_created is returned
+#### Actual Result 
+New user is created and user_id and user_created is returned
+#### Status 
+Pass
+### Test 2: Invalid User
+#### Description
+Try to create a new user information with invalid/missing information
+#### Precondition
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+#### Test Steps
+Call CreateUser with invalid/missing information
+#### Expected Result
+User creation fails and an error message is returned
+#### Actual Result 
+User creation fails and an error message is returned
+#### Status 
+Pass
+
+
+### USERNAME VALIDITY TEST:
+#### Method Name
+GetUserByUsername
+#### Description
+Get a user's information based on their username
 #### Parameters
 username
-#### Return values
+#### Return Values
 User information (user_id, username, first_name, last_name, email, user_created) or null if the user does not exist
-
 ### Test 1: Valid User
 #### Description
 Get an existing user by providing a valid username
@@ -55,7 +92,6 @@ User's information is returned
 User information is successfully retrieved
 #### Status
 Pass
-
 ### Test 2: Invalid User
 #### Description
 Try to get user information from an invalid/non-existing username
