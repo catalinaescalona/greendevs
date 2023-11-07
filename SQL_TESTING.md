@@ -50,8 +50,6 @@ Create a new user with valid information
 Call CreateUser with valid user information
 #### Expected Result
 New user is successfully created and user_id and user_created is returned
-#### Actual Result 
-New user is created and user_id and user_created is returned
 #### Status 
 Pass
 ### Test 2: Invalid User
@@ -63,8 +61,6 @@ Try to create a new user information with invalid/missing information
 #### Test Steps
 Call CreateUser with invalid/missing information
 #### Expected Result
-User creation fails and an error message is returned
-#### Actual Result 
 User creation fails and an error message is returned
 #### Status 
 Pass
@@ -87,8 +83,6 @@ User with specified username exists in DB
 #### Test Steps
 Call GetUserByUsername and pass a valid username
 #### Expected Result
-User's information is returned
-#### Actual Result
 User information is successfully retrieved
 #### Status
 Pass
@@ -100,8 +94,6 @@ User with specified username does not exist in DB
 #### Test Steps
 Call GetUserByUsername and pass an invalid username
 #### Expected Result
-Null is returned
-#### Actual Result
 Null is returned, which means user does not exist
 #### Status
 Pass
@@ -192,6 +184,77 @@ This table stores individual poll information.
 * Poll update test
 * Poll deletion test
 * Foreign key validity test
+
+---
+#### (Cat's idea for how to format / write more detail in table verification tests)
+
+### POLL CREATION TEST:
+#### Method Name
+CreatePoll
+#### Description
+Create a new poll and insert information into Polls table
+#### Parameters
+user_id, question, options
+#### Return Values
+poll_id, poll_created, poll_expiration
+### Test 1: Valid Poll
+#### Description
+Create a new poll with valid information
+#### Precondition
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+#### Test Steps
+Call CreatePoll with valid poll information
+#### Expected Result
+New poll is successfully created and poll_id, poll_created, and poll_expiration are returned
+#### Status 
+Pass
+### Test 2: Invalid Poll
+#### Description
+Try to create a new poll with invalid/missing information
+#### Precondition
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+#### Test Steps
+Call CreatePoll with invalid/missing information
+#### Expected Result
+Poll creation fails and an error message is returned
+#### Status 
+Pass
+
+### POLL REGISTRATION TEST:
+#### Method Name
+GetPollByID
+#### Description
+Get a poll's information according to the poll ID
+#### Parameters
+poll_id
+#### Return Values
+Poll information (user_id, question, options, poll_created, poll_expiration) or null if poll does not exist
+### Test 1: Valid Poll
+#### Description
+Get an existing poll by passing a valid poll ID
+#### Precondition
+* Poll with specified poll_id exists in DB
+#### Test Steps
+Call GetPollByID with valid poll_id
+#### Expected Result
+Poll information is successfully retrieved
+#### Status 
+Pass
+### Test 2: Invalid Poll
+#### Description
+Try to get a poll with non-existing poll_id
+#### Precondition
+* Poll with specified poll_id does not exist in DB
+#### Test Steps
+Call GetPollByID with non-existing poll_id
+#### Expected Result
+Null is returned, which means poll does not exist
+#### Status 
+Pass
+
+---
 
 ### Data access test pre-conditions:
 
@@ -342,8 +405,3 @@ These tests confirm the following:
 
 * The vote is contained within the Votes Table and is linked to the correct poll.
 * The vote is added to the total number of votes collected for a specific poll.
-
-
-
-
-
