@@ -5,7 +5,7 @@
 
 ### Table Name: 
 
-Users Table
+Users
 
 ### Description:
 
@@ -13,11 +13,11 @@ This table stores individual user information.
 
 ### Table Fields:
 
-* user_id - primary key
-* username - login id
-* email - user email address
-* password - user password
-* user_created - account creation timestamp
+* user_id - identity [primary key]
+* username - varchar(30)
+* email - varchar(100)
+* password - varchar(60)
+* user_created - timestamp
 
 ### Table verification tests
 
@@ -86,7 +86,7 @@ These tests confirm the following:
 
 ### Table Name: 
 
-Polls Table
+Polls
 
 ### Description:
 
@@ -182,7 +182,7 @@ These tests confirm the following:
 
 ### Table Name: 
 
-Votes Table
+Votes
 
 ### Description:
 
