@@ -31,7 +31,7 @@ def take_a_poll():
 
 @app.route('/user')
 def user_dashboard():
-    return "This is your dashboard where you will be able to access all of your polls and history"
+    return "This is your dashboard where you will be able to access all of your polls and history!"
 
 @app.route('/create')
 def create_poll():
