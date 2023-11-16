@@ -1,6 +1,5 @@
 # Pollaris - Project Tables and Tests
 
-
 ## <ins>Table #1</ins>
 
 ### Table Name: 
@@ -26,79 +25,6 @@ This table stores individual user information.
 * User registration test
 * Username/email validity test
 * Password hashing test
-
-
----
-#### (Cat's idea for how to format / write more detail in table verification tests)
-
-### USER REGISTRATION TEST:
-#### Method Name
-CreateUser
-#### Description
-Create a new user and insert information into Users table
-#### Parameters
-username, first_name, last_name, email, password
-#### Return Values
-user_id, user_created
-### Test 1: Valid User
-#### Description
-Create a new user with valid information
-#### Precondition
-* The website and database are functional and properly configured.
-* A connection to the database is established.
-#### Test Steps
-Call CreateUser with valid user information
-#### Expected Result
-New user is successfully created and user_id and user_created is returned
-#### Status 
-Pass
-### Test 2: Invalid User
-#### Description
-Try to create a new user information with invalid/missing information
-#### Precondition
-* The website and database are functional and properly configured.
-* A connection to the database is established.
-#### Test Steps
-Call CreateUser with invalid/missing information
-#### Expected Result
-User creation fails and an error message is returned
-#### Status 
-Pass
-
-
-### USERNAME VALIDITY TEST:
-#### Method Name
-GetUserByUsername
-#### Description
-Get a user's information based on their username
-#### Parameters
-username
-#### Return Values
-User information (user_id, username, first_name, last_name, email, user_created) or null if the user does not exist
-### Test 1: Valid User
-#### Description
-Get an existing user by providing a valid username
-#### Precondition
-User with specified username exists in DB
-#### Test Steps
-Call GetUserByUsername and pass a valid username
-#### Expected Result
-User information is successfully retrieved
-#### Status
-Pass
-### Test 2: Invalid User
-#### Description
-Try to get user information from an invalid/non-existing username
-#### Precondition
-User with specified username does not exist in DB
-#### Test Steps
-Call GetUserByUsername and pass an invalid username
-#### Expected Result
-Null is returned, which means user does not exist
-#### Status
-Pass
-
----
 
 ### Data access test pre-conditions:
 
@@ -137,10 +63,6 @@ Pass
 * Password hashing test
   * The stored password matches the newly hashed password.
 
-### Status:
-
-Pass
-
 ### Notes:
 
 These tests confirm the following:
@@ -154,8 +76,74 @@ These tests confirm the following:
 * The new user is successfully registered in the system.
 * The new user's password is stored correctly.
 
-<br></br>
+### Example of User Registration Test:
+#### Method Name
+CreateUser
+#### Description
+Create a new user and insert information into Users table
+#### Parameters
+username, first_name, last_name, email, password
+#### Return Values
+user_id, user_created
+### Test 1: Valid User
+#### Description
+Create a new user with valid information
+#### Precondition
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+#### Test Steps
+Call CreateUser with valid user information
+#### Expected Result
+New user is successfully created and user_id and user_created is returned
+#### Status 
+Pass
+### Test 2: Invalid User
+#### Description
+Try to create a new user information with invalid/missing information
+#### Precondition
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+#### Test Steps
+Call CreateUser with invalid/missing information
+#### Expected Result
+User creation fails and an error message is returned
+#### Status 
+Pass
 
+
+### Example of Username Validity Test:
+#### Method Name
+GetUserByUsername
+#### Description
+Get a user's information based on their username
+#### Parameters
+username
+#### Return Values
+User information (user_id, username, first_name, last_name, email, user_created) or null if the user does not exist
+### Test 1: Valid User
+#### Description
+Get an existing user by providing a valid username
+#### Precondition
+User with specified username exists in DB
+#### Test Steps
+Call GetUserByUsername and pass a valid username
+#### Expected Result
+User information is successfully retrieved
+#### Status
+Pass
+### Test 2: Invalid User
+#### Description
+Try to get user information from an invalid/non-existing username
+#### Precondition
+User with specified username does not exist in DB
+#### Test Steps
+Call GetUserByUsername and pass an invalid username
+#### Expected Result
+Null is returned, which means user does not exist
+#### Status
+Pass
+
+<br>
 
 ## <ins>Table #2</ins>
 
@@ -184,77 +172,6 @@ This table stores individual poll information.
 * Poll update test
 * Poll deletion test
 * Foreign key validity test
-
----
-#### (Cat's idea for how to format / write more detail in table verification tests)
-
-### POLL CREATION TEST:
-#### Method Name
-CreatePoll
-#### Description
-Create a new poll and insert information into Polls table
-#### Parameters
-user_id, question, options
-#### Return Values
-poll_id, poll_created, poll_expiration
-### Test 1: Valid Poll
-#### Description
-Create a new poll with valid information
-#### Precondition
-* The website and database are functional and properly configured.
-* A connection to the database is established.
-#### Test Steps
-Call CreatePoll with valid poll information
-#### Expected Result
-New poll is successfully created and poll_id, poll_created, and poll_expiration are returned
-#### Status 
-Pass
-### Test 2: Invalid Poll
-#### Description
-Try to create a new poll with invalid/missing information
-#### Precondition
-* The website and database are functional and properly configured.
-* A connection to the database is established.
-#### Test Steps
-Call CreatePoll with invalid/missing information
-#### Expected Result
-Poll creation fails and an error message is returned
-#### Status 
-Pass
-
-### POLL REGISTRATION TEST:
-#### Method Name
-GetPollByID
-#### Description
-Get a poll's information according to the poll ID
-#### Parameters
-poll_id
-#### Return Values
-Poll information (user_id, question, options, poll_created, poll_expiration) or null if poll does not exist
-### Test 1: Valid Poll
-#### Description
-Get an existing poll by passing a valid poll ID
-#### Precondition
-* Poll with specified poll_id exists in DB
-#### Test Steps
-Call GetPollByID with valid poll_id
-#### Expected Result
-Poll information is successfully retrieved
-#### Status 
-Pass
-### Test 2: Invalid Poll
-#### Description
-Try to get a poll with non-existing poll_id
-#### Precondition
-* Poll with specified poll_id does not exist in DB
-#### Test Steps
-Call GetPollByID with non-existing poll_id
-#### Expected Result
-Null is returned, which means poll does not exist
-#### Status 
-Pass
-
----
 
 ### Data access test pre-conditions:
 
@@ -303,10 +220,6 @@ Pass
 * Foreign key validity test
   * The user_id in the Polls Table references a valid user_id in the Users Table.
 
-### Status:
-
-Pass
-
 ### Notes:
 
 These tests confirm the following:
@@ -320,9 +233,74 @@ These tests confirm the following:
 * New polls are created, updated, or deleted and accurately reflected in the Polls Table.
 * The website correctly displays the poll to users.
 
-<br></br>
 
+### Example of Poll Creation Test:
+#### Method Name
+CreatePoll
+#### Description
+Create a new poll and insert information into Polls table
+#### Parameters
+user_id, question, options
+#### Return Values
+poll_id, poll_created, poll_expiration
+### Test 1: Valid Poll
+#### Description
+Create a new poll with valid information
+#### Precondition
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+#### Test Steps
+Call CreatePoll with valid poll information
+#### Expected Result
+New poll is successfully created and poll_id, poll_created, and poll_expiration are returned
+#### Status 
+Pass
+### Test 2: Invalid Poll
+#### Description
+Try to create a new poll with invalid/missing information
+#### Precondition
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+#### Test Steps
+Call CreatePoll with invalid/missing information
+#### Expected Result
+Poll creation fails and an error message is returned
+#### Status 
+Pass
 
+### Example of Poll Registration Verification Test:
+#### Method Name
+GetPollByID
+#### Description
+Get an existing poll's information according to the poll ID
+#### Parameters
+poll_id
+#### Return Values
+Poll information (user_id, question, options, poll_created, poll_expiration) or null if poll does not exist
+### Test 1: Valid Poll
+#### Description
+Get an existing poll by passing a valid poll ID
+#### Precondition
+* Poll with specified poll_id exists in DB
+#### Test Steps
+Call GetPollByID with valid poll_id
+#### Expected Result
+Poll information is successfully retrieved
+#### Status 
+Pass
+### Test 2: Invalid Poll
+#### Description
+Try to get a poll with non-existing poll_id
+#### Precondition
+* Poll with specified poll_id does not exist in DB
+#### Test Steps
+Call GetPollByID with non-existing poll_id
+#### Expected Result
+Null is returned, which means poll does not exist
+#### Status 
+Pass
+
+<br>
 
 ## <ins>Table #3</ins>
 
@@ -341,8 +319,6 @@ This table stores votes by users.
 * poll_id - int identity [foreign key], unique poll ID
 * option_id - int, stores the ID for each option that the user picked
 * vote_created - timestamp, time when votes were submitted
-* ip_address - varchar(45), stores source of the vote, to verify that user only votes once from that device
-* is_anonymous - boolean, stores if vote was submitted anonymously
 
 ### Table verification tests
 
@@ -389,10 +365,6 @@ This table stores votes by users.
   * The user_id in the Votes Table references a valid user_id in the Users Table.
   * The poll_id in the Votes Table references a valid poll_id in the Polls Table.
 
-### Status:
-
-Pass
-
 ### Notes:
 
 These tests confirm the following:
@@ -405,3 +377,60 @@ These tests confirm the following:
 
 * The vote is contained within the Votes Table and is linked to the correct poll.
 * The vote is added to the total number of votes collected for a specific poll.
+
+### Example of Vote Recording Test:
+#### Method Name
+RecordVote
+#### Description
+Vote in a poll and insert information into Votes table
+#### Parameters
+user_id, poll_id, option_id
+#### Return Values
+vote_id, vote_created
+### Test 1: Valid Vote
+#### Description
+Vote validly in an existing poll
+#### Precondition
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+#### Test Steps
+Call RecordVote with valid vote information
+#### Expected Result
+New vote is successfully recorded in Votes Table and vote_id and vote_created are returned.
+#### Status 
+Pass
+### Test 2: Invalid Vote
+#### Description
+Try to vote in an invalid way
+#### Precondition
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+#### Test Steps
+Call RecordVote with invalid/missing user_id, poll_id, or option_id
+#### Expected Result
+Vote recording fails and an error message is returned
+#### Status 
+Pass
+
+### Example of Multiple Votes Test:
+#### Method Name
+RecordVote
+#### Description
+Attempt to vote multiple times with the same user and poll
+#### Parameters
+user_id, poll_id, option_id
+#### Return Values
+vote_id, vote_created
+### Test: Multiple Votes
+#### Description
+Attempt to vote multiple times using the same user_id and poll_id
+#### Precondition
+* The website and database are functional and properly configured.
+* A connection to the database is established.
+* A user has already voted once before in the poll.
+#### Test Steps
+Call RecordVote with same user_id, poll_id, but thsi time a different option_id
+#### Expected Result
+The website prevents multiple votes in the poll from the same user.
+#### Status 
+Pass
