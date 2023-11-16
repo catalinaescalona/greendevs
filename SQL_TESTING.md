@@ -1,5 +1,7 @@
 # Pollaris - Project Tables and Tests
 
+![pollaris-sql-design](https://github.com/catalinaescalona/greendevs/assets/68168149/277f303c-46bd-417d-9e2f-d4cbad766179)
+
 ## <ins>Table #1</ins>
 
 ### Table Name: 
