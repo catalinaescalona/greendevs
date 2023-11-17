@@ -10,7 +10,7 @@ Users
 
 ### Description:
 
-This table stores individual user information.
+This table stores our user's information.
 
 ### Table Fields:
 
@@ -74,9 +74,9 @@ These tests confirm the following:
 
 ### Post-conditions:
 
-* The new user is contained within the Users Table.
+* The new user is shown in the Users Table.
 * The new user is successfully registered in the system.
-* The new user's password is stored correctly.
+* The new user's password is stored in the table.
 
 ### Example of User Registration Test:
 #### Method Name
@@ -155,11 +155,11 @@ Polls
 
 ### Description:
 
-This table stores individual poll information.
+This table holds specific poll information.
 
 ### Table Fields:
 
-* poll_id - int identity [primary key], poll ID unique for each poll
+* poll_id - int identity [primary key], unique identifier
 * user_id - int identity [foreign key], ID of user who created poll
 * question - text, stores the poll questions 
 * options - JSON, stores the answer options of the poll questions
@@ -240,7 +240,7 @@ These tests confirm the following:
 #### Method Name
 CreatePoll
 #### Description
-Create a new poll and insert information into Polls table
+Makes a new poll and adds it to the Polls table
 #### Parameters
 user_id, question, options
 #### Return Values
