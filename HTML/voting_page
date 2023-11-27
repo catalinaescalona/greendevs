@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollaris</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        header img {
+            max-height: 50px;
+        }
+
+        .sign-in {
+            margin-right: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 18px;
+            text-decoration: none;
+            background-color: #008CBA; 
+            color: white;
+            border-radius: 5px;
+        }
+
+        .poll-container {
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        .poll-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .poll-description {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .created-by {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .poll-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .poll-number {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .voting-option {
+            margin-bottom: 10px;
+        }
+
+        .btn-save,
+        .btn-submit {
+            padding: 10px 20px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+            color: white;
+            background-color: #008CBA;
+        }
+
+        .btn-submit {
+            background-color: #008CBA;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="your-logo.png" alt="Pollaris Logo">
+        <div class="sign-in">
+            <a href="#" class="btn">Sign In</a>
+        </div>
+    </header>
+
+    <div class="poll-container">
+        <div class="poll-title">TITLE OF POLL</div>
+        <div class="poll-description">Description of the poll</div>
+        <div class="created-by">Created by USER on YYYY-MM-DD</div>
+
+        <div class="poll-box">
+            <div class="poll-number">POLL #1</div>
+            <div class="voting-option">
+                <input type="radio" name="poll1" value="option1"> Option 1
+            </div>
+            <div class="voting-option">
+                <input type="radio" name="poll1" value="option2"> Option 2
+            </div>
+            <div class="voting-option">
+                <input type="radio" name="poll1" value="option3"> Option 3
+            </div>
+            <div class="voting-option">
+                <input type="radio" name="poll1" value="option4"> Option 4
+            </div>
+        </div>
+
+        <div class="poll-box">
+            <div class="poll-number">POLL #2</div>
+            <div class="voting-option">
+                <input type="radio" name="poll2" value="option1"> Option 1
+            </div>
+            <div class="voting-option">
+                <input type="radio" name="poll2" value="option2"> Option 2
+            </div>
+            <div class="voting-option">
+                <input type="radio" name="poll2" value="option3"> Option 3
+            </div>
+            <div class="voting-option">
+                <input type="radio" name="poll2" value="option4"> Option 4
+            </div>
+        </div>
+
+        <div class="poll-box">
+            <div class="poll-number">POLL #3</div>
+            <div class="voting-option">
+                <input type="radio" name="poll3" value="option1"> Option 1
+            </div>
+            <div class="voting-option">
+                <input type="radio" name="poll3" value="option2"> Option 2
+            </div>
+            <div class="voting-option">
+                <input type="radio" name="poll3" value="option3"> Option 3
+            </div>
+            <div class="voting-option">
+                <input type="radio" name="poll3" value="option4"> Option 4
+            </div>
+        </div>
+
+        <button class="btn btn-save">Save</button>
+        <button class="btn btn-submit">Submit</button>
+    </div>
+
+</body>
+
+</html>
