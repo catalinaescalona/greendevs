@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollaris</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        header img {
+            max-height: 50px;
+        }
+
+        .sign-in {
+            margin-right: 20px;
+        }
+
+        h1, p {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 18px;
+            text-decoration: none;
+            background-color: #008CBA; 
+            color: white;
+            border-radius: 5px;
+        }
+
+        .form-container {
+            margin-top: 20px;
+            text-align: left;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        .btn-preview,
+        .btn-submit {
+            padding: 10px 20px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+            color: white;
+            background-color: #008CBA;
+        }
+
+        .btn-submit {
+            background-color: #008CBA;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="your-logo.png" alt="Pollaris Logo">
+        <div class="sign-in">
+            <a href="#" class="btn">Sign In</a>
+        </div>
+    </header>
+
+    <h1>LET POLLARIS GUIDE YOU TO NEW HORIZONS</h1>
+    <a href="#" class="btn">Sign Up</a>
+    <p>Create a Poll</p>
+
+    <div class="form-container">
+        <label for="poll-title">Poll Title</label>
+        <input type="text" id="poll-title" name="poll-title">
+
+        <label for="poll-description">Poll Description</label>
+        <input type="text" id="poll-description" name="poll-description">
+
+        <label for="poll-answer1">Poll Answer #1</label>
+        <input type="text" id="poll-answer1" name="poll-answer1">
+
+        <label for="poll-answer2">Poll Answer #2</label>
+        <input type="text" id="poll-answer2" name="poll-answer2">
+
+        <label for="poll-answer3">Poll Answer #3</label>
+        <input type="text" id="poll-answer3" name="poll-answer3">
+
+        <div>
+            <button class="btn btn-preview">Preview</button>
+            <button class="btn btn-submit">Submit</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
