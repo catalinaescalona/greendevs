@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollaris</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        header img {
+            max-height: 50px;
+        }
+
+        .sign-in {
+            margin-right: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 18px;
+            text-decoration: none;
+            background-color: #008CBA; 
+            color: white;
+            border-radius: 5px;
+        }
+
+        .search-bar {
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .btn-login,
+        .btn-signup,
+        .forgot-password {
+            padding: 10px 20px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+            color: white;
+            background-color: #008CBA; 
+        }
+
+        .forgot-password {
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="your-logo.png" alt="Pollaris Logo">
+        <div class="sign-in">
+            <a href="#" class="btn">Sign In</a>
+        </div>
+    </header>
+
+    <h1>LOG IN</h1>
+
+    <div class="search-bar">
+        <input type="text" placeholder="User Name">
+        <br>
+        <input type="password" placeholder="Password">
+        <br>
+        <button class="btn btn-login">Log In</button>
+        <br>
+        <a href="#" class="btn btn-signup">Sign Up</a>
+        <br>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+    </div>
+
+</body>
+
+</html>
