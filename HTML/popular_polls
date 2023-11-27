@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollaris</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        header img {
+            max-height: 50px;
+        }
+
+        .sign-in {
+            margin-right: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 18px;
+            text-decoration: none;
+            background-color: #008CBA; 
+            color: white;
+            border-radius: 5px;
+        }
+
+        .polls-container {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .poll-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .poll-number {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .sort-by {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="your-logo.png" alt="Pollaris Logo">
+        <div class="sign-in">
+            <a href="#" class="btn">Sign In</a>
+        </div>
+    </header>
+
+    <h2>POPULAR POLLS</h2>
+    <div class="sort-by">Sort By
+        <select>
+            <option value="trending">Trending</option>
+          <option value="popularity">Popularity</option>
+            <option value="date">Date</option>
+        </select>
+    </div>
+
+    <div class="polls-container">
+        <div class="poll-box">
+            <div class="poll-number">POLL #1</div>
+        </div>
+
+        <div class="poll-box">
+            <div class="poll-number">POLL #2</div>
+        </div>
+
+        <div class="poll-box">
+            <div class="poll-number">POLL #3</div>
+        </div>
+
+        <div class="poll-box">
+            <div class="poll-number">POLL #4</div>
+        </div>
+
+        <div class="poll-box">
+            <div class="poll-number">POLL #5</div>
+        </div>
+
+        <div class="poll-box">
+            <div class="poll-number">POLL #6</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
