@@ -140,10 +140,12 @@ Scrum Master: Greg
 <br>
 <img width="429" alt="Screenshot 2023-11-08 at 7 32 42 AM" src="https://github.com/catalinaescalona/greendevs/assets/120431515/761a9ab7-8372-46b9-833d-c99848ff5298">
 <br>
+
 #### Sprint Demo / What We Accomplished:
 <br>
 <img width="426" alt="Screenshot 2023-11-08 at 7 33 31 AM" src="https://github.com/catalinaescalona/greendevs/assets/120431515/f12bfb6d-e299-45bc-8d2c-b1c3267cdfc1">
 <br>
+
 #### Sprint Retro:
 <br>
 <img width="425" alt="Screenshot 2023-11-08 at 7 34 12 AM" src="https://github.com/catalinaescalona/greendevs/assets/120431515/38d1576b-8612-4a3a-8643-eb8819007940">
@@ -152,11 +154,13 @@ Scrum Master: Greg
 <br>
 <img width="428" alt="Screenshot 2023-11-08 at 7 35 20 AM" src="https://github.com/catalinaescalona/greendevs/assets/120431515/7c3fae9d-5e88-4c64-951a-8d0926ee7860">
 <br>
+
 #### Sprint Planning / Action Points:
 <br>
 * Due to the estimated time commitment for Lab 11, we agreed to focus on that most this week. <br>
 * Make final changes to Milestone 5. Discuss any final changes next week.<br>
 * Brainstorm a plan to begin building our project to discuss next week. Discuss next week.<br>
+
 ---
 
 ## SPRINT 7 (November 7 - November 14)
@@ -183,9 +187,9 @@ Scrum Master: Ryan
 
 ---
 
-## SPRINT 8 (November 14 - November 21)
+## SPRINT 8 (November 14 - November 29)
 
-Scrum Master: Brandon
+Scrum Master: Cat
 
 #### Weekly Standup:
 
