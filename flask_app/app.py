@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return '''Welcome to Pollaris!<br>
+    return '''Welcome to Pollaris!<br><br>
     Here is a list of all routes currently created: <br>
     /<br>
     /login<br>
