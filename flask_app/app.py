@@ -8,7 +8,7 @@
 # you can now test the website using http://127.0.0.1:5000/
 # if you get a 403 error (Access to 127.0.0.1 was denied), you may need to clear cookies.
 
-from flask import Flask
+from flask import Flask, render_template
 import sqlite3
 
 app = Flask(__name__)
@@ -24,6 +24,11 @@ def hello_world():
     /user<br>
     /create<br>
     '''
+
+@app.route('/test')
+def test_render(name=None):
+    '''docstring goes here'''
+    return render_template("homepage.html", name=name)
 
 @app.route('/login')
 def log_in():
