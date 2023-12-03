@@ -214,12 +214,21 @@ Scrum Master: Cat
 Scrum Master: Greg
 
 #### Weekly Standup:
+<img width="433" alt="Screenshot 2023-12-03 at 4 28 49 PM" src="https://github.com/catalinaescalona/greendevs/assets/120431515/070e75d4-ff7a-4483-b832-538749754100">
+<img width="428" alt="Screenshot 2023-12-03 at 4 28 58 PM" src="https://github.com/catalinaescalona/greendevs/assets/120431515/b32f7079-97a7-4ba5-b0da-d3a608426562">
+<img width="425" alt="Screenshot 2023-12-03 at 4 30 03 PM" src="https://github.com/catalinaescalona/greendevs/assets/120431515/e1dd92a6-0e9b-4d7a-97f8-86ddf364f945">
 
 #### Sprint Demo / What We Accomplished:
 
+Nothing for this meeting.
+
 #### Sprint Retro:
+<img width="427" alt="Screenshot 2023-12-03 at 4 30 13 PM" src="https://github.com/catalinaescalona/greendevs/assets/120431515/c5920569-fbdc-49f0-a406-28e4f8103cc7">
+<img width="427" alt="Screenshot 2023-12-03 at 4 30 19 PM" src="https://github.com/catalinaescalona/greendevs/assets/120431515/df2ecab3-8ad0-4e38-80eb-3ae94c2f226d">
+<img width="432" alt="Screenshot 2023-12-03 at 4 30 30 PM" src="https://github.com/catalinaescalona/greendevs/assets/120431515/7663a262-df89-49a3-afe3-65294f0de023">
 
 #### Sprint Planning / Action Points:
+<img width="428" alt="Screenshot 2023-12-03 at 4 28 58 PM" src="https://github.com/catalinaescalona/greendevs/assets/120431515/8832168a-a83d-46d6-a701-f8e15208654d">
 
 ---
 
