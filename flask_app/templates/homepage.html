@@ -1,116 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pollaris</title>
-    <link rel="stylesheet" href="static/css/homepage.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            text-align: center;
-        }
+    <link rel="stylesheet" href="static/css/homepage.css" />
+  </head>
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #f0f0f0;
-        }
-
-        header img {
-            max-height: 50px;
-        }
-
-        .sign-in {
-            margin-right: 20px;
-        }
-
-        h1 {
-            margin-top: 40px;
-            font-size: 24px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 18px;
-            text-decoration: none;
-            background-color: #008CBA; 
-            color: white;
-            border-radius: 5px;
-        }
-
-        .btn-poll {
-            margin-top: 40px;
-        }
-
-        .poll-links {
-            margin-top: 40px;
-        }
-
-        .poll-links a {
-            display: inline-block;
-            margin: 0 20px;
-            font-size: 18px;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .search-bar {
-            margin-top: 20px;
-        }
-
-        input[type="text"] {
-            padding: 8px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .btn-search {
-            padding: 8px 16px;
-            font-size: 16px;
-            background-color: #008CBA; 
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-
-<body>
-
+  <body>
     <header>
-        <img src="static/images/pollaris-logo.png" alt="Pollaris Logo">
-        <div class="sign-in">
-            <a href="#" class="btn">Sign In</a>
-        </div>
+      <img src="static/images/pollaris-logo.png" alt="Pollaris Logo" />
+      <div class="sign-in">
+        <a href="#" class="btn">Sign In</a>
+      </div>
     </header>
 
     <h1>LET POLLARIS GUIDE YOU TO NEW HORIZONS</h1>
     <a href="#" class="btn">Sign Up</a>
 
     <div class="search-bar">
-        <input type="text" placeholder="Enter Poll ID">
-        <button class="btn btn-search">Search</button>
+      <input type="text" placeholder="Enter Poll ID" />
+      <button class="btn btn-search">Search</button>
     </div>
 
     <div class="btn-poll">
-        <a href="#" class="btn">Take a Poll</a>
+      <a href="#" class="btn">Take a Poll</a>
     </div>
 
     <div class="poll-links">
-        <a href="poll1.html">Poll 1</a>
-        <a href="poll2.html">Poll 2</a>
-        <a href="poll3.html">Poll 3</a>
+      <a href="poll1.html">Poll 1</a>
+      <a href="poll2.html">Poll 2</a>
+      <a href="poll3.html">Poll 3</a>
     </div>
-
-</body>
-
+    <script>
+        // attempt to make sign in button reactive
+        document.getElementById('signInBtn').addEventListener('click', function() {
+            alert('Sign In button clicked');
+        })
+    </script>
+  </body>
 </html>

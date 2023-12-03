@@ -1,0 +1,76 @@
+/* comment here for documentation */
+
+body {
+    font-family: : Arial, sans-serif;
+    margin: 20px;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+header img {
+    max-height: 50px;
+}
+
+.sign-in {
+    margin-right: 20px;
+}
+
+h1 {
+    margin-top: 40px;
+    font-size: 24px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 18px;
+    text-decoration: none;
+    background-color: #008CBA;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn-poll {
+    margin-top: 40px;
+}
+
+.poll-links {
+    margin-top: 40px;
+}
+
+.poll-links a {
+    display: inline-block;
+    margin: 0 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #333;
+}
+
+.search-bar {
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-search {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
