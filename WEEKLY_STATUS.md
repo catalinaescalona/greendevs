@@ -189,9 +189,10 @@ Scrum Master: Ryan
 Scrum Master: Cat
 
 #### Weekly Standup:
-<img width="568" alt="Screen Shot 2023-12-03 at 13 46 43" src="https://github.com/catalinaescalona/greendevs/assets/68168149/913e0ba8-decc-48c5-94f9-6082020473f1">
-<img width="567" alt="Screen Shot 2023-12-03 at 13 46 26" src="https://github.com/catalinaescalona/greendevs/assets/68168149/aee583ce-0461-4ad6-9dcc-3d884151b5c6">
+
 <img width="571" alt="Screen Shot 2023-12-03 at 13 46 08" src="https://github.com/catalinaescalona/greendevs/assets/68168149/90bd6788-f3aa-465a-bb23-16427d3d3fa2">
+<img width="567" alt="Screen Shot 2023-12-03 at 13 46 26" src="https://github.com/catalinaescalona/greendevs/assets/68168149/aee583ce-0461-4ad6-9dcc-3d884151b5c6">
+<img width="568" alt="Screen Shot 2023-12-03 at 13 46 43" src="https://github.com/catalinaescalona/greendevs/assets/68168149/913e0ba8-decc-48c5-94f9-6082020473f1">
 
 #### Sprint Demo / What We Accomplished:
 <img width="570" alt="Screen Shot 2023-12-03 at 13 47 21" src="https://github.com/catalinaescalona/greendevs/assets/68168149/aebc749b-31ac-494e-8e7f-d31f72f1ad14">
