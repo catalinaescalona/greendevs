@@ -13,39 +13,46 @@ import sqlite3
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/routes')
 def hello_world():
-    return '''Welcome to Pollaris!<br><br>
-    Here is a list of all routes currently created: <br>
+    return '''Here is a list of all routes currently created in Pollaris: <br>
     /<br>
     /login<br>
-    /signup<br>
-    /take<br>
-    /user<br>
+    /vote<br>
     /create<br>
+    /popular
     '''
 
-@app.route('/test')
-def test_render(name=None):
-    '''docstring goes here'''
+@app.route('/')
+def index(name=None):
+    '''Renders an HTML template with the Pollaris Homepage'''
     return render_template("homepage.html", name=name)
 
 @app.route('/login')
-def log_in():
-    return "This is where you will log in!"
+def log_in(name=None):
+    '''Renders an HTML template with Pollaris login page'''
+    return render_template("login_page.html", name=name)
 
-@app.route('/signup')
-def sign_up():
-    return "This is where you will create a new account!"
-
-@app.route('/take')
-def take_a_poll():
-    return "This is where you will be able to find a poll to take!"
-
-@app.route('/user')
-def user_dashboard():
-    return "This is your dashboard where you will be able to access all of your polls and history!"
+@app.route('/vote')
+def take_a_poll(name=None):
+    '''Renders an HTML template that allows users to vote in an existing poll'''
+    return render_template("voting_page.html", name=name)
 
 @app.route('/create')
-def create_poll():
-    return "This is where you will create a new poll!"
+def create_poll(name=None):
+    '''Renders an HTML template that allows users to create a poll'''
+    return render_template("create_poll.html", name=name)
+
+@app.route('/popular')
+def popular_polls(name=None):
+    '''Renders an HTML template that displays popular, already-existing polls for users to browse and take'''
+    return render_template("popular_polls.html", name=name)
+
+# add GET/POST with login info? and figure out how to do sign up / account creation
+# @app.route('/signup')
+# def sign_up():
+#     return "This is where you will create a new account!"
+
+# @app.route('/user')
+# def user_dashboard():
+#     return "This is your dashboard where you will be able to access all of your polls and history!"
