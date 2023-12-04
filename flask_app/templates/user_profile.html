@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Pollaris</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        header img {
+            max-height: 50px;
+        }
+
+        .sign-in {
+            margin-right: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 18px;
+            text-decoration: none;
+            background-color: #008CBA;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .user-info {
+            margin-top: 20px;
+        }
+
+        .user-data {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .poll-section {
+            margin-top: 20px;
+        }
+
+        .poll-list {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .poll-item {
+            margin-bottom: 5px;
+        }
+
+        .btn-logout {
+            padding: 10px 20px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+            color: white;
+            background-color: #008CBA;
+        }
+
+        .forgot-password {
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="static/images/pollaris-logo.png" alt="Pollaris Logo">
+        <div class="sign-in">
+            <a href="#" class="btn">Sign In</a>
+        </div>
+    </header>
+
+    <h1>USER PROFILE</h1>
+
+    <div class="user-info">
+        <div class="user-data">Full Name: Example Name</div>
+        <div class="user-data">Email: name@example.com</div>
+        <div class="user-data">Member Since: December 3, 2023</div>
+
+        <div class="poll-section">
+            <h2>Created Polls</h2>
+            <div class="poll-list">
+                <div class="poll-item">Poll 1: Sample text</div>
+                <div class="poll-item">Poll 2: Sample text</div>
+            </div>
+        </div>
+
+        <div class="poll-section">
+            <h2>Voted Polls</h2>
+            <div class="poll-list">
+                <div class="poll-item">Voted on: Poll A</div>
+                <div class="poll-item">Voted on: Poll B</div>
+            </div>
+        </div>
+
+        <a href="#" class="btn-logout">Logout</a>
+        <br>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+    </div>
+
+</body>
+
+</html>
