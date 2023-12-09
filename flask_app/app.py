@@ -8,7 +8,7 @@
 # you can now test the website using http://127.0.0.1:5000/
 # if you get a 403 error (Access to 127.0.0.1 was denied), you may need to clear cookies.
 
-from flask import Flask, url_for, request, render_template
+from flask import Flask, url_for, request, render_template, redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -28,10 +28,43 @@ def index(name=None):
     '''Renders an HTML template with the Pollaris Homepage'''
     return render_template("homepage.html", name=name)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def log_in(name=None):
+    '''
+    This function checks log in credentials when a user attempts to log in.
+    It Queries the database for the credentials. 
+    If credentials exist, user is redirected to user/<user_name>. Otherwise login error message is displayed.
+    '''
+    # Get input from user --- python input statements will need to be replaced with GET requests
+    username = input("Please enter your user name: ")
+    password = input("Please enter your password: ")
+    
+    if request.method == 'POST' and 'user_name' in request.form and 'password' in request.form:
+        # Connect to databse
+        conn = sqlite3.connect("db", timeout=10)
+        c = conn.cursor()
+        
+        # Create string to query database for login credentials and execute query
+        login_query = '''SELECT user_name, password FROM Users WHERE user_name="{}" AND password="{}";'''.format(username, password)
+        c.execute(login_query)
+        result = c.fetchone()
+        # Close database
+        conn.close()
+
+        # If the credentials don't match, the result=c.fetchone() function will return nothing.
+        if not result:
+            # display log in error message
+            render_template("login_page.html", name=name, message="Incorrect username or password.")
+        else:
+            #redirect to user/<user_name>
+            return redirect(url_for(user_page, user_name=user_name))
+            
     '''Renders an HTML template with Pollaris login page'''
     return render_template("login_page.html", name=name)
+
+@app.route('/user/<user_name>')
+def user_page(user_name):
+    return "<h1>"+str(user_name)+"<\h1>"
 
 @app.route('/vote')
 def take_a_poll(name=None):
