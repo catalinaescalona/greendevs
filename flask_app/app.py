@@ -113,7 +113,7 @@ def sign_up():
         if new_name != None:
             return render_template('sign_up.html', message="User name taken. Please try again.")
         # Chech regex match to verify valid email address.
-        if not re.match(r'([A-Za-z\.!#$%\*()0-9]+@[A-Za-Z0-9]+\.[a-zA-Z]{2,3}', email):
+        if not re.match(r'^[A-Za-z\.!#$%\*0-9]+@[A-Za-z0-9]+\.[a-zA-Z]{2,3}$', email):
             return render_template('sign_up.html', message="Please enter a valid email.")
         # email must be unique. return error message if email is associated with an account
         new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email)).fetchone()
