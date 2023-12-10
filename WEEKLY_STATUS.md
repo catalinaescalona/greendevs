@@ -237,9 +237,15 @@ Nothing for this meeting.
 Scrum Master: Ryan
 
 #### Weekly Standup:
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/0b9b1488-ad5f-476f-94ac-5ea72d984a47)
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/b10c9840-a998-4ee3-a183-f2b1124d181a)
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/ee99ea5b-0903-40c1-bb56-716ea84695aa)
 
 #### Sprint Demo / What We Accomplished:
 
 #### Sprint Retro:
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/de8fedd3-6861-4842-b83b-dd630e6e8995)
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/91f189f6-9d1b-4f90-b846-f77196fe7112)
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/4bf69b7a-a911-48e9-9016-98934d7aeb54)
 
 #### Sprint Planning / Action Points:
