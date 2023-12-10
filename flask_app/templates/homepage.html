@@ -11,7 +11,7 @@
     <header>
       <img src="static/images/pollaris-logo.png" alt="Pollaris Logo" />
       <div class="sign-in">
-        <a href="#" class="btn">Sign In</a>
+        <a href="#" id="signinbtn" class="btn">Sign In</a>
       </div>
     </header>
 
@@ -32,11 +32,10 @@
       <a href="poll2.html">Poll 2</a>
       <a href="poll3.html">Poll 3</a>
     </div>
-    <script>
-        // attempt to make sign in button reactive
-        document.getElementById('signInBtn').addEventListener('click', function() {
-            alert('Sign In button clicked');
-        })
-    </script>
+
+    <!--link to jquery library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--link to javascript file-->
+    <script src="static/javascript/homepage.js"></script>
   </body>
 </html>
