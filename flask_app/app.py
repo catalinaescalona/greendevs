@@ -90,24 +90,22 @@ def index(name=None):
 #         return render_template('sign_up.html', message='please complete the form')
 #     return render_template('sign_up.html')
 
-# @app.route('/login', methods=['GET', 'POST'])
-# def log_in(name=None):
+@app.route('/login', methods=['GET', 'POST'])
+def log_in(name=None):
     '''
     This function checks log in credentials when a user attempts to log in.
     It Queries the database for the credentials. 
     If credentials exist, user is redirected to user/<user_name>. Otherwise login error message is displayed.
     '''
-    # Get input from user --- python input statements will need to be replaced with GET requests
-    username = input("Please enter your user name: ")
-    password = input("Please enter your password: ")
-    
-    if request.method == 'POST' and 'user_name' in request.form and 'password' in request.form:
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         # Connect to databse
         conn = sqlite3.connect("db", timeout=10)
         c = conn.cursor()
-        
+
         # Create string to query database for login credentials and execute query
-        login_query = '''SELECT user_name, password FROM Users WHERE user_name="{}" AND password="{}";'''.format(username, password)
+        login_query = '''SELECT user_name, password 
+                         FROM Users 
+                         WHERE user_name="{}" AND password="{}";'''.format(request.post['username'], request.post['password'])
         c.execute(login_query)
         result = c.fetchone()
         # Close database
@@ -116,7 +114,7 @@ def index(name=None):
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
         if not result:
             # display log in error message
-            render_template("login_page.html", name=name, message="Incorrect username or password.")
+            render_template("login_page.html", message="Incorrect username or password.")
         else:
             #redirect to user/<user_name>
             return redirect(url_for(user_page, user_name=user_name))
