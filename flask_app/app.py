@@ -10,6 +10,8 @@
 
 from flask import Flask, url_for, request, render_template, redirect, jsonify
 import sqlite3
+import randint
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -31,64 +33,62 @@ def index(name=None):
     '''Renders an HTML template with the Pollaris Homepage'''
     return render_template("homepage.html", name=name)
 
-# add GET/POST with login info? and figure out how to do sign up / account creation
-# @app.route('/signup', methods=['GET', 'POST'])
-# def sign_up():
-#     '''
-#     This function adds a new user to the database
-#     '''
-#     if request.method == 'POST' and 'User Name' in request.form and 'Password' in request.form and 'Email' in request.form and 'First' in
-#     request.form and 'Last' in request.form:
-#         # Store form inputs as variables
-#         user_name = request.form['User Name']
-#         password = request.form['Password']
-#         email = request.form['Email']
-#         first = request.form['First']
-#         last = request.form['Last']
+@app.route('/signup', methods=['GET', 'POST'])
+def sign_up():
+    '''
+    This function adds a new user to the database.
+    '''
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'first' in
+    request.form and 'last' in request.form:
+        # Store form inputs as variables
+        user_name = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+        first = request.form['first']
+        last = request.form['last']
+        timestamp = datetime.datetime.now()
         
-#         # user_id must be unique!
-#         # Create random 9-digit id for user_id. Query database to see if id exists already.
-#         new_id = randint(100000000, 999999999)
-#         result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+        # Connect to database
+        conn = sqlite3.connect("db", timeout=10)
+        c = conn.cursor()
         
-#         # c.execute will return nothing if the id does not exist.
-#         # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
-#         if result != None:
-#             while result != None:
-#                 new_id = randint(100000000, 999999999)
-#                 result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+        # user_id must be unique!
+        # Create random 9-digit id for user_id. Query database to see if id exists already.
+        new_id = randint(100000000, 999999999)
+        result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+        
+        # c.execute will return nothing if the id does not exist.
+        # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
+        if result != None:
+            while result != None:
+                new_id = randint(100000000, 999999999)
+                result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
 
-#         # user_name must be unique. return error message indicating user name is taken if not unique
-#         new_name = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(user_name)).fetchone()
-#         if new_name != None:
-#             return render_template('sign_up.html', message="User name taken. Please try again.")
-#         # Chech regex match to verify valid email address.
-#         if not re.match(r'^[A-Za-z\.!#$%\*0-9]+@[A-Za-z0-9]+\.[a-zA-Z]{2,3}$', email):
-#             return render_template('sign_up.html', message="Please enter a valid email.")
-#         # email must be unique. return error message if email is associated with an account
-#         new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email)).fetchone()
-#         if new_email = None:
-#             return render_template('sign_up.html', message="Email address already associated with an account. Please try again.")
+        # user_name must be unique. return error message indicating user name is taken if not unique
+        new_name = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(user_name)).fetchone()
+        if new_name != None:
+            return render_template('sign_up.html', message="User name taken. Please try again.")
+        # Chech regex match to verify valid email address.
+        if not re.match(r'^[A-Za-z\.!#$%\*0-9]+@[A-Za-z0-9]+\.[a-zA-Z]{2,3}$', email):
+            return render_template('sign_up.html', message="Please enter a valid email.")
+        # email must be unique. return error message if email is associated with an account
+        new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email)).fetchone()
+        if new_email = None:
+            return render_template('sign_up.html', message="There is an email address associated with an account.")
         
-#         timestamp = datetime.datetime.now()
+        #insert values into table
+        sql = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, ?)"
+        new_user = (new_id, user_name, first, last, email, password, timestamp)
+        c.execute(sql, new_user)
+        
+        # Commit changes and close database
+        conn.commit()
+        conn.close()
 
-#         # Connect to database
-#         conn = sqlite3.connect("db", timeout=10)
-#         c = conn.cursor()
-        
-#         #insert values into table
-#         sql = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, ?)"
-#         new_user = (new_id, user_name, first, last, email, password, timestamp)
-#         c.execute(sql, new_user)
-        
-#         # Commit changes and close database
-#         conn.commit()
-#         conn.close()
-
-#         return redirect(url_for(user_page, user_name=user_name))
-#     else:
-#         return render_template('sign_up.html', message='please complete the form')
-#     return render_template('sign_up.html')
+        return redirect(url_for(user_page, user_name=user_name))
+    else:
+        return render_template('sign_up.html', message='Incomplete Form.')
+    return render_template('sign_up.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def log_in(name=None):
