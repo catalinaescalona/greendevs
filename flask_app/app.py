@@ -8,7 +8,7 @@
 # you can now test the website using http://127.0.0.1:5000/
 # if you get a 403 error (Access to 127.0.0.1 was denied), you may need to clear cookies.
 
-from flask import Flask, url_for, request, render_template, redirect, jsonify
+from flask import Flask, url_for, request, render_template, redirect, jsonify, session
 import sqlite3
 import randint
 from datetime import datetime
