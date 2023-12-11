@@ -168,3 +168,16 @@
 </body>
 
 </html>
+        <div>
+        {% for question in questions %}
+            <div class="question">{{question}}</div>
+            
+            {% for i, answer in enumerate(options) %}
+                {% set value = "option"+str(i) %}
+                <div class="voting-option">
+                <input type="radio" id={{value}} name="option" value={{value}}>
+                <label for={{value}}>{{answer}}</label>
+                </div>
+            {%endfor%}
+        {%endfor%}
+        </div>
