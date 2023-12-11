@@ -132,13 +132,15 @@
     <div>
       <input type="button" id="submit_q" value="Create Next Question" onclick="nextQ()">
       <script>
-      	var dict = {};
+        var dict = {};
+
         function nextQ() {
           var arr = [];
-        	let question = document.getElementById("question");
+          let question = document.getElementById("question");
           let opts = document.getElementsByName('option');
           let bubs = document.getElementsByName('bubble');
           let brks = document.getElementsByTagName('br');
+          console.log(question.value)
           for (var i = 0; i < opts.length; i++) {
 
             console.log(opts[i].value);
@@ -147,27 +149,45 @@
           }
           dict[question.value.toString()] = arr
           while (opts[0]) {
-            opts[0].parentNode.removeChild(opts[0]);
-            bubs[0].parentNode.removeChild(bubs[0]);
-            brks[0].parentNode.removeChild(brks[0]);
+            opts[0].parentNode.removeChild(opts[0])
+            bubs[0].parentNode.removeChild(bubs[0])
+            brks[0].parentNode.removeChild(brks[0])
           }
-          question.value=""
+          question.value = ""
         }
-        
-        function send_poll(){
-        	submit = document.getElementById("submit_poll");
-            submit.name=JSON.stringify(dict);
-        	dict = {};
+
+        function send_poll() {
+          var arr = [];
+          let question = document.getElementById("question");
+          let opts = document.getElementsByName('option');
+          let bubs = document.getElementsByName('bubble');
+          let brks = document.getElementsByTagName('br');
+          console.log(question.value)
+          for (var i = 0; i < opts.length; i++) {
+
+            console.log(opts[i].value);
+            arr.push(opts[i].value.toString());
+
+          }
+          dict[question.value.toString()] = arr
+          while (opts[0]) {
+            opts[0].parentNode.removeChild(opts[0])
+            bubs[0].parentNode.removeChild(bubs[0])
+            brks[0].parentNode.removeChild(brks[0])
+          }
+          question.value = ""
+          submit = document.getElementById("submit_poll")
+          submit.name = JSON.stringify(dict)
+          console.log(submit.name)
         }
-        
 
       </script>
     </div>
     <div>
-      <form method="POST">
+      <form>
 
         <input type="button" id="submit_poll" value="Submit Poll" onclick="send_poll()">
-      
+
       </form>
 
     </div>
