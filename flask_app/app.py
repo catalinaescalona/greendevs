@@ -34,7 +34,7 @@ def index(name=None):
 
 @app.route('/db_test')
 def testing():
-    conn = psycopg2.connect("postgres://ryandb_user:OgdeDpbD9qh6MGxhOnUJW3PqytarF0q6@dpg-clrjghae9h4c73b1f6ag-a/ryandb")
+    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     conn.close()
     return 'Database Connection Successful'
 
