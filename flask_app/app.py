@@ -151,9 +151,47 @@ def create_poll(name=None):
     return render_template("create_poll.html", name=name)
 
 @app.route('/vote')
-def take_a_poll(name=None):
+def take_a_poll(name=None, poll_id):
+    conn = sqlite3.connect("db", timeout=10)
+    c = conn.cursor()
+
+    c.execute('''SELECT json FROM Polls WHERE poll_id="{}"'''.format(poll_id))
+    json = c.fetchone()[0]
+
+    conn.close()
+
+    questions = [key for key in json.keys()]
+    options = [value for value in json.values()]
+
+    if request.method == "POST":
+        conn = sqlite3.connect("db", timeout=10)
+        c = conn.cursor()
+        c.execute('''SELECT user_id FROM Users WHERE username="{}"'''.format(session['username']))
+        
+        user_id = c.fetchone()[0]
+        responses = request.form["answers"]
+        
+        for q_no, answer in enumerate(responses):
+            new_id = randint(100000000, 999999999)
+            result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+            
+            # c.execute will return nothing if the id does not exist.
+            # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
+            if result != None:
+                while result != None:
+                    new_id = randint(100000000, 999999999)
+                    result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+            question_id = q_no
+            option_id = answer
+            vote_created = datetime.datetime.now()
+                
+            vote = vote_id, user_id, poll_id, question_id, option_id, vote_created
+            c.execute("INSERT INTO Votes VALUES (?, ?, ?, ?, ?, ?);", (vote))
+            conn.commit()
+        conn.close()
+
     '''Renders an HTML template that allows users to vote in an existing poll'''
-    return render_template("voting_page.html", name=name)
+    return render_template("voting_page.html", name=name, questions=questions, options=options)
 
 @app.route('/popular')
 def popular_polls(name=None):
