@@ -8,12 +8,13 @@
 # you can now test the website using http://127.0.0.1:5000/
 # if you get a 403 error (Access to 127.0.0.1 was denied), you may need to clear cookies.
 
-from flask import Flask, url_for, request, render_template, redirect, jsonify, session
+from flask import Flask, url_for, request, render_template, redirect, jsonify, session, flash
 import sqlite3
 import randint
 from datetime import datetime
 
 app = Flask(__name__)
+app.secret_key = "top_secret_password"
 
 @app.route('/routes')
 def hello_world():
@@ -38,6 +39,8 @@ def sign_up():
     '''
     This function adds a new user to the database.
     '''
+    if "username" in session:
+        return redirect(url_for("user_page", user_name=session['username']))
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'first' in
     request.form and 'last' in request.form:
         # Store form inputs as variables
@@ -85,7 +88,8 @@ def sign_up():
         conn.commit()
         conn.close()
 
-        return redirect(url_for(user_page, user_name=user_name))
+        session['username'] = user_name
+        return redirect(url_for("user_page", user_name=user_name))
     else:
         return render_template('sign_up.html', message='Incomplete Form.')
     return render_template('sign_up.html')
@@ -116,17 +120,30 @@ def log_in(name=None):
             # display log in error message
             render_template("login_page.html", message="Incorrect username or password.")
         else:
-            #redirect to user/<user_name>
-            return redirect(url_for(user_page, user_name=user_name))
-    return render_template("login_page.html", name=name)
+            #start session and redirect to user/<user_name>
+            session["username"] = request.post['username']
+            return redirect(url_for("user_page", user_name=user_name))
+    elif "username" in session:
+        redirect(url_for("user_page", user_name=user_name))
+    else:
+        return render_template("login_page.html")
+
+@app.rount('logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for("login"))
 
 @app.route('/user/<user_name>')
 def user_page(user_name):
     '''Temporary function that will eventually render an HTML template that displays user's profile page'''
-    message = "<h1>"
-    message += str(user_name)
-    message += "</h1>"
-    return message
+    if "username" in session:
+        message = "<h1>"
+        message += str(session['username'])
+        message += "</h1>"
+        return message
+    else:
+        redirect(url_for("login"))
+
 
 @app.route('/create')
 def create_poll(name=None):
