@@ -10,6 +10,7 @@
 
 from flask import Flask, url_for, request, render_template, redirect, jsonify
 import sqlite3
+import psycopg2
 
 app = Flask(__name__)
 
@@ -30,6 +31,12 @@ def hello_world():
 def index(name=None):
     '''Renders an HTML template with the Pollaris Homepage'''
     return render_template("homepage.html", name=name)
+
+@app.route('/db_test')
+def testing():
+    conn = psycopg2.connect("postgres://ryandb_user:OgdeDpbD9qh6MGxhOnUJW3PqytarF0q6@dpg-clrjghae9h4c73b1f6ag-a/ryandb")
+    conn.close()
+    return 'Database Connection Successful'
 
 # add GET/POST with login info? and figure out how to do sign up / account creation
 # @app.route('/signup', methods=['GET', 'POST'])
