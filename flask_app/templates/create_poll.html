@@ -105,19 +105,71 @@
         <label for="poll-description">Poll Description</label>
         <input type="text" id="poll-description" name="poll-description">
 
-        <label for="poll-answer1">Poll Answer #1</label>
-        <input type="text" id="poll-answer1" name="poll-answer1">
+ <div id='questions'>
+      <input type="text" id="question" placeholder='New Question' />
+      <input type="button" id="tutorial" value="Add Option" onclick="addOption()" />
+      <hr />
+      <script>
+        function addOption() {
+          var newq = document.createElement("input");
+          newq.type = "radio";
+          newq.name = 'bubble';
+          var newl = document.createElement("input");
+          newl.type = "text";
+          newl.name = "option"
+          newl.placeholder = "Option";
 
-        <label for="poll-answer2">Poll Answer #2</label>
-        <input type="text" id="poll-answer2" name="poll-answer2">
+          var linebreak = document.createElement("br");
 
-        <label for="poll-answer3">Poll Answer #3</label>
-        <input type="text" id="poll-answer3" name="poll-answer3">
+          div = document.getElementById("questions");
+          div.appendChild(newq);
+          div.appendChild(newl);
+          div.appendChild(linebreak)
+        }
 
-        <div>
-            <button class="btn btn-preview">Preview</button>
-            <button class="btn btn-submit">Submit</button>
-        </div>
+      </script>
+    </div>
+    <div>
+      <input type="button" id="submit_q" value="Create Next Question" onclick="nextQ()">
+      <script>
+      	var dict = {};
+        function nextQ() {
+          var arr = [];
+        	let question = document.getElementById("question");
+          let opts = document.getElementsByName('option');
+          let bubs = document.getElementsByName('bubble');
+          let brks = document.getElementsByTagName('br');
+          for (var i = 0; i < opts.length; i++) {
+
+            console.log(opts[i].value);
+            arr.push(opts[i].value.toString());
+
+          }
+          dict[question.value.toString()] = arr
+          while (opts[0]) {
+            opts[0].parentNode.removeChild(opts[0]);
+            bubs[0].parentNode.removeChild(bubs[0]);
+            brks[0].parentNode.removeChild(brks[0]);
+          }
+          question.value=""
+        }
+        
+        function send_poll(){
+        	submit = document.getElementById("submit_poll");
+            submit.name=JSON.stringify(dict);
+        	dict = {};
+        }
+        
+
+      </script>
+    </div>
+    <div>
+      <form method="POST">
+
+        <input type="button" id="submit_poll" value="Submit Poll" onclick="send_poll()">
+      
+      </form>
+
     </div>
 
 </body>
