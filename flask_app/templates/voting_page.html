@@ -186,7 +186,7 @@
     </form>
 
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
   <body>
@@ -224,7 +224,6 @@
           let opts = document.getElementsByName('option');
           let bubs = document.getElementsByName('bubble');
           let brks = document.getElementsByTagName('br');
-          console.log(question.value)
           for (var i = 0; i < opts.length; i++) {
 
             console.log(opts[i].value);
@@ -233,24 +232,24 @@
           }
           dict[question.value.toString()] = arr
           while (opts[0]) {
-            opts[0].parentNode.removeChild(opts[0])
-            bubs[0].parentNode.removeChild(bubs[0])
-            brks[0].parentNode.removeChild(brks[0])
+            opts[0].parentNode.removeChild(opts[0]);
+            bubs[0].parentNode.removeChild(bubs[0]);
+            brks[0].parentNode.removeChild(brks[0]);
           }
           question.value=""
         }
         
         function send_poll(){
-        	submit = document.getElementById("submit_poll")
-          submit.name=JSON.stringify(dict).replace("\&quot;", '"')
-        	console.log(submit.name)
+        	submit = document.getElementById("submit_poll");
+            submit.name=JSON.stringify(dict);
+        	dict = {};
         }
         
 
       </script>
     </div>
     <div>
-      <form>
+      <form method="POST">
 
         <input type="button" id="submit_poll" value="Submit Poll" onclick="send_poll()">
       
@@ -260,3 +259,4 @@
   </body>
 
 </html>
+
