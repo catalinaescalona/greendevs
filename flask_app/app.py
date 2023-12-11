@@ -14,6 +14,12 @@ import psycopg2
 
 app = Flask(__name__)
 
+@app.route('/db_test')
+def testing():
+    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+    conn.close()
+    return 'Database Connection Successful'
+    
 @app.route('/routes')
 def hello_world():
     return '''Here is a list of all routes currently created in Pollaris: <br>
@@ -32,11 +38,6 @@ def index(name=None):
     '''Renders an HTML template with the Pollaris Homepage'''
     return render_template("homepage.html", name=name)
 
-@app.route('/db_test')
-def testing():
-    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
-    conn.close()
-    return 'Database Connection Successful'
 
 # add GET/POST with login info? and figure out how to do sign up / account creation
 # @app.route('/signup', methods=['GET', 'POST'])
