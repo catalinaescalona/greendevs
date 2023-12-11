@@ -184,3 +184,79 @@
             <button name="submit" value="submit">Submit</button>
         </div>
     </form>
+
+
+    <!DOCTYPE html>
+<html>
+
+  <body>
+    <div id='questions'>
+      <input type="text" id="question" placeholder='New Question' />
+      <input type="button" id="tutorial" value="Add Option" onclick="addOption()" />
+      <hr />
+      <script>
+        function addOption() {
+          var newq = document.createElement("input");
+          newq.type = "radio";
+          newq.name = 'bubble';
+          var newl = document.createElement("input");
+          newl.type = "text";
+          newl.name = "option"
+          newl.placeholder = "Option";
+
+          var linebreak = document.createElement("br");
+
+          div = document.getElementById("questions");
+          div.appendChild(newq);
+          div.appendChild(newl);
+          div.appendChild(linebreak)
+        }
+
+      </script>
+    </div>
+    <div>
+      <input type="button" id="submit_q" value="Create Next Question" onclick="nextQ()">
+      <script>
+      	var dict = {};
+        function nextQ() {
+          var arr = [];
+        	let question = document.getElementById("question");
+          let opts = document.getElementsByName('option');
+          let bubs = document.getElementsByName('bubble');
+          let brks = document.getElementsByTagName('br');
+          console.log(question.value)
+          for (var i = 0; i < opts.length; i++) {
+
+            console.log(opts[i].value);
+            arr.push(opts[i].value.toString());
+
+          }
+          dict[question.value.toString()] = arr
+          while (opts[0]) {
+            opts[0].parentNode.removeChild(opts[0])
+            bubs[0].parentNode.removeChild(bubs[0])
+            brks[0].parentNode.removeChild(brks[0])
+          }
+          question.value=""
+        }
+        
+        function send_poll(){
+        	submit = document.getElementById("submit_poll")
+          submit.name=JSON.stringify(dict).replace("\&quot;", '"')
+        	console.log(submit.name)
+        }
+        
+
+      </script>
+    </div>
+    <div>
+      <form>
+
+        <input type="button" id="submit_poll" value="Submit Poll" onclick="send_poll()">
+      
+      </form>
+
+    </div>
+  </body>
+
+</html>
