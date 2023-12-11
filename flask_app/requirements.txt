@@ -1,2 +1,4 @@
 Flask
 sqlite3
+Gunicorn
+psycopg2-binary==2.9.5
