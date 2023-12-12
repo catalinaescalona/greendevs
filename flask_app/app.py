@@ -16,11 +16,11 @@ import psycopg2
 
 app = Flask(__name__)
 
-@app.route('/db_test')
-def testing():
-    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
-    conn.close()
-    return 'Database Connection Successful'
+# @app.route('/db_test')
+# def testing():
+#     conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+#     conn.close()
+#     return 'Database Connection Successful'
     
 @app.route('/routes')
 def hello_world():
