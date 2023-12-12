@@ -139,6 +139,9 @@ def sign_up():
 
         return redirect(url_for(user_page, user_name=user_name))
     else:
+        # Commit changes and close database
+        conn.commit()
+        conn.close()
         return render_template('sign_up.html', message='please complete the form')
     return render_template('sign_up.html')
 
