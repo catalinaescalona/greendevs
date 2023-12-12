@@ -15,12 +15,6 @@ import datetime
 import psycopg2
 
 app = Flask(__name__)
-
-@app.route('/db_test')
-def testing():
-    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
-    conn.close()
-    return 'Database Connection Successful'
     
 @app.route('/routes')
 def hello_world():
@@ -94,6 +88,10 @@ def sign_up():
     '''
     This function adds a new user to the database.
     '''
+    # Connect to database
+    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+    c = conn.cursor()
+
     if request.method == 'POST' and 'User Name' in request.form and 'Password' in request.form and 'Email' in request.form and 'First' in request.form and 'Last' in request.form:
         # Store form inputs as variables
         user_name = request.form['User Name']
@@ -123,14 +121,12 @@ def sign_up():
             return render_template('sign_up.html', message="Please enter a valid email.")
         # email must be unique. return error message if email is associated with an account
         new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email)).fetchone()
-        if new_email = None:
+        if new_email != None:
             return render_template('sign_up.html', message="Email address already associated with an account. Please try again.")
         
         timestamp = datetime.datetime.now()
 
-        # Connect to database
-        conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
-        c = conn.cursor()
+        
         
         #insert values into table
         sql = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, ?)"
