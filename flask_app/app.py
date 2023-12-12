@@ -127,7 +127,7 @@ def log_in(name=None):
     else:
         return render_template("login_page.html")
 
-@app.route('logout')
+@app.route('/logout')
 def logout():
     session.pop('username', None)
     return redirect(url_for("login"))
