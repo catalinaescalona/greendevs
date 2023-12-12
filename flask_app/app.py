@@ -10,6 +10,8 @@
 
 from flask import Flask, url_for, request, render_template, redirect, jsonify
 import sqlite3
+from random import randint
+import datetime
 import psycopg2
 
 app = Flask(__name__)
@@ -38,8 +40,6 @@ def index(name=None):
     '''Renders an HTML template with the Pollaris Homepage'''
     return render_template("homepage.html", name=name)
 
-
-# add GET/POST with login info? and figure out how to do sign up / account creation
 # @app.route('/signup', methods=['GET', 'POST'])
 # def sign_up():
 #     '''
@@ -53,14 +53,14 @@ def index(name=None):
 #         email = request.form['Email']
 #         first = request.form['First']
 #         last = request.form['Last']
-        
+
 #         # user_id must be unique!
 #         # Create random 9-digit id for user_id. Query database to see if id exists already.
 #         new_id = randint(100000000, 999999999)
 #         result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
         
-#         # c.execute will return nothing if the id does not exist.
-#         # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
+#         c.execute will return nothing if the id does not exist.
+#         #If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
 #         if result != None:
 #             while result != None:
 #                 new_id = randint(100000000, 999999999)
@@ -81,7 +81,7 @@ def index(name=None):
 #         timestamp = datetime.datetime.now()
 
 #         # Connect to database
-#         conn = sqlite3.connect("db", timeout=10)
+#         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
 #         c = conn.cursor()
         
 #         #insert values into table
@@ -100,35 +100,34 @@ def index(name=None):
 
 # @app.route('/login', methods=['GET', 'POST'])
 # def log_in(name=None):
-    '''
-    This function checks log in credentials when a user attempts to log in.
-    It Queries the database for the credentials. 
-    If credentials exist, user is redirected to user/<user_name>. Otherwise login error message is displayed.
-    '''
-    # Get input from user --- python input statements will need to be replaced with GET requests
-    username = input("Please enter your user name: ")
-    password = input("Please enter your password: ")
-    
-    if request.method == 'POST' and 'user_name' in request.form and 'password' in request.form:
-        # Connect to databse
-        conn = sqlite3.connect("db", timeout=10)
-        c = conn.cursor()
-        
-        # Create string to query database for login credentials and execute query
-        login_query = '''SELECT user_name, password FROM Users WHERE user_name="{}" AND password="{}";'''.format(username, password)
-        c.execute(login_query)
-        result = c.fetchone()
-        # Close database
-        conn.close()
+#     '''
+#     This function checks log in credentials when a user attempts to log in.
+#     It Queries the database for the credentials. 
+#     If credentials exist, user is redirected to user/<user_name>. Otherwise login error message is displayed.
+#     '''
+#     if request.method == 'POST' and 'user_name' in request.form and 'password' in request.form:
+#         # Connect to databse
+#         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+#         c = conn.cursor()
 
-        # If the credentials don't match, the result=c.fetchone() function will return nothing.
-        if not result:
-            # display log in error message
-            render_template("login_page.html", name=name, message="Incorrect username or password.")
-        else:
-            #redirect to user/<user_name>
-            return redirect(url_for(user_page, user_name=user_name))
-    return render_template("login_page.html", name=name)
+#         user_name = request.form['username']
+#         password = request.form['password']
+        
+#         # Create string to query database for login credentials and execute query
+#         login_query = '''SELECT user_name, password FROM Users WHERE user_name="{}" AND password="{}";'''.format(user_name, password)
+#         c.execute(login_query)
+#         result = c.fetchone()
+#         # Close database
+#         conn.close()
+
+#         # If the credentials don't match, the result=c.fetchone() function will return nothing.
+#         if not result:
+#             # display log in error message
+#             render_template("login_page.html", name=name, message="Incorrect username or password.")
+#         else:
+#             #redirect to user/<user_name>
+#             return redirect(url_for(user_page, user_name=user_name))
+#     return render_template("login_page.html", name=name)
 
 @app.route('/user/<user_name>')
 def user_page(user_name):
