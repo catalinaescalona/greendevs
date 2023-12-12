@@ -145,8 +145,11 @@ def user_page(user_name):
         redirect(url_for("login"))
 
 
-@app.route('/create')
+@app.route('/create', methods=["GET", "POST"])
 def create_poll(name=None):
+    if request.method=="POST"
+        data=request.form
+        print(data)
     '''Renders an HTML template that allows users to create a poll'''
     return render_template("create_poll.html", name=name)
 
