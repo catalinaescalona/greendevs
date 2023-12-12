@@ -108,7 +108,7 @@ def sign_up():
         new_id = randint(100000000, 999999999)
         result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
         
-        c.execute will return nothing if the id does not exist.
+        # c.execute will return nothing if the id does not exist.
         #If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
         if result != None:
             while result != None:
