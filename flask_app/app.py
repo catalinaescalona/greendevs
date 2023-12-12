@@ -123,7 +123,7 @@ def sign_up():
             return render_template('sign_up.html', message="Please enter a valid email.")
         # email must be unique. return error message if email is associated with an account
         new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email)).fetchone()
-        if new_email = None:
+        if new_email != None:
             return render_template('sign_up.html', message="Email address already associated with an account. Please try again.")
         
         timestamp = datetime.datetime.now()
