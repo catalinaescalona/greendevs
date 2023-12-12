@@ -105,7 +105,7 @@
         <label for="poll-description">Poll Description</label>
         <input type="text" id="poll-description" name="poll-description">
 
- <div id='questions'>
+<div id='questions'>
       <input type="text" id="question" placeholder='New Question' />
       <input type="button" id="tutorial" value="Add Option" onclick="addOption()" />
       <hr />
@@ -144,10 +144,10 @@
           for (var i = 0; i < opts.length; i++) {
 
             console.log(opts[i].value);
-            arr.push(opts[i].value.toString());
+            arr.push(opts[i].value);
 
           }
-          dict[question.value.toString()] = arr
+          dict[question.value] = arr
           while (opts[0]) {
             opts[0].parentNode.removeChild(opts[0])
             bubs[0].parentNode.removeChild(bubs[0])
@@ -176,9 +176,18 @@
             brks[0].parentNode.removeChild(brks[0])
           }
           question.value = ""
-          submit = document.getElementById("submit_poll")
-          submit.name = JSON.stringify(dict)
-          console.log(submit.name)
+          submit = document.getElementById("submit_poll");
+          submit.name = JSON.stringify(dict);
+          console.log(submit.name);
+          
+          $.ajax({
+          	type: "POST",
+            url: '{{ url_for('create') }},
+            data: dict
+          dict={};
+          	
+          })
+          
         }
 
       </script>
