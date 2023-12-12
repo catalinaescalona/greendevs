@@ -163,9 +163,6 @@ def take_a_poll(name=None):
 
     conn.close()
 
-    questions = [key for key in json.keys()]
-    options = [value for value in json.values()]
-
     if request.method == "POST":
         conn = sqlite3.connect("db", timeout=10)
         c = conn.cursor()
@@ -194,7 +191,7 @@ def take_a_poll(name=None):
         conn.close()
 
     '''Renders an HTML template that allows users to vote in an existing poll'''
-    return render_template("voting_page.html", name=name, questions=questions, options=options)
+    return render_template("voting_page.html", name=name, questions=json)
 
 @app.route('/popular')
 def popular_polls(name=None):
