@@ -147,7 +147,7 @@ def user_page(user_name):
 
 @app.route('/create', methods=["GET", "POST"])
 def create_poll(name=None):
-    if request.method=="POST"
+    if request.method=="POST":
         data=request.form
         print(data)
     '''Renders an HTML template that allows users to create a poll'''
