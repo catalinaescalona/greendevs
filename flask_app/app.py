@@ -10,7 +10,7 @@
 
 from flask import Flask, url_for, request, render_template, redirect, jsonify, session, flash
 import sqlite3
-import randint
+from random import randint
 from datetime import datetime
 
 app = Flask(__name__)
@@ -41,8 +41,7 @@ def sign_up():
     '''
     if "username" in session:
         return redirect(url_for("user_page", user_name=session['username']))
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'first' in
-    request.form and 'last' in request.form:
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'first' in request.form and 'last' in request.form:
         # Store form inputs as variables
         user_name = request.form['username']
         password = request.form['password']
@@ -76,7 +75,7 @@ def sign_up():
             return render_template('sign_up.html', message="Please enter a valid email.")
         # email must be unique. return error message if email is associated with an account
         new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email)).fetchone()
-        if new_email = None:
+        if new_email == None:
             return render_template('sign_up.html', message="There is an email address associated with an account.")
         
         #insert values into table
@@ -128,7 +127,7 @@ def log_in(name=None):
     else:
         return render_template("login_page.html")
 
-@app.rount('logout')
+@app.route('logout')
 def logout():
     session.pop('username', None)
     return redirect(url_for("login"))
