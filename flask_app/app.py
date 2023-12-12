@@ -94,8 +94,7 @@ def sign_up():
     '''
     This function adds a new user to the database.
     '''
-    if request.method == 'POST' and 'User Name' in request.form and 'Password' in request.form and 'Email' in request.form and 'First' in
-    request.form and 'Last' in request.form:
+    if request.method == 'POST' and 'User Name' in request.form and 'Password' in request.form and 'Email' in request.form and 'First' in request.form and 'Last' in request.form:
         # Store form inputs as variables
         user_name = request.form['User Name']
         password = request.form['Password']
