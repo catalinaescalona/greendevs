@@ -152,8 +152,9 @@ def create_poll(name=None):
     '''Renders an HTML template that allows users to create a poll'''
     return render_template("create_poll.html", name=name)
 
+#Need to find way to access poll_id
 @app.route('/vote')
-def take_a_poll(name=None, poll_id):
+def take_a_poll(name=None):
     conn = sqlite3.connect("db", timeout=10)
     c = conn.cursor()
 
