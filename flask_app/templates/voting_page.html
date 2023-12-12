@@ -108,63 +108,30 @@
         </div>
     </header>
 
-    <div class="poll-container">
-        <div class="poll-title">TITLE OF POLL</div>
-        <div class="poll-description">Description of the poll</div>
-        <div class="created-by">Created by USER on YYYY-MM-DD</div>
+    <h1>Poll Title</h1>
+    <form method="POST">
+        <div>
+        		{% for question, answers in questions.items() %}
 
-        <div class="poll-box">
-            <div class="poll-number">POLL #1</div>
-            <div class="voting-option">
-                <input type="radio" name="poll1" value="option1"> Option 1
+            <div class="question">
+                <h3>{{loop.index}}. {{question}}</h3>
             </div>
-            <div class="voting-option">
-                <input type="radio" name="poll1" value="option2"> Option 2
-            </div>
-            <div class="voting-option">
-                <input type="radio" name="poll1" value="option3"> Option 3
-            </div>
-            <div class="voting-option">
-                <input type="radio" name="poll1" value="option4"> Option 4
-            </div>
+                <hr>
+            {% for answer in answers  %}
+                {% set a_no=loop.counter1 %}
+
+                <div class="voting-option">
+                <input type="radio" id={{a_no}} name="option" value={{a_no}}>
+                <label for={{a_no}}>{{answer}}</label>
+                </div>
+            {%endfor%}
+                <hr>
+        {%endfor%}
+        <div>
+            <button class="btn btn-submit"  name="submit" value="submit">Submit</button>
         </div>
-
-        <div class="poll-box">
-            <div class="poll-number">POLL #2</div>
-            <div class="voting-option">
-                <input type="radio" name="poll2" value="option1"> Option 1
-            </div>
-            <div class="voting-option">
-                <input type="radio" name="poll2" value="option2"> Option 2
-            </div>
-            <div class="voting-option">
-                <input type="radio" name="poll2" value="option3"> Option 3
-            </div>
-            <div class="voting-option">
-                <input type="radio" name="poll2" value="option4"> Option 4
-            </div>
         </div>
-
-        <div class="poll-box">
-            <div class="poll-number">POLL #3</div>
-            <div class="voting-option">
-                <input type="radio" name="poll3" value="option1"> Option 1
-            </div>
-            <div class="voting-option">
-                <input type="radio" name="poll3" value="option2"> Option 2
-            </div>
-            <div class="voting-option">
-                <input type="radio" name="poll3" value="option3"> Option 3
-            </div>
-            <div class="voting-option">
-                <input type="radio" name="poll3" value="option4"> Option 4
-            </div>
-        </div>
-
-        <button class="btn btn-save">Save</button>
-        <button class="btn btn-submit">Submit</button>
-    </div>
+	</form>
 
 </body>
-
 </html>

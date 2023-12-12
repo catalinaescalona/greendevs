@@ -1,37 +1,67 @@
+<!--HTML page for Pollaris Homepage-->
+<!--Authors: Escalona, Sansbury, Webster-->
+<!--Written December 2023-->
+<!--CSPB 3308 - Fall 2023 - Knox - Software Development Tools and Methods-->
+<!--University of Colorado Boulder-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pollaris</title>
+    <title>Pollaris Home</title>
     <link rel="stylesheet" href="static/css/homepage.css" />
   </head>
-
   <body>
+
     <header>
-      <img src="static/images/pollaris-logo.png" alt="Pollaris Logo" />
-      <div class="sign-in">
-        <a href="#" id="signinbtn" class="btn">Sign In</a>
-      </div>
+        <img id="logo" src="static/images/pollaris-logo.png" alt="Pollaris Logo"/>
+        <button id="login-btn" class="btn">Log In</button>
     </header>
 
-    <h1>LET POLLARIS GUIDE YOU TO NEW HORIZONS</h1>
-    <a href="#" class="btn">Sign Up</a>
-
-    <div class="search-bar">
-      <input type="text" placeholder="Enter Poll ID" />
-      <button class="btn btn-search">Search</button>
+    <div id="welcome" class="section">
+      <h1>LET POLLARIS GUIDE YOU TO NEW HORIZONS</h1>
+      <br>
+      <br>
+      <button id="sign-up-btn" class="btn">Sign Up</button>
+      <br>
+      <br>
     </div>
 
-    <div class="btn-poll">
-      <a href="#" class="btn">Take a Poll</a>
+    <div id="search-poll" class="section">
+      <div class="search-bar">
+        <input type="text" placeholder="Enter Poll ID" />
+        <button class="btn btn-search">Search</button>
+        <br>
+        <br>
+      </div>
     </div>
 
-    <div class="poll-links">
-      <a href="poll1.html">Poll 1</a>
-      <a href="poll2.html">Poll 2</a>
-      <a href="poll3.html">Poll 3</a>
+    <!-- change button to make a poll, and one link will be to poll 1 (take a poll) -->
+    <div id="take-poll" class="section">
+      
+      <div class="btn-poll">
+        <a href="#" class="btn">Take a Poll</a>
+      </div>
+
+      <div class="poll-links">
+        <a href="poll1.html">Poll 1</a>
+        <a href="poll2.html">Poll 2</a>
+        <a href="poll3.html">Poll 3</a>
+        <br>
+        <br>
+      </div>
     </div>
+    <br>
+    <div id="footer">
+      <p>Created by Escalona, Sansbury, Webster for CSPB 3308 in December 2023</p>
+    </div>
+
+    
+
+    
+
+    
 
     <!--link to jquery library-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

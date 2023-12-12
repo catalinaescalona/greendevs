@@ -1,125 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>:
+<html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pollaris</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            text-align: center;
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div id='questions'>
+      <input type="text" id="question" placeholder='New Question' />
+      <input type="button" id="tutorial" value="Add Option" onclick="addOption()" />
+      <hr />
+      <script>
+        function addOption() {
+          var newq = document.createElement("input");
+          newq.type = "radio";
+          newq.name = 'bubble';
+          var newl = document.createElement("input");
+          newl.type = "text";
+          newl.name = "option"
+          newl.placeholder = "Option";
+
+          var linebreak = document.createElement("br");
+
+          div = document.getElementById("questions");
+          div.appendChild(newq);
+          div.appendChild(newl);
+          div.appendChild(linebreak)
         }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #f0f0f0;
-        }
-
-        header img {
-            max-height: 50px;
-        }
-
-        .sign-in {
-            margin-right: 20px;
-        }
-
-        h1, p {
-            margin-top: 20px;
-            font-size: 24px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 18px;
-            text-decoration: none;
-            background-color: #008CBA; 
-            color: white;
-            border-radius: 5px;
-        }
-
-        .form-container {
-            margin-top: 20px;
-            text-align: left;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-top: 5px;
-        }
-
-        .btn-preview,
-        .btn-submit {
-            padding: 10px 20px;
-            font-size: 18px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            display: inline-block;
-            color: white;
-            background-color: #008CBA;
-        }
-
-        .btn-submit {
-            background-color: #008CBA;
-            margin-left: 10px;
-        }
-    </style>
-</head>
-
-<body>
-
-    <header>
-        <img src="static/images/pollaris-logo.png" alt="Pollaris Logo">
-        <div class="sign-in">
-            <a href="#" class="btn">Sign In</a>
-        </div>
-    </header>
-
-    <h1>LET POLLARIS GUIDE YOU TO NEW HORIZONS</h1>
-    <a href="#" class="btn">Sign Up</a>
-    <p>Create a Poll</p>
-
-    <div class="form-container">
-        <label for="poll-title">Poll Title</label>
-        <input type="text" id="poll-title" name="poll-title">
-
-        <label for="poll-description">Poll Description</label>
-        <input type="text" id="poll-description" name="poll-description">
-
-        <label for="poll-answer1">Poll Answer #1</label>
-        <input type="text" id="poll-answer1" name="poll-answer1">
-
-        <label for="poll-answer2">Poll Answer #2</label>
-        <input type="text" id="poll-answer2" name="poll-answer2">
-
-        <label for="poll-answer3">Poll Answer #3</label>
-        <input type="text" id="poll-answer3" name="poll-answer3">
-
-        <div>
-            <button class="btn btn-preview">Preview</button>
-            <button class="btn btn-submit">Submit</button>
-        </div>
+      </script>
     </div>
+    <div>
+      <input type="button" id="submit_q" value="Create Next Question" onclick=nextQ()>
+      <script>
+        var dict = {};
 
-</body>
+        function nextQ() {
+          var arr = [];
+          let question = document.getElementById("question");
+          let opts = document.getElementsByName('option');
+          let bubs = document.getElementsByName('bubble');
+          let brks = document.getElementsByTagName('br');
+          console.log(question.value)
+          for (var i = 0; i < opts.length; i++) {
+
+            console.log(opts[i].value);
+            arr.push(opts[i].value.toString());
+
+          }
+          dict[question.value] = arr
+          while (opts[0]) {
+            opts[0].parentNode.removeChild(opts[0])
+            bubs[0].parentNode.removeChild(bubs[0])
+            brks[0].parentNode.removeChild(brks[0])
+          }
+          question.value = ""
+          console.log(dict)
+        }
+
+        function send_poll() {
+          var arr = [];
+          let question = document.getElementById("question");
+          let opts = document.getElementsByName('option');
+          let bubs = document.getElementsByName('bubble');
+          let brks = document.getElementsByTagName('br');
+          console.log(question.value)
+          for (var i = 0; i < opts.length; i++) {
+
+            console.log(opts[i].value);
+            arr.push(opts[i].value);
+
+          }
+          dict[question.value] = arr
+          while (opts[0]) {
+            opts[0].parentNode.removeChild(opts[0])
+            bubs[0].parentNode.removeChild(bubs[0])
+            brks[0].parentNode.removeChild(brks[0])
+          }
+          question.value = ""
+          submit = document.getElementById("submit_poll");
+          submit.name = JSON.stringify(dict);
+          console.log(dict);
+          dict = {}
+        }
+
+      </script>
+    </div>
+    <div>
+      <input type="button" id="submit_poll" value="Submit Poll" onclick="send_poll()">
+    </div>
+  </body>
 
 </html>

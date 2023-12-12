@@ -1,41 +1,57 @@
-/* comment here for documentation */
+/* CSS page for Pollaris Homepage */
+/* Authors: Escalona, Sansbury, Webster */
+/* Written December 2023 */
+/* CSPB 3308 - Fall 2023 - Knox - Software Development Tools and Methods */
+/* University of Colorado Boulder */
 
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 20px;
     text-align: center;
+    background-image: url('../images/pollaris-background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 header {
+    background-image: url('../images/pollaris-header.jpg');
+    background-color: midnightblue;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-header img {
-    max-height: 50px;
+#logo {
+    max-height: 75px;
+    object-fit: contain;
 }
 
-.sign-in {
-    margin-right: 20px;
-}
 
 h1 {
     margin-top: 40px;
     font-size: 24px;
+    color: white;
 }
 
 .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 20px;
-    font-size: 18px;
-    text-decoration: none;
-    background-color: #008CBA;
+    border: 2px solid white;
+    background-color: royalblue;
     color: white;
     border-radius: 5px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-decoration: none;
 }
 
 .btn-poll {
@@ -51,7 +67,7 @@ h1 {
     margin: 0 20px;
     font-size: 18px;
     text-decoration: none;
-    color: #333;
+    color: white;
 }
 
 .search-bar {
@@ -66,11 +82,27 @@ input[type="text"] {
 }
 
 .btn-search {
-    padding: 8px 16px;
+    padding: 10px 20px;
     font-size: 16px;
-    background-color: #008CBA;
+}
+
+.section {
+    margin: auto;
+    width: 60%;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: rgba(25,25,112,0.7);
+    /* background-color: midnightblue;
+    opacity: 0.7; */
+    /* background-image: url('../images/pollaris-header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#footer {
     color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    font-size: 14px;
 }
