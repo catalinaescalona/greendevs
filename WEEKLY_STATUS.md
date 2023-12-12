@@ -232,14 +232,43 @@ Nothing for this meeting.
 
 ---
 
-## SPRINT 10 (December 3 - December 12)
+## SPRINT 10 (December 3 - December 7)
 
 Scrum Master: Ryan
 
 #### Weekly Standup:
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/0b9b1488-ad5f-476f-94ac-5ea72d984a47)
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/b10c9840-a998-4ee3-a183-f2b1124d181a)
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/ee99ea5b-0903-40c1-bb56-716ea84695aa)
 
 #### Sprint Demo / What We Accomplished:
 
 #### Sprint Retro:
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/de8fedd3-6861-4842-b83b-dd630e6e8995)
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/91f189f6-9d1b-4f90-b846-f77196fe7112)
+![image](https://github.com/catalinaescalona/greendevs/assets/143199876/4bf69b7a-a911-48e9-9016-98934d7aeb54)
 
 #### Sprint Planning / Action Points:
+
+## SPRINT 11 (December 7 - December 12)
+
+Scrum Master: Cat
+
+#### Weekly Standup:
+<img width="607" alt="Screen Shot 2023-12-12 at 22 15 31" src="https://github.com/catalinaescalona/greendevs/assets/68168149/968bc553-3c44-4ebb-be29-bfb7f8b7ea4c">
+<img width="609" alt="Screen Shot 2023-12-12 at 22 15 47" src="https://github.com/catalinaescalona/greendevs/assets/68168149/2e70371a-8275-4344-a1c1-4852210c750e">
+<img width="606" alt="Screen Shot 2023-12-12 at 22 16 01" src="https://github.com/catalinaescalona/greendevs/assets/68168149/3cb0e558-0c14-4ca8-990a-b7570fee55bd">
+
+#### Sprint Demo / What We Accomplished:
+<img width="611" alt="Screen Shot 2023-12-12 at 22 17 17" src="https://github.com/catalinaescalona/greendevs/assets/68168149/32c01fd4-e4c4-4212-9d95-34a247d6ed8d">
+
+#### Sprint Retro:
+<img width="611" alt="Screen Shot 2023-12-12 at 22 18 09" src="https://github.com/catalinaescalona/greendevs/assets/68168149/dfa74685-a56f-461b-b3a6-ad3f83753fdb">
+<img width="611" alt="Screen Shot 2023-12-12 at 22 18 19" src="https://github.com/catalinaescalona/greendevs/assets/68168149/a02d05d8-480b-44d9-96dd-63f59b0418d8">
+<img width="607" alt="Screen Shot 2023-12-12 at 22 18 30" src="https://github.com/catalinaescalona/greendevs/assets/68168149/91ea6020-fbb6-4657-8598-2b1387a7b0e3">
+
+#### Sprint Planning / Action Points:
+* Cat: finish frontend
+* Greg: finish backend
+* Ryan: prep demo video and presentation
+
