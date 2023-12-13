@@ -24,3 +24,30 @@ function submitData() {
     }
 console.log(dict)
 }
+
+
+$(document).ready(function() {
+    // clicking logo redirects to homepage
+    $("#logo").on("click", function() {
+        $.ajax({
+            type: 'GET',
+            url: '/redirect_home',
+            success: function(response) {
+                // redirect to home URL
+                window.location.href = response.home_url;
+            }
+        });
+    });
+    
+    // clicking login button redirects to login page
+    $("#login-btn").on("click", function() {
+        $.ajax({
+            type: 'GET',
+            url: '/redirect_login',
+            success: function(response) {
+                // redirect to login URL
+                window.location.href = response.login_url;
+            }
+        });
+    });
+});
