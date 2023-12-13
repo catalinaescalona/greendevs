@@ -39,6 +39,44 @@ def testing():
 
 @app.route('/')
 def index(name=None):
+    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+    c = conn.cursor()
+
+    c.execute('''CREATE TABLE IF NOT EXISTS Users(user_id INT NOT NULL, 
+                                                  user_name VARCHAR(30), 
+                                                  first_name VARCHAR(50), 
+                                                  last_name VARCHAR(50),
+                                                  email VARCHAR(100) NOT NULL,
+                                                  password VARCHAR(60) NOT NULL,
+                                                  member_since VARCHAR(60),
+                                    
+                                                  PRIMARY KEY (user_id)
+             );''')
+
+    c.execute('''CREATE TABLE IF NOT EXISTS Polls(poll_id INT,
+                                                  user_id INT,
+                                                  poll_data JSON,
+                                                  poll_created VARCHAR(45),
+                                                  
+                                                  PRIMARY KEY (poll_id),
+                                                  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+            );''')             
+    
+    c.execute('''CREATE TABLE IF NOT EXISTS Votes(vote_id INT,
+                                                  user_id INT,
+                                                  poll_id INT,
+                                                  question_id INT,
+                                                  option_id INT,
+                                                  vote_created VARCHAR(45),
+                                                  
+                                                  PRIMARY KEY (vote_id),
+                                                  FOREIGN KEY (user_id) REFERENCES Users(user_id),
+                                                  FOREIGN KEY (poll_id) REFERENCES Polls(poll_id)
+             );''')
+    
+    conn.commit()
+    conn.close()
+    
     '''Renders an HTML template with the Pollaris Homepage'''
     return render_template("homepage.html", name=name)
 
@@ -183,23 +221,10 @@ def take_a_poll(name=None, poll_id=111111111):
     conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     c = conn.cursor()
 
-    c.execute('''CREATE TABLE IF NOT EXISTS Votes(vote_id INT,
-                                                  user_id INT,
-                                                  poll_id INT,
-                                                  question_id INT,
-                                                  option_id INT,
-                                                  vote_created VARCHAR(45),
-                                                  
-                                                  PRIMARY KEY (vote_id),
-                                                  FOREIGN KEY (user_id) REFERENCES Users(user_id),
-                                                  FOREIGN KEY (poll_id) REFERENCES Polls(poll_id)
-             );''')
-    conn.commit()
-
     if poll_id==111111111:
         poll = {"Who?":["You", "Me"], "Where?": ["Here", "There", "Everywhere"], "When?": ["Before", "After", "During", "Later"]}
     else:
-        c.execute('''SELECT json FROM Polls WHERE poll_id="{}"'''.format(poll_id))
+        c.execute('''SELECT poll_data FROM Polls WHERE poll_id="{}"'''.format(poll_id))
         poll = c.fetchone()[0]
         conn.close()
 
