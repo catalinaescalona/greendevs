@@ -181,14 +181,26 @@ def create_poll(name=None):
     return render_template("create_poll.html", name=name)
 
 #Need to find way to access poll_id
-@app.route('/vote')
+@app.route('/vote', methods=['GET', 'POST'])
 def take_a_poll(name=None, poll_id):
+
     conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     c = conn.cursor()
 
-    c.execute('''SELECT json FROM Polls WHERE poll_id="{}"'''.format(poll_id))
-    json = c.fetchone()[0]
+    c.execute('''SELECT * FROM votes''')
+    table = c.fetchone()[0]
+    if table == None:
+        c.execute('''CREATE TABLE Votes(vote_id INT,
+                                        user_id INT,
+                                        poll_id INT,
+                                        question_id INT,
+                                        option_id INT,
+                                        vote_created VARCHAR(45)
+                 );''')
+        conn.commit()
 
+    c.execute('''SELECT json FROM Polls WHERE poll_id="{}"'''.format(poll_id))
+    poll = c.fetchone()[0]
     conn.close()
 
     if request.method == "POST":
@@ -221,7 +233,7 @@ def take_a_poll(name=None, poll_id):
         conn.close()
 
     '''Renders an HTML template that allows users to vote in an existing poll'''
-    return render_template("voting_page.html", name=name, questions=json)
+    return render_template("voting_page.html", name=name, questions=poll)
 
 @app.route('/popular')
 def popular_polls(name=None):
