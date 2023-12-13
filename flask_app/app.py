@@ -150,17 +150,16 @@ def create_poll(name=None):
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
 
-        c.execute('''SELECT * FROM Polls''')
-        table=c.fetchone()[0]
-        if table is None:
-            c.execute('''CREATE TABLE Polls (poll_id INT,
-                                             user_id INT,
-                                             questions ,
-                                             options,
-                                             poll_created VARCHAR(45)
-            );''')
-            conn.commit()
-            
+        c.execute('''CREATE TABLE IF NOT EXISTS Polls (poll_id INT, 
+                                                       user_id INT, 
+                                                       poll_data JSON, 
+                                                       poll_created VARCHAR(100),
+                                
+                                                       PRIMARY KEY (poll_id),
+                                                       FOREIGN KEY (user_id) REFERENCES Users(user_id)
+        );''')
+        conn.commit()
+        
 
         c.execute('''SELECT user_id FROM Users WHERE username="{}"'''.format(session['username']))
         user_id = c.fetchone()[0]
@@ -176,13 +175,12 @@ def create_poll(name=None):
                 result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
         
         poll_data = "Find a way to get javascript dict variable."
-        questions = [i for i in poll_data.keys()]
-        options = [i for i in poll_data.values()]
+
         poll_created = datetime.datetime.now()
 
      # instert variables into the database
     sql = "INSERT INTO Polls VALUES (?, ?, ?, ?, ?)"
-    new_poll = (poll_id, user_id, questions, options, poll_created)
+    new_poll = (poll_id, user_id, poll_data, poll_created)
     
     #execute sql statement to insert the values contained in new poll.
     c.execute(sql, new_poll)
@@ -199,17 +197,18 @@ def take_a_poll(name=None, poll_id):
     conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     c = conn.cursor()
 
-    c.execute('''SELECT * FROM votes''')
-    table = c.fetchone()[0]
-    if table == None:
-        c.execute('''CREATE TABLE Votes(vote_id INT,
-                                        user_id INT,
-                                        poll_id INT,
-                                        question_id INT,
-                                        option_id INT,
-                                        vote_created VARCHAR(45)
-                 );''')
-        conn.commit()
+    c.execute('''CREATE TABLE IF NOT EXISTS Votes(vote_id INT,
+                                                  user_id INT,
+                                                  poll_id INT,
+                                                  question_id INT,
+                                                  option_id INT,
+                                                  vote_created VARCHAR(45)
+                                                  
+                                                  PRIMARY KEY (vote_id),
+                                                  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+                                                  FOREIGN KEY (poll_id) REFERENCES Polls(poll_id)
+             );''')
+    conn.commit()
 
     c.execute('''SELECT json FROM Polls WHERE poll_id="{}"'''.format(poll_id))
     poll = c.fetchone()[0]
