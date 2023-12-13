@@ -202,10 +202,10 @@ def take_a_poll(name=None, poll_id):
                                                   poll_id INT,
                                                   question_id INT,
                                                   option_id INT,
-                                                  vote_created VARCHAR(45)
+                                                  vote_created VARCHAR(45),
                                                   
                                                   PRIMARY KEY (vote_id),
-                                                  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+                                                  FOREIGN KEY (user_id) REFERENCES Users(user_id),
                                                   FOREIGN KEY (poll_id) REFERENCES Polls(poll_id)
              );''')
     conn.commit()
