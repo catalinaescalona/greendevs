@@ -88,7 +88,6 @@ def redirect_home():
     response = {'home_url': url_for('index')}
     return jsonify(response)
 
-# PUT POST IN HERE?? SO IT GOES TO REGULAR LOGIN FUNCTION ?
 @app.route('/redirect_login', methods=['GET'])
 def redirect_login():
     response = {'login_url': url_for('log_in')}

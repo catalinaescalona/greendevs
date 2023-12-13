@@ -49,7 +49,7 @@ $(document).ready(function() {
                 // handle response from the server
                 console.log(response);
                 // redirect or show a success message based on the response
-                window.location.href = response.redirect_url; // Assuming your server sends a redirect_url in the response
+                window.location.href = response.redirect_url;
             },
             error: function(error) {
                 // handle the error

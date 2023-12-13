@@ -19,12 +19,28 @@ $(document).ready(function() {
     
     // clicking login button redirects to login page
     $("#login-btn").on("click", function() {
+        // get the form data
+        var formData = {
+            username: $("input[name='username']").val(),
+            password: $("input[name='password']").val()
+        };
+        // send form data to backend using AJAX
         $.ajax({
-            type: 'GET',
-            url: '/redirect_login',
+            type: 'POST',
+            url: '/login',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify(formData),
             success: function(response) {
-                // redirect to login URL
-                window.location.href = response.login_url;
+                // handle response from server
+                console.log(response);
+                // redirect or show success message based on the response
+                window.location.href = response.redirect_url;
+            },
+            error: function(error) {
+                // handle error
+                console.error(error);
+                // display error message to the user
+                alert('Error with Log In. Please try again!');
             }
         });
     });
