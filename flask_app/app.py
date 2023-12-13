@@ -164,13 +164,16 @@ def sign_up():
         # user_name must be unique. return error message indicating user name is taken if not unique
         new_name = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(user_name)).fetchone()
         if new_name != None:
+            conn.close()
             return render_template('sign_up.html')
         # Chech regex match to verify valid email address.
         if not re.match(r'^[A-Za-z\.!#$%\*0-9]+@[A-Za-z0-9]+\.[a-zA-Z]{2,3}$', email):
+            conn.close()
             return render_template('sign_up.html', message="Please enter a valid email.")
         # email must be unique. return error message if email is associated with an account
         new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email)).fetchone()
         if new_email != None:
+            conn.close()
             return render_template('sign_up.html')
         
         timestamp = datetime.datetime.now()
