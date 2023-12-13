@@ -120,6 +120,7 @@ def log_in(name=None):
             render_template("login_page.html", name=name, message="Incorrect username or password.")
         else:
             #redirect to user/<user_name>
+            session["username"] = user_name
             return redirect(url_for(user_page, user_name=user_name))
     return render_template("login_page.html", name=name)
 
