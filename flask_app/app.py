@@ -163,14 +163,14 @@ def sign_up():
         # user_name must be unique. return error message indicating user name is taken if not unique
         new_name = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(user_name)).fetchone()
         if new_name != None:
-            return render_template('sign_up.html', message="User name taken. Please try again.")
+            return render_template('sign_up.html')
         # Chech regex match to verify valid email address.
         if not re.match(r'^[A-Za-z\.!#$%\*0-9]+@[A-Za-z0-9]+\.[a-zA-Z]{2,3}$', email):
             return render_template('sign_up.html', message="Please enter a valid email.")
         # email must be unique. return error message if email is associated with an account
         new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email)).fetchone()
         if new_email != None:
-            return render_template('sign_up.html', message="Email address already associated with an account. Please try again.")
+            return render_template('sign_up.html')
         
         timestamp = datetime.datetime.now()
 
@@ -186,7 +186,7 @@ def sign_up():
         session["username"] = user_name
         return redirect(url_for("user_page", user_name=user_name))
     else:
-        return render_template('sign_up.html', message='please complete the form')
+        return render_template('sign_up.html')
     return render_template('sign_up.html')
 
 @app.route('/user')
