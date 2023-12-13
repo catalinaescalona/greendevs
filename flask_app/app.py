@@ -105,8 +105,9 @@ def log_in(name=None):
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
 
-        user_name = request.form['username']
-        password = request.form['password']
+        data = request.get_json()
+        user_name = data['username']
+        password = data['password']
         
         # Create string to query database for login credentials and execute query
         login_query = '''SELECT user_name, password FROM Users WHERE user_name="{}" AND password="{}";'''.format(user_name, password)
@@ -118,12 +119,12 @@ def log_in(name=None):
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
         if not result:
             # display log in error message
-            render_template("login_page.html", name=name, message="Incorrect username or password.")
+            return jsonify({'error': 'Incorrect username or password.'}), 401
         else:
             #redirect to user/<user_name>
             session["username"] = user_name
-            return redirect(url_for(user_page, user_name=user_name))
-    return render_template("login_page.html", name=name)
+            return jsonify({'redirect_url': url_for('user_page', user_name=user_name)})
+    return jsonify({'redirect_url': url_for('log_in', name=name)})
 
 @app.route('/redirect_signup', methods=['GET'])
 def redirect_signup():
@@ -140,12 +141,15 @@ def sign_up():
     c = conn.cursor()
 
     if request.method == 'POST' and 'User Name' in request.form and 'Password' in request.form and 'Email' in request.form and 'First' in request.form and 'Last' in request.form:
+
+        # get data from the request
+        data = request.get_json()
         # Store form inputs as variables
-        user_name = request.form['User Name']
-        password = request.form['Password']
-        email = request.form['Email']
-        first = request.form['First']
-        last = request.form['Last']
+        user_name = data['username']
+        password = data['password']
+        email = data['email']
+        first = data['first']
+        last = data['last']
 
         # user_id must be unique!
         # Create random 9-digit id for user_id. Query database to see if id exists already.
@@ -182,13 +186,13 @@ def sign_up():
         conn.commit()
         conn.close()
 
-        return redirect(url_for(user_page, user_name=user_name))
+        return jsonify({'redirect_url': url_for('user_page', user_name=user_name)})
     else:
         # Commit changes and close database
         conn.commit()
         conn.close()
         return render_template('sign_up.html', message='please complete the form')
-    return render_template('sign_up.html')
+    return jsonify({'redirect_url': url_for('sign_up')})
 
 @app.route('/user/<user_name>')
 def user_page(user_name):
