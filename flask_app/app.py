@@ -179,7 +179,7 @@ def create_poll(name=None):
         poll_created = datetime.datetime.now()
 
      # instert variables into the database
-    sql = "INSERT INTO Polls VALUES (?, ?, ?, ?, ?)"
+    sql = "INSERT INTO Polls VALUES (?, ?, ?, ?)"
     new_poll = (poll_id, user_id, poll_data, poll_created)
     
     #execute sql statement to insert the values contained in new poll.
