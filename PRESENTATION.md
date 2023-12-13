@@ -20,11 +20,20 @@ CSPB 3308 - Fall 2023 - University of Colorado Boulder
  ---
  
 # Software Tools - Project Management:
-* Trello for Sprint Board
-* Zoom for Weekly Meetings
-* iMessage for Team Communication
-* GitHub for Project Repository and Version Control
-* Markdown for Project Documentation
+Trello for Sprint Board
+* This was an effective tool for tracking our project sprints. The card system was very useful for tracking meetings, project tasks, and overall project development.
+  
+Zoom for Weekly Meetings
+* This was a great communication tool that enabled video conferencing and increased team cohesion while working in a remote environment.
+
+iMessage for Team Communication
+* This was a good tool for quick communication and updates, but made keeping a centralized record of tasks and decisions challenging. 
+
+GitHub for Project Repository and Version Control
+* This was a very valuable tool that enabled collaborative development for our team. Merging branches presented some challenges that we worked through.
+
+Markdown for Project Documentation
+* This tool was useful in simplifying and maintaining comprehensive project documentation. 
 
 ---
 
