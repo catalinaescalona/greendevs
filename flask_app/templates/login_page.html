@@ -1,100 +1,50 @@
+<!--HTML page for Pollaris Login Page-->
+<!--Authors: Escalona, Sansbury, Webster-->
+<!--Written December 2023-->
+<!--CSPB 3308 - Fall 2023 - Knox - Software Development Tools and Methods-->
+<!--University of Colorado Boulder-->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pollaris</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            text-align: center;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #f0f0f0;
-        }
-
-        header img {
-            max-height: 50px;
-        }
-
-        .sign-in {
-            margin-right: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 18px;
-            text-decoration: none;
-            background-color: #008CBA; 
-            color: white;
-            border-radius: 5px;
-        }
-
-        .search-bar {
-            margin-top: 20px;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            padding: 8px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-top: 10px;
-        }
-
-        .btn-login,
-        .btn-signup,
-        .forgot-password {
-            padding: 10px 20px;
-            font-size: 18px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            display: inline-block;
-            color: white;
-            background-color: #008CBA; 
-        }
-
-        .forgot-password {
-            color: #555;
-        }
-    </style>
+    <title>Pollaris Login</title>
+    <link rel="stylesheet" href="static/css/login_page.css" />
 </head>
 
 <body>
-
     <header>
-        <img src="static/images/pollaris-logo.png" alt="Pollaris Logo">
-        <div class="sign-in">
-            <a href="#" class="btn">Sign In</a>
-        </div>
+        <img id="logo" src="static/images/pollaris-logo.png" alt="Pollaris Logo">
     </header>
 
-    <h1>LOG IN</h1>
-
-    <form method="POST">
-        <div class="search-bar">
-            <input type="text" name="username" placeholder="User Name">
-            <br>
-            <input type="password" name="password" placeholder="Password">
-            <br>
-            <button class="btn btn-login">Log In</button>
-            <br>
-            <a href="#" class="btn btn-signup">Sign Up</a>
-            <br>
-            <a href="#" class="forgot-password">Forgot Password?</a>
-        </div>
-    </form>
+    <div id="login-form" class = "section">
+        <h1>LOG IN</h1>
+        <form method="POST">
+            <div class="login-bar">
+                <input type="text" name="username" placeholder="Username">
+                <br>
+                <input type="password" name="password" placeholder="Password">
+                <br>
+                <br>
+                <button id="login-btn" class="btn">Log In</button>
+                <br>
+                <br>
+                <button id="sign-up-btn" class="btn">Sign Up</button>
+                <br>
+                <br>
+                <a id="forgot-password">Forgot Password?</a>
+            </div>
+        </form>
+        <br>
+        <br>
+    </div>
+    
+    <!--link to jquery library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--link to javascript file-->
+    <script src="static/javascript/login_page.js"></script>
 </body>
 
 </html>
