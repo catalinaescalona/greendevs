@@ -201,8 +201,39 @@ def redirect_create():
 
 @app.route('/create', methods=["GET", "POST"])
 def create_poll(name=None):
+    if request.method=="POST":
+        conn = psycopg2.connect("postgres:/pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+        c = conn.cursor()
+
+        c.execute('''SELECT user_id FROM Users WHERE username="{}"'''.format(session['username']))
+        user_id = c.fetchone()[0]
+        
+        poll_id = randint(100000000, 999999999)
+        result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+        
+        # c.execute will return nothing if the id does not exist.
+        # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
+        if result != None:
+            while result != None:
+                poll_id = randint(100000000, 999999999)
+                result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+        
+        #NEED TO GET THIS FROM JAVASCRIPT
+        poll_data = {“test”: “testing”}
+
+        poll_created = datetime.datetime.now()
+
+     # instert variables into the database
+    sql = "INSERT INTO Polls VALUES (?, ?, ?, ?)"
+    new_poll = (poll_id, user_id, poll_data, poll_created)
+    
+    #execute sql statement to insert the values contained in new poll.
+    c.execute(sql, new_poll)
+    conn.commit()
+    conn.close()
+        
     '''Renders an HTML template that allows users to create a poll'''
-    return render_template("create.html", name=name)
+    return render_template("create_poll.html", name=name)
 
 @app.route('/redirect_vote', methods=['GET'])
 def redirect_vote():
