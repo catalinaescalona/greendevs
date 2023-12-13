@@ -38,18 +38,32 @@ Markdown for Project Documentation
 ---
 
 # Software Tools - Frontend:
-* Canva for Webpage Mockups
-* HTML for Webpage Structure
-* CSS for Webpage Styling
-* JavaScript / jQuery for Webpage Dynamic Elements
+Canva for Webpage Mockups
+* This was highly valuable free tool that enabled the creation of visual page mockups and design concepts.
+
+HTML for Webpage Structure
+* This allowed us to build the foundational structure of our site and enabled quick and simple development.
+
+CSS for Webpage Styling
+* This enabled site style elements to be implemented and provided an enhanced user interface.
+
+JavaScript / jQuery for Webpage Dynamic Elements
+* These tools were essential in adding dynamic elements and more advanced functionality to our project.
 
 ---
 
 # Software Tools - Backend:
-* Flask (Python) for Project Web App Framework
-* Jinja (Python) for ___
-* Render for Web Hosting of Site and Database
-* SQL for Database Queries
+Flask (Python) for Project Web App Framework
+*
+
+Jinja (Python) for ___
+*
+
+Render for Web Hosting of Site and Database
+*
+
+SQL for Database Queries
+*
 
 ---
 
