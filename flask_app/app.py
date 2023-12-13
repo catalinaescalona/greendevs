@@ -154,8 +154,8 @@ def create_poll(name=None):
 
 #Need to find way to access poll_id
 @app.route('/vote')
-def take_a_poll(name=None):
-    conn = sqlite3.connect("db", timeout=10)
+def take_a_poll(name=None, poll_id):
+    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     c = conn.cursor()
 
     c.execute('''SELECT json FROM Polls WHERE poll_id="{}"'''.format(poll_id))
@@ -164,14 +164,16 @@ def take_a_poll(name=None):
     conn.close()
 
     if request.method == "POST":
-        conn = sqlite3.connect("db", timeout=10)
+        conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
         c.execute('''SELECT user_id FROM Users WHERE username="{}"'''.format(session['username']))
         
         user_id = c.fetchone()[0]
+        
+        #Get javascript dict somehow and add it here.
         responses = request.form["answers"]
         
-        for q_no, answer in enumerate(responses):
+        for q_no, answer in responses:
             new_id = randint(100000000, 999999999)
             result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
             
