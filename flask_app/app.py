@@ -152,7 +152,7 @@ def sign_up():
         # user_id must be unique!
         # Create random 9-digit id for user_id. Query database to see if id exists already.
         new_id = randint(100000000, 999999999)
-        result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+        result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id))
         
         # c.execute will return nothing if the id does not exist.
         #If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
@@ -169,7 +169,7 @@ def sign_up():
         # Chech regex match to verify valid email address.
         if not re.match(r'^[A-Za-z\.!#$%\*0-9]+@[A-Za-z0-9]+\.[a-zA-Z]{2,3}$', email):
             conn.close()
-            return render_template('sign_up.html', message="Please enter a valid email.")
+            return render_template('sign_up.html')
         # email must be unique. return error message if email is associated with an account
         new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email)).fetchone()
         if new_email != None:
