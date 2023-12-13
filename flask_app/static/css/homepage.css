@@ -6,18 +6,22 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
     padding: 20px;
     text-align: center;
-    background-image: url('../images/pollaris-background.jpg');
+    background-image: url('../images/pollaris-header.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 header {
-    background-image: url('../images/pollaris-header.jpg');
+    background-image: url('../images/pollaris-background.jpg');
     background-color: midnightblue;
     background-size: cover;
     background-position: center;
@@ -26,16 +30,17 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    border: 2px solid white;
-    border-radius: 10px;
     overflow: hidden;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: auto;
+    width: 60%;
 }
 
 #logo {
     max-height: 75px;
     object-fit: contain;
 }
-
 
 h1 {
     margin-top: 40px;
@@ -92,14 +97,8 @@ input[type="text"] {
     margin-top: 10px;
     padding: 10px 20px;
     background: rgba(25,25,112,0.7);
-    /* background-color: midnightblue;
-    opacity: 0.7; */
-    /* background-image: url('../images/pollaris-header.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat; */
-    border: 2px solid white;
-    border-radius: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
 }
 
 #footer {
