@@ -118,7 +118,7 @@ def log_in(name=None):
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
         if result == None:
             # display log in error message
-            return render_template('login_page.html', message="Incorrect Username and/or Password.")
+            return render_template('login_page.html')
         else:
             #redirect to user/<user_name>
             session["username"] = username
