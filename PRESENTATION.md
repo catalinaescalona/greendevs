@@ -54,30 +54,33 @@ JavaScript / jQuery for Webpage Dynamic Elements
 
 # Software Tools - Backend:
 Flask (Python) for Project Web App Framework
-*
+* This was a great, simple, and dynamic framework for building our site.
 
-Jinja (Python) for ___
-*
+Jinja (Python) for Template Engine
+* This enabled us to create dynamic content rendering in Flask.
 
 Render for Web Hosting of Site and Database
-*
+* This tool simplified our site hosting and deployment processes.
 
 SQL for Database Queries
-*
+* This was an essential tool for handling our database information.
 
 ---
 
 # Software Tools - Code Editors:
-* Terminal
-* Visual Studio Code
+Terminal
+* This was a good tool for various development tasks, although basic with limited functionality.
+
+Visual Studio Code
+* This was a great code editing tool that enabled a a feature rich development environment.
 
 ---
 
 # Challenges We Encountered:
-* Teammate left near end of semester
-* Figuring out how frontend and backend fit together
-* Unsure of best practices to implement solutions in new/unfamiliar languages. Each dev did something different, but we are not sure what is best (basically: we need senior devs for code review!)
-* Merging everyone's local changes in GitHub (terrifying)
+* One of our teammates left mid semester which impacted project continuity and required us to each individually take on his portions of the project.
+* Figuring out how frontend and backend fit together presented a significant challenge. We overcame this with frequent testing, debugging, and trial and error.
+* We were unsure of the best practices to implement solutions in new and unfamiliar languages. Each team member had different approaches to development which worked out well, but having a senior developer to guide on best practices would have been extremely helpful. 
+* The merging everyone's local code changes in GitHub while keeping the site working was one of the most challenging aspects of the project. 
 
 ---
 
