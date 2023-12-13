@@ -178,7 +178,7 @@ def vote_test():
 
 #Need to find way to access poll_id
 @app.route('/vote', methods=['GET', 'POST'])
-def take_a_poll(name=None, poll_id):
+def take_a_poll(name=None, poll_id=111111111):
 
     conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     c = conn.cursor()
@@ -196,9 +196,12 @@ def take_a_poll(name=None, poll_id):
              );''')
     conn.commit()
 
-    c.execute('''SELECT json FROM Polls WHERE poll_id="{}"'''.format(poll_id))
-    poll = c.fetchone()[0]
-    conn.close()
+    if poll_id=111111111:
+        poll = {"Who?":["You", "Me"], "Where?": ["Here", "There", "Everywhere"], "When?": ["Before", "After", "During", "Later"]}
+    else:
+        c.execute('''SELECT json FROM Polls WHERE poll_id="{}"'''.format(poll_id))
+        poll = c.fetchone()[0]
+        conn.close()
 
     if request.method == "POST":
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
