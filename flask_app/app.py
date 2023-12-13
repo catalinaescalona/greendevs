@@ -179,9 +179,8 @@ def sign_up():
         timestamp = datetime.datetime.now()
 
         #insert values into table
-        sql = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, ?)"
         new_user = (new_id, user_name, first, last, email, password, timestamp)
-        c.execute(sql, new_user)
+        c.execute('''INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, ?);''', new_user)
         
         # Commit changes and close database
         conn.commit()
