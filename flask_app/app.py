@@ -41,40 +41,42 @@ def testing():
 def index(name=None):
     conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     c = conn.cursor()
-
-    c.execute('''CREATE TABLE IF NOT EXISTS Users(user_id INT NOT NULL, 
-                                                  user_name VARCHAR(30), 
-                                                  first_name VARCHAR(50), 
-                                                  last_name VARCHAR(50),
-                                                  email VARCHAR(100) NOT NULL,
-                                                  password VARCHAR(60) NOT NULL,
-                                                  member_since VARCHAR(60),
-                                    
-                                                  PRIMARY KEY (user_id)
-             );''')
-
-    c.execute('''CREATE TABLE IF NOT EXISTS Polls(poll_id INT,
-                                                  user_id INT,
-                                                  poll_data JSON,
-                                                  poll_created VARCHAR(45),
-                                                  
-                                                  PRIMARY KEY (poll_id),
-                                                  FOREIGN KEY (user_id) REFERENCES Users(user_id)
-            );''')             
+    try:
+        c.execute('''CREATE TABLE IF NOT EXISTS Users(user_id INT NOT NULL, 
+                                                      user_name VARCHAR(30), 
+                                                      first_name VARCHAR(50), 
+                                                      last_name VARCHAR(50),
+                                                      email VARCHAR(100) NOT NULL,
+                                                      password VARCHAR(60) NOT NULL,
+                                                      member_since VARCHAR(60),
+                                        
+                                                      PRIMARY KEY (user_id)
+                 );''')
     
-    c.execute('''CREATE TABLE IF NOT EXISTS Votes(vote_id INT,
-                                                  user_id INT,
-                                                  poll_id INT,
-                                                  question_id INT,
-                                                  option_id INT,
-                                                  vote_created VARCHAR(45),
-                                                  
-                                                  PRIMARY KEY (vote_id),
-                                                  FOREIGN KEY (user_id) REFERENCES Users(user_id),
-                                                  FOREIGN KEY (poll_id) REFERENCES Polls(poll_id)
-             );''')
-    
-    conn.commit()
+        c.execute('''CREATE TABLE IF NOT EXISTS Polls(poll_id INT,
+                                                      user_id INT,
+                                                      poll_data JSON,
+                                                      poll_created VARCHAR(45),
+                                                      
+                                                      PRIMARY KEY (poll_id),
+                                                      FOREIGN KEY (user_id) REFERENCES Users(user_id)
+                );''')             
+        
+        c.execute('''CREATE TABLE IF NOT EXISTS Votes(vote_id INT,
+                                                      user_id INT,
+                                                      poll_id INT,
+                                                      question_id INT,
+                                                      option_id INT,
+                                                      vote_created VARCHAR(45),
+                                                      
+                                                      PRIMARY KEY (vote_id),
+                                                      FOREIGN KEY (user_id) REFERENCES Users(user_id),
+                                                      FOREIGN KEY (poll_id) REFERENCES Polls(poll_id)
+                 );''')
+        
+        conn.commit()
+    except:
+        pass
     conn.close()
     
     '''Renders an HTML template with the Pollaris Homepage'''
@@ -219,7 +221,7 @@ def create_poll(name=None):
                 result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
         
         #NEED TO GET THIS FROM JAVASCRIPT
-        poll_data = {“test”: “testing”}
+        poll_data = {'test': 'testing'}
 
         poll_created = datetime.datetime.now()
 
