@@ -182,7 +182,8 @@ def sign_up():
         # Commit changes and close database
         conn.commit()
         conn.close()
-
+        
+        session["username"] = user_name
         return redirect(url_for("user_page", user_name=user_name))
     else:
         return render_template('sign_up.html', message='please complete the form')
