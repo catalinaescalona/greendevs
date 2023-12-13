@@ -118,7 +118,7 @@ def log_in(name=None):
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
         if result == None:
             # display log in error message
-            return render_template('login_page.html', message="Incorrect Username and/or Password.")
+            return render_template('login_page.html')
         else:
             #redirect to user/<user_name>
             session["username"] = username
@@ -189,7 +189,7 @@ def sign_up():
         return render_template('sign_up.html')
     return render_template('sign_up.html')
 
-@app.route('/user')
+@app.route('/user/<user_name>')
 def user_page(user_name):
     '''Temporary function that will eventually render an HTML template that displays user's profile page'''
     message = "<h1>"
