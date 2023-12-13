@@ -124,7 +124,7 @@ def log_in(name=None):
             #redirect to user/<user_name>
             session["username"] = user_name
             return jsonify({'redirect_url': url_for('user_page', user_name=user_name)})
-    return jsonify({'redirect_url': url_for('log_in', name=name)})
+    return render_template('login_page.html')
 
 @app.route('/redirect_signup', methods=['GET'])
 def redirect_signup():
