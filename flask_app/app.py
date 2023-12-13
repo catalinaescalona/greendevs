@@ -159,10 +159,10 @@ def sign_up():
         if result != None:
             while result != None:
                 new_id = randint(100000000, 999999999)
-                result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+                result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id))
 
         # user_name must be unique. return error message indicating user name is taken if not unique
-        new_name = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(user_name)).fetchone()
+        new_name = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(user_name))
         if new_name != None:
             conn.close()
             return render_template('sign_up.html')
@@ -171,7 +171,7 @@ def sign_up():
             conn.close()
             return render_template('sign_up.html')
         # email must be unique. return error message if email is associated with an account
-        new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email)).fetchone()
+        new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email))
         if new_email != None:
             conn.close()
             return render_template('sign_up.html')
