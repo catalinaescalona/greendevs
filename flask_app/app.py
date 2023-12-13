@@ -153,18 +153,29 @@ def create_poll(name=None):
         c.execute('''SELECT user_id FROM Users WHERE username="{}"'''.format(session['username']))
         user_id = c.fetchone()[0]
         
-        new_id = randint(100000000, 999999999)
+        poll_id = randint(100000000, 999999999)
         result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
         
         # c.execute will return nothing if the id does not exist.
         # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
         if result != None:
             while result != None:
-                new_id = randint(100000000, 999999999)
+                poll_id = randint(100000000, 999999999)
                 result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
         
         poll_data = "Find a way to get javascript dict variable."
+        questions = [i for i in poll_data.keys()]
+        options = [i for i in poll_data.values()]
         poll_created = datetime.datetime.now()
+
+     # instert variables into the database
+    sql = "INSERT INTO Polls VALUES (?, ?, ?, ?, ?)"
+    new_poll = (poll_id, user_id, questions, options, poll_created)
+    
+    #execute sql statement to insert the values contained in new poll.
+    c.execute(sql, new_poll)
+    conn.commit()
+    conn.close()
         
     '''Renders an HTML template that allows users to create a poll'''
     return render_template("create_poll.html", name=name)
