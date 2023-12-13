@@ -14,7 +14,6 @@ from random import randint
 import datetime
 import psycopg2
 import re
-import sys
 
 app = Flask(__name__)
     
@@ -101,7 +100,7 @@ def log_in(name=None):
     It Queries the database for the credentials. 
     If credentials exist, user is redirected to user/<user_name>. Otherwise login error message is displayed.
     '''
-    print("testing123", sys.stderr)
+
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         # Connect to databse
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
