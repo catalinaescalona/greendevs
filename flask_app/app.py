@@ -189,7 +189,7 @@ def sign_up():
         return render_template('sign_up.html', message='please complete the form')
     return render_template('sign_up.html')
 
-@app.route('/user/<user_name>')
+@app.route('/user')
 def user_page(user_name):
     '''Temporary function that will eventually render an HTML template that displays user's profile page'''
     message = "<h1>"
