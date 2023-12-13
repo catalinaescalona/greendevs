@@ -225,14 +225,14 @@ def create_poll(name=None):
 
         poll_created = datetime.datetime.now()
 
-     # instert variables into the database
-    sql = "INSERT INTO Polls VALUES (?, ?, ?, ?)"
-    new_poll = (poll_id, user_id, poll_data, poll_created)
-    
-    #execute sql statement to insert the values contained in new poll.
-    c.execute(sql, new_poll)
-    conn.commit()
-    conn.close()
+         # instert variables into the database
+        sql = "INSERT INTO Polls VALUES (?, ?, ?, ?)"
+        new_poll = (poll_id, user_id, poll_data, poll_created)
+        
+        #execute sql statement to insert the values contained in new poll.
+        c.execute(sql, new_poll)
+        conn.commit()
+        conn.close()
         
     '''Renders an HTML template that allows users to create a poll'''
     return render_template("create_poll.html", name=name)
