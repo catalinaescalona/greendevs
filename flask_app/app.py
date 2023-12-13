@@ -135,7 +135,7 @@ def sign_up():
     '''
     This function adds a new user to the database.
     '''
-    if request.method == 'POST' and 'User Name' in request.form and 'Password' in request.form and 'Email' in request.form and 'First' in request.form and 'Last' in request.form:
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'first' in request.form and 'last' in request.form:
 
         # Connect to database
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
