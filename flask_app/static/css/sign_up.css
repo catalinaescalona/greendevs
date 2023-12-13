@@ -1,0 +1,86 @@
+/* CSS page for Pollaris Sign Up Page */
+/* Authors: Escalona, Sansbury, Webster */
+/* Written December 2023 */
+/* CSPB 3308 - Fall 2023 - Knox - Software Development Tools and Methods */
+/* University of Colorado Boulder */
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+    background-image: url('../images/pollaris-header.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    color: white;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    background-image: url('../images/pollaris-background.jpg');
+    background-color: midnightblue;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    overflow: hidden;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: auto;
+    width: 60%;
+}
+
+#logo {
+    max-height: 75px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.section {
+    margin: auto;
+    width: 60%;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: rgba(25,25,112,0.7);
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.btn {
+    border: 2px solid white;
+    background-color: royalblue;
+    color: white;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.signup-bar {
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+#forgot-password {
+    color: lightgray;
+    cursor: pointer;
+}
