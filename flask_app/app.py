@@ -105,24 +105,24 @@ def log_in(name=None):
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
 
-        user_name = request.form['username']
+        username = request.form['username']
         password = request.form['password']
         
         # Create string to query database for login credentials and execute query
-        login_query = '''SELECT user_name, password FROM Users WHERE user_name="{}" AND password="{}";'''.format(user_name, password)
+        login_query = '''SELECT user_name, password FROM Users WHERE user_name="{}" AND password="{}";'''.format(username, password)
         c.execute(login_query)
         result = c.fetchone()
         # Close database
         conn.close()
 
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
-        if not result:
+        if result == None:
             # display log in error message
             return render_template('login_page.html', message="Incorrect Username and/or Password.")
         else:
             #redirect to user/<user_name>
-            session["username"] = user_name
-            return redirect(url_for('user_page', user_name=user_name))
+            session["username"] = username
+            return redirect(url_for('user_page', user_name=username))
     return render_template('login_page.html')
 
 @app.route('/redirect_signup', methods=['GET'])
