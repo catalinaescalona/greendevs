@@ -196,7 +196,7 @@ def take_a_poll(name=None, poll_id=111111111):
              );''')
     conn.commit()
 
-    if poll_id=111111111:
+    if poll_id==111111111:
         poll = {"Who?":["You", "Me"], "Where?": ["Here", "There", "Everywhere"], "When?": ["Before", "After", "During", "Later"]}
     else:
         c.execute('''SELECT json FROM Polls WHERE poll_id="{}"'''.format(poll_id))
