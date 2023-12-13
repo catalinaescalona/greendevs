@@ -12,20 +12,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pollaris Voting</title>
     <link rel="stylesheet" href="static/css/voting_page.css" />
-    
 </head>
-
 <body>
     	<header>
-        	<img src="static/images/pollaris-logo.png" alt="Pollaris Logo">
-        	<div class="sign-in">
-        	<a href="#" class="btn">Sign In</a>
-        	</div>
+        	<img id="logo" src="static/images/pollaris-logo.png" alt="Pollaris Logo">
+        	<button id="login-btn" class="btn">Log In</button>
 	</header>
 
 	<h1>Poll Title</h1>
 	
-	<div>
+	<div class="section">
 	<form method=“POST”>
 		{% for question, answers in questions.items() %}
 			{% set q_no="q"+loop.index|string %}
@@ -43,40 +39,13 @@
 			<hr>
 		{%endfor%}
 	
-		<input type="button" class="btn btn-submit"  name="submit" value="submit" onclick="submitData()">Submit</button>
+		<input type="button" class="btn" name="submit" value="Submit" onclick="submitData()"></button>
 	</form>
 	</div>
 	
-	<script>
-        // find a way to send this info to backend - with ajax to redirect?
-        // so clicking submit sends this info to backend
-	        dict={}
-	        function submitData() {
-	                var questions = document.getElementsByClassName("question");
-	
-	                for (var j = 0, length = questions.length; j < questions.length; j++){
-	                        let name ="q".concat((j+1).toString());
-	                        var options = document.getElementsByName(name);
-	                        let filled_out=false;
-	
-	                        for (var i = 0, length = options.length; i < length; i++) {
-	
-	                                if (options[i].checked) {
-	                                        filled_out = true
-	                                        dict[j]=options[i].value;
-	                                }
-	                	}
-	                        if (filled_out==false){
-	                                dict[j]="";
-	                }
-	        }
-		console.log(dict)
-	}
-	</script>
-
     <!--link to jquery library-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!--link to javascript file-->
-    <script src="static/javascript/sign_up.js"></script>
+    <script src="static/javascript/voting_page.js"></script>
 </body>
 </html>
