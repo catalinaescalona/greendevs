@@ -42,6 +42,11 @@ def index(name=None):
     '''Renders an HTML template with the Pollaris Homepage'''
     return render_template("homepage.html", name=name)
 
+@app.route('/redirect_home', methods=['GET'])
+def redirect_home():
+    response = {'home_url': url_for('index')}
+    return jsonify(response)
+
 @app.route('/redirect_login', methods=['GET'])
 def redirect_login():
     response = {'login_url': url_for('log_in')}
@@ -126,8 +131,6 @@ def sign_up():
         
         timestamp = datetime.datetime.now()
 
-        
-        
         #insert values into table
         sql = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, ?)"
         new_user = (new_id, user_name, first, last, email, password, timestamp)
@@ -153,10 +156,20 @@ def user_page(user_name):
     message += "</h1>"
     return message
 
+@app.route('/redirect_create', methods=['GET'])
+def redirect_create():
+    response = {'create_url': url_for('create_poll')}
+    return jsonify(response)
+
 @app.route('/create', methods=["GET", "POST"])
 def create_poll(name=None):
     '''Renders an HTML template that allows users to create a poll'''
     return render_template("create.html", name=name)
+
+@app.route('/redirect_vote', methods=['GET'])
+def redirect_vote():
+    response = {'vote_url': url_for('take_a_poll')}
+    return jsonify(response)
 
 @app.route('/vote_test')
 def vote_test():
