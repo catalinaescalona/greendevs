@@ -100,30 +100,29 @@ def log_in(name=None):
     It Queries the database for the credentials. 
     If credentials exist, user is redirected to user/<user_name>. Otherwise login error message is displayed.
     '''
-    if request.method == 'POST' and 'user_name' in request.form and 'password' in request.form:
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         # Connect to databse
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
 
-        data = request.get_json()
-        user_name = data['username']
-        password = data['password']
+        username = request.form['username']
+        password = request.form['password']
         
         # Create string to query database for login credentials and execute query
-        login_query = '''SELECT user_name, password FROM Users WHERE user_name="{}" AND password="{}";'''.format(user_name, password)
+        login_query = '''SELECT user_name, password FROM Users WHERE user_name="{}" AND password="{}";'''.format(username, password)
         c.execute(login_query)
         result = c.fetchone()
         # Close database
         conn.close()
 
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
-        if not result:
+        if result == None:
             # display log in error message
-            return jsonify({'error': 'Incorrect username or password.'}), 401
+            return render_template('login_page.html', message="Incorrect Username and/or Password.")
         else:
             #redirect to user/<user_name>
-            session["username"] = user_name
-            return jsonify({'redirect_url': url_for('user_page', user_name=user_name)})
+            session["username"] = username
+            return redirect(url_for('user_page', user_name=username))
     return render_template('login_page.html')
 
 @app.route('/redirect_signup', methods=['GET'])
@@ -136,20 +135,18 @@ def sign_up():
     '''
     This function adds a new user to the database.
     '''
-    # Connect to database
-    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
-    c = conn.cursor()
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'first' in request.form and 'last' in request.form:
 
-    if request.method == 'POST' and 'User Name' in request.form and 'Password' in request.form and 'Email' in request.form and 'First' in request.form and 'Last' in request.form:
-
-        # get data from the request
-        data = request.get_json()
+        # Connect to database
+        conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+        c = conn.cursor()
+        
         # Store form inputs as variables
-        user_name = data['username']
-        password = data['password']
-        email = data['email']
-        first = data['first']
-        last = data['last']
+        user_name = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+        first = request.form['first']
+        last = request.form['last']
 
         # user_id must be unique!
         # Create random 9-digit id for user_id. Query database to see if id exists already.
@@ -185,14 +182,12 @@ def sign_up():
         # Commit changes and close database
         conn.commit()
         conn.close()
-
-        return jsonify({'redirect_url': url_for('user_page', user_name=user_name)})
+        
+        session["username"] = user_name
+        return redirect(url_for("user_page", user_name=user_name))
     else:
-        # Commit changes and close database
-        conn.commit()
-        conn.close()
         return render_template('sign_up.html', message='please complete the form')
-    return jsonify({'redirect_url': url_for('sign_up')})
+    return render_template('sign_up.html')
 
 @app.route('/user/<user_name>')
 def user_page(user_name):
