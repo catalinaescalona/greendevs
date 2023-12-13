@@ -100,38 +100,60 @@
 </head>
 
 <body>
+    	<header>
+        	<img src="static/images/pollaris-logo.png" alt="Pollaris Logo">
+        	<div class="sign-in">
+        	<a href="#" class="btn">Sign In</a>
+        	</div>
+	</header>
 
-    <header>
-        <img src="static/images/pollaris-logo.png" alt="Pollaris Logo">
-        <div class="sign-in">
-            <a href="#" class="btn">Sign In</a>
-        </div>
-    </header>
-
-    <h1>Poll Title</h1>
-    <form method="POST">
-        <div>
-        		{% for question, answers in questions.items() %}
-
-            <div class="question">
-                <h3>{{loop.index}}. {{question}}</h3>
-            </div>
-                <hr>
-            {% for answer in answers  %}
-                {% set a_no=loop.counter1 %}
-
-                <div class="voting-option">
-                <input type="radio" id={{a_no}} name="option" value={{a_no}}>
-                <label for={{a_no}}>{{answer}}</label>
-                </div>
-            {%endfor%}
-                <hr>
-        {%endfor%}
-        <div>
-            <button class="btn btn-submit"  name="submit" value="submit">Submit</button>
-        </div>
-        </div>
+	<h1>Poll Title</h1>
+	
+	<div>
+	<form method=“POST”>
+		{% for question, answers in questions.items() %}
+			{% set q_no="q"+loop.index|string %}
+			<div class="question" value={{ q_no }}>
+			<h3>{{loop.index}}. {{question}}</h3>
+			</div>
+	
+			{% for answer in answers  %}
+				{% set a_no=loop.index0|string %}
+				<div class="voting-option">
+				<input type="radio" class="option" name={{q_no}} value={{a_no}}>
+				<label for={{a_no}}>{{answer}}</label>
+				</div>
+			{%endfor%}
+			<hr>
+		{%endfor%}
+	
+		<input type="button" class="btn btn-submit"  name="submit" value="submit" onclick="submitData()">Submit</button>
 	</form>
-
+	</div>
+	
+	<script>
+	        dict={}
+	        function submitData() {
+	                var questions = document.getElementsByClassName("question");
+	
+	                for (var j = 0, length = questions.length; j < questions.length; j++){
+	                        let name ="q".concat((j+1).toString());
+	                        var options = document.getElementsByName(name);
+	                        let filled_out=false;
+	
+	                        for (var i = 0, length = options.length; i < length; i++) {
+	
+	                                if (options[i].checked) {
+	                                        filled_out = true
+	                                        dict[j]=options[i].value;
+	                                }
+	                	}
+	                        if (filled_out==false){
+	                                dict[j]="";
+	                }
+	        }
+		console.log(dict)
+	}
+	</script>
 </body>
 </html>
