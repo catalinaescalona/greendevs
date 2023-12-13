@@ -13,6 +13,7 @@ import sqlite3
 from random import randint
 import datetime
 import psycopg2
+import re
 
 app = Flask(__name__)
     
@@ -87,6 +88,7 @@ def redirect_home():
     response = {'home_url': url_for('index')}
     return jsonify(response)
 
+# PUT POST IN HERE?? SO IT GOES TO REGULAR LOGIN FUNCTION ?
 @app.route('/redirect_login', methods=['GET'])
 def redirect_login():
     response = {'login_url': url_for('log_in')}
@@ -202,6 +204,7 @@ def redirect_create():
     response = {'create_url': url_for('create_poll')}
     return jsonify(response)
 
+# GET AJAX METHOD TO WORK HERE
 @app.route('/create', methods=["GET", "POST"])
 def create_poll(name=None):
     if request.method=="POST":
@@ -221,7 +224,7 @@ def create_poll(name=None):
                 poll_id = randint(100000000, 999999999)
                 result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
         
-        #NEED TO GET THIS FROM JAVASCRIPT
+        #NEED TO GET THIS FROM JAVASCRIPT (test dictionary, but fill in with what gets called)
         poll_data = {'test': 'testing'}
 
         poll_created = datetime.datetime.now()
@@ -270,6 +273,7 @@ def take_a_poll(name=None, poll_id=111111111):
         user_id = c.fetchone()[0]
         
         #Get javascript dict somehow and add it here.
+        # CAT LOOK HERE - ajax call?
         responses = request.form["answers"]
         
         for q_no, answer in responses:

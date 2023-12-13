@@ -1,102 +1,18 @@
+<!--HTML page for Pollaris Voting Page-->
+<!--Authors: Escalona, Sansbury, Webster-->
+<!--Written December 2023-->
+<!--CSPB 3308 - Fall 2023 - Knox - Software Development Tools and Methods-->
+<!--University of Colorado Boulder-->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pollaris</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            text-align: center;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #f0f0f0;
-        }
-
-        header img {
-            max-height: 50px;
-        }
-
-        .sign-in {
-            margin-right: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 18px;
-            text-decoration: none;
-            background-color: #008CBA; 
-            color: white;
-            border-radius: 5px;
-        }
-
-        .poll-container {
-            margin-top: 20px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: left;
-        }
-
-        .poll-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .poll-description {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        .created-by {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        .poll-box {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-top: 20px;
-        }
-
-        .poll-number {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .voting-option {
-            margin-bottom: 10px;
-        }
-
-        .btn-save,
-        .btn-submit {
-            padding: 10px 20px;
-            font-size: 18px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            display: inline-block;
-            color: white;
-            background-color: #008CBA;
-        }
-
-        .btn-submit {
-            background-color: #008CBA;
-            margin-left: 10px;
-        }
-    </style>
+    <title>Pollaris Voting</title>
+    <link rel="stylesheet" href="static/css/voting_page.css" />
+    
 </head>
 
 <body>
@@ -132,6 +48,8 @@
 	</div>
 	
 	<script>
+        // find a way to send this info to backend - with ajax to redirect?
+        // so clicking submit sends this info to backend
 	        dict={}
 	        function submitData() {
 	                var questions = document.getElementsByClassName("question");
@@ -155,5 +73,10 @@
 		console.log(dict)
 	}
 	</script>
+
+    <!--link to jquery library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--link to javascript file-->
+    <script src="static/javascript/sign_up.js"></script>
 </body>
 </html>

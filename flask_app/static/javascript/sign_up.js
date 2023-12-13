@@ -30,13 +30,32 @@ $(document).ready(function() {
     });
 
     // clicking sign up button redirects to sign up page
-    $("#sign-up-btn").on("click", function() {
+    $("#signup-btn").on("click", function() {
+        // get the form data
+        var formData = {
+            username: $("input[name='username']").val(),
+            first: $("input[name='first']").val(),
+            last: $("input[name='last']").val(),
+            email: $("input[name='email']").val(),
+            password: $("input[name='password']").val()
+        };
+        // send data to backend using AJAX
         $.ajax({
-            type: 'GET',
-            url: '/redirect_signup',
+            type: 'POST',
+            url: '/signup',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify(formData),
             success: function(response) {
-                // redirect to signup URL
-                window.location.href = response.signup_url;
+                // handle response from the server
+                console.log(response);
+                // redirect or show a success message based on the response
+                window.location.href = response.redirect_url; // Assuming your server sends a redirect_url in the response
+            },
+            error: function(error) {
+                // handle the error
+                console.error(error);
+                // display error message to the user
+                alert('Error with Sign Up. Please try again!');
             }
         });
     });
