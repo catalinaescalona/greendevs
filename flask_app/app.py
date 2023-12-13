@@ -100,14 +100,13 @@ def log_in(name=None):
     It Queries the database for the credentials. 
     If credentials exist, user is redirected to user/<user_name>. Otherwise login error message is displayed.
     '''
-    if request.method == 'POST' and 'user_name' in request.form and 'password' in request.form:
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         # Connect to databse
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
 
-        data = request.get_json()
-        user_name = data['username']
-        password = data['password']
+        user_name = request.form['username']
+        password = request.form['password']
         
         # Create string to query database for login credentials and execute query
         login_query = '''SELECT user_name, password FROM Users WHERE user_name="{}" AND password="{}";'''.format(user_name, password)
@@ -119,11 +118,11 @@ def log_in(name=None):
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
         if not result:
             # display log in error message
-            return jsonify({'error': 'Incorrect username or password.'}), 401
+            return render_template('login_page.html', message="Incorrect Username and/or Password.")
         else:
             #redirect to user/<user_name>
             session["username"] = user_name
-            return jsonify({'redirect_url': url_for('user_page', user_name=user_name)})
+            return redirect(url_for('user_page', user_name=user_name))
     return render_template('login_page.html')
 
 @app.route('/redirect_signup', methods=['GET'])
