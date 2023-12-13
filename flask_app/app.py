@@ -150,6 +150,18 @@ def create_poll(name=None):
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
 
+        c.execute('''SELECT * FROM Polls''')
+        table=c.fetchone()[0]
+        if table is None:
+            c.execute('''CREATE TABLE Polls (poll_id INT,
+                                             user_id INT,
+                                             questions ,
+                                             options,
+                                             poll_created VARCHAR(45)
+            );''')
+            conn.commit()
+            
+
         c.execute('''SELECT user_id FROM Users WHERE username="{}"'''.format(session['username']))
         user_id = c.fetchone()[0]
         
