@@ -111,7 +111,7 @@ def log_in(name=None):
         password = request.form['password']
         
         # Create string to query database for login credentials and execute query
-        login_query = '''SELECT user_name, password FROM Users WHERE user_name="{}" AND password="{}";'''.format(username, password)
+        login_query = '''SELECT user_name, password FROM Users WHERE user_name={} AND password={};'''.format(username, password)
         c.execute(login_query)
         result = c.fetchone()
         # Close database
