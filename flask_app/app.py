@@ -109,13 +109,16 @@ def log_in(name=None):
 
         username = request.form['username']
         password = request.form['password']
-        
-        # Create string to query database for login credentials and execute query
-        login_query = '''SELECT user_name, password FROM Users WHERE user_name={} AND password={};'''.format(username, password)
-        c.execute(login_query)
-        result = c.fetchone()
-        # Close database
-        conn.close()
+
+        if username != "" and password != "":
+            # Create string to query database for login credentials and execute query
+            login_query = '''SELECT user_name, password FROM Users WHERE user_name={} AND password={};'''.format(username, password)
+            result = c.execute(login_query)
+            
+            # Close database
+            conn.close()
+        else:
+            result=None
 
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
         if result == None:
