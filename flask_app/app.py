@@ -152,17 +152,17 @@ def sign_up():
         # user_id must be unique!
         # Create random 9-digit id for user_id. Query database to see if id exists already.
         new_id = randint(100000000, 999999999)
-        result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id))
+        result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
         
         # c.execute will return nothing if the id does not exist.
         #If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
         if result != None:
             while result != None:
                 new_id = randint(100000000, 999999999)
-                result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id))
+                result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
 
         # user_name must be unique. return error message indicating user name is taken if not unique
-        new_name = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(user_name))
+        new_name = c.execute("SELECT * FROM Users WHERE user_name='{}';".format(user_name))
         if new_name != None:
             conn.close()
             return render_template('sign_up.html')
@@ -171,7 +171,7 @@ def sign_up():
             conn.close()
             return render_template('sign_up.html')
         # email must be unique. return error message if email is associated with an account
-        new_email = c.execute("SELECT * FROM Users WHERE user_name='{}'".format(email))
+        new_email = c.execute("SELECT * FROM Users WHERE user_name='{}';".format(email))
         if new_email != None:
             conn.close()
             return render_template('sign_up.html')
@@ -212,18 +212,18 @@ def create_poll(name=None):
         conn = psycopg2.connect("postgres:/pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
 
-        c.execute('''SELECT user_id FROM Users WHERE username="{}"'''.format(session['username']))
+        c.execute('''SELECT user_id FROM Users WHERE username="{}";'''.format(session['username']))
         user_id = c.fetchone()[0]
         
         poll_id = randint(100000000, 999999999)
-        result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+        result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
         
         # c.execute will return nothing if the id does not exist.
         # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
         if result != None:
             while result != None:
                 poll_id = randint(100000000, 999999999)
-                result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+                result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
         
         #NEED TO GET THIS FROM JAVASCRIPT (test dictionary, but fill in with what gets called)
         poll_data = {'test': 'testing'}
@@ -231,7 +231,7 @@ def create_poll(name=None):
         poll_created = datetime.datetime.now()
 
          # instert variables into the database
-        sql = "INSERT INTO Polls VALUES (?, ?, ?, ?)"
+        sql = "INSERT INTO Polls VALUES (?, ?, ?, ?);"
         new_poll = (poll_id, user_id, poll_data, poll_created)
         
         #execute sql statement to insert the values contained in new poll.
@@ -262,14 +262,14 @@ def take_a_poll(name=None, poll_id=111111111):
     if poll_id==111111111:
         poll = {"Who?":["You", "Me"], "Where?": ["Here", "There", "Everywhere"], "When?": ["Before", "After", "During", "Later"]}
     else:
-        c.execute('''SELECT poll_data FROM Polls WHERE poll_id="{}"'''.format(poll_id))
+        c.execute('''SELECT poll_data FROM Polls WHERE poll_id="{}";'''.format(poll_id))
         poll = c.fetchone()[0]
         conn.close()
 
     if request.method == "POST":
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
-        c.execute('''SELECT user_id FROM Users WHERE username="{}"'''.format(session['username']))
+        c.execute('''SELECT user_id FROM Users WHERE username="{}";'''.format(session['username']))
         
         user_id = c.fetchone()[0]
         
@@ -279,14 +279,14 @@ def take_a_poll(name=None, poll_id=111111111):
         
         for q_no, answer in responses:
             new_id = randint(100000000, 999999999)
-            result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+            result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
             
             # c.execute will return nothing if the id does not exist.
             # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
             if result != None:
                 while result != None:
                     new_id = randint(100000000, 999999999)
-                    result = c.execute("SELECT * FROM Users WHERE user_id='{}'".format(new_id)).fetchone()
+                    result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
             question_id = q_no
             option_id = answer
             vote_created = datetime.datetime.now()
