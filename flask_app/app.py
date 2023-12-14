@@ -189,14 +189,16 @@ def sign_up():
         new_user = (new_id, user_name, first, last, email, password, timestamp)
         c.execute(sql, new_user)
         
-        # Commit changes and close database
+        # Commit changes
         conn.commit()
-        conn.close()
 
         # Set the session variable with the username
         session["username"] = user_name
 
-        # Redirect to create a poll page
+        # Close database
+        conn.close()
+
+        # Redirect to create a poll page CHANGED
         return redirect(url_for("create_poll"))
     
         #session["username"] = user_name
@@ -204,7 +206,7 @@ def sign_up():
         #return redirect(url_for("log_in"))
     else:
         return render_template('sign_up.html')
-    return render_template('sign_up.html')
+    #return render_template('sign_up.html')
 
 @app.route('/user/<user_name>')
 def user_page(user_name):
