@@ -25,6 +25,16 @@ function submitData() {
 console.log(dict)
 }
 
+// Perform AJAX call to redirect to the homepage
+    $.ajax({
+        type: 'POST', 
+        url: '/redirect_home',
+        success: function (response) {
+            // Redirect to home URL
+            window.location.href = response.home_url;
+        }
+    });
+}
 
 $(document).ready(function() {
     // clicking logo redirects to homepage
