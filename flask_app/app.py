@@ -275,7 +275,7 @@ def take_a_poll(name=None, poll_id=111111111):
     c = conn.cursor()
 
     if poll_id==111111111:
-        poll = {"Presentation Poll":["option 1", "option 2", "option 3"]}
+        poll = {"Presentation Poll":["good", "great", "amazing"]}
     else:
         c.execute('''SELECT poll_data FROM Polls WHERE poll_id="{}";'''.format(poll_id))
         poll = c.fetchone()[0]
