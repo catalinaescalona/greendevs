@@ -271,47 +271,49 @@ def vote_test():
         question = {"Who?":["You", "Me"], "Where?": ["Here", "There", "Everywhere"], "When?": ["Before", "After", "During", "Later"]}
         return render_template("vote.html", questions=question)
 
-#Need to find way to access poll_id
 @app.route('/vote', methods=['GET', 'POST'])
 def take_a_poll(name=None, poll_id=111111111):
-
     conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     c = conn.cursor()
 
-    if poll_id==111111111:
-        poll = {"Who?":["You", "Me"], "Where?": ["Here", "There", "Everywhere"], "When?": ["Before", "After", "During", "Later"]}
+    if poll_id == 111111111:
+        poll = {"Who?": ["You", "Me"], "Where?": ["Here", "There", "Everywhere"],
+                "When?": ["Before", "After", "During", "Later"]}
     else:
-        c.execute('''SELECT poll_data FROM Polls WHERE poll_id="{}";'''.format(poll_id))
-        poll = c.fetchone()[0]
-        conn.close()
+        c.execute('''SELECT poll_data FROM Polls WHERE poll_id=%s;''', (poll_id,))
+        poll_data = c.fetchone()[0]
+        poll = poll_data['questions']  # Assuming the poll data has a 'questions' field
+
+    conn.close()
 
     if request.method == "POST":
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
-        c.execute('''SELECT user_id FROM Users WHERE username="{}";'''.format(session['username']))
-        
+        c.execute('''SELECT user_id FROM Users WHERE username=%s;''', (session['username'],))
         user_id = c.fetchone()[0]
-        
-        #Get javascript dict somehow and add it here.
+
+        # Get javascript dict somehow and add it here.
         # CAT LOOK HERE - ajax call?
-        responses = request.form["answers"]
-        
-        for q_no, answer in responses:
-            new_id = randint(100000000, 999999999)
-            result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
-            
+        responses = request.form.getlist("answers[]")  # Using getlist for multiple answers
+
+        for response in responses:
+            q_no, answer = response.split(":")
+            question_id = int(q_no)
+            option_id = int(answer)
+            vote_created = datetime.datetime.now()
+
+            vote_id = randint(100000000, 999999999)
+            result = c.execute("SELECT * FROM Users WHERE user_id=%s;", (vote_id,))
+
             # c.execute will return nothing if the id does not exist.
-            # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
+            # If user_id already exists, randomly select new 9-digit id until one is chosen that does not exist already.
             if result != None:
                 while result != None:
-                    new_id = randint(100000000, 999999999)
-                    result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
-            question_id = q_no
-            option_id = answer
-            vote_created = datetime.datetime.now()
-                
+                    vote_id = randint(100000000, 999999999)
+                    result = c.execute("SELECT * FROM Users WHERE user_id=%s;", (vote_id,))
+
             vote = vote_id, user_id, poll_id, question_id, option_id, vote_created
-            c.execute("INSERT INTO Votes VALUES (?, ?, ?, ?, ?);", (vote))
+            c.execute("INSERT INTO Votes VALUES (%s, %s, %s, %s, %s, %s);", vote)
             conn.commit()
         conn.close()
 
