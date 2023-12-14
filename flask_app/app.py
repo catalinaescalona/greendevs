@@ -50,18 +50,13 @@ def index(name=None):
                                                       last_name VARCHAR(50),
                                                       email VARCHAR(100),
                                                       password VARCHAR(60),
-                                                      member_since VARCHAR(60),
-                                        
-                                                      PRIMARY KEY (user_id)
+                                                      member_since VARCHAR(60)
                  );''')
     
         c.execute('''CREATE TABLE IF NOT EXISTS Polls(poll_id INT,
                                                       user_id INT,
                                                       poll_data JSON,
-                                                      poll_created VARCHAR(45),
-                                                      
-                                                      PRIMARY KEY (poll_id),
-                                                      FOREIGN KEY (user_id) REFERENCES Users(user_id)
+                                                      poll_created VARCHAR(45)
                 );''')             
         
         c.execute('''CREATE TABLE IF NOT EXISTS Votes(vote_id INT,
@@ -69,11 +64,7 @@ def index(name=None):
                                                       poll_id INT,
                                                       question_id INT,
                                                       option_id INT,
-                                                      vote_created VARCHAR(45),
-                                                      
-                                                      PRIMARY KEY (vote_id),
-                                                      FOREIGN KEY (user_id) REFERENCES Users(user_id),
-                                                      FOREIGN KEY (poll_id) REFERENCES Polls(poll_id)
+                                                      vote_created VARCHAR(45)
                  );''')
         
         conn.commit()
@@ -115,18 +106,21 @@ def log_in(name=None):
             login_query = 'SELECT * FROM Users WHERE user_name=%s AND password=%s;'
             result = c.execute(login_query, (username, password))
 
-            
-            # Close database
-            conn.close()
         else:
             result=None
 
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
         if result == None:
             # display log in error message
+                        
+            # Close database
+            conn.close()
             return render_template('login_page.html')
         else:
             #redirect to user/<user_name>
+                        
+            # Close database
+            conn.close()
             session["username"] = username
             return redirect(url_for('user_page', user_name=username))
     return render_template('login_page.html')
