@@ -123,7 +123,7 @@ def log_in(name=None):
             # Close database
             conn.close()
             session["username"] = username
-            return redirect(url_for('create'))
+            return redirect(url_for('create_poll'))
     return render_template('login_page.html')
 
 @app.route('/redirect_signup', methods=['GET'])
