@@ -3,13 +3,18 @@
 
   <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/create_poll.css') }}">
+    <!--link to jquery library-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
 
   <body>
-    <div id='questions'>
+    <header>
+      <img id="logo" src="static/images/pollaris-logo.png" alt="Pollaris Logo"/>
+      <button id="login-btn" class="btn">Log In</button>
+  </header>
+    <div id='questions' class="section">
       <input type="text" id="question" placeholder='New Question' />
-      <input type="button" id="tutorial" value="Add Option" onclick="addOption()" />
+      <input type="button" id="tutorial" class="btn" value="Add Option" onclick="addOption()" />
       <hr />
       <script>
         function addOption() {
@@ -31,8 +36,9 @@
 
       </script>
     </div>
-    <div>
-      <input type="button" id="submit_q" value="Create Next Question" onclick=nextQ()>
+    <div class="section">
+      <input type="button" id="submit_q" class="btn" value="Create Next Question" onclick=nextQ()>
+      <br>
       <script>
         var dict = {};
 
@@ -87,11 +93,38 @@
           // Redirect to the voting page
           window.location.href = "/vote";
         }
-
       </script>
-    </div>
-    <div>
-      <input type="button" id="submit_poll" value="Submit Poll" onclick="send_poll()">
+      <br>
+      <br>
+      <input type="button" id="submit_poll" class="btn" value="Submit Poll" onclick="send_poll()">
+      <br>
+
+      <script>
+        $(document).ready(function() {
+          // clicking logo redirects to homepage
+          $("#logo").on("click", function() {
+            $.ajax({
+              type: 'GET',
+              url: '/redirect_home',
+              success: function(response) {
+                // redirect to home URL
+                window.location.href = response.home_url;
+              }
+            });
+          });
+          // clicking login button redirects to login page
+          $("#login-btn").on("click", function() {
+            $.ajax({
+              type: 'GET',
+              url: '/redirect_login',
+              success: function(response) {
+                // redirect to login URL
+                window.location.href = '/login';
+              }
+            });
+          });
+        });
+      </script>
     </div>
   </body>
 
