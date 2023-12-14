@@ -108,7 +108,7 @@ def log_in(name=None):
             result = c.fetchone()
 
         else:
-            result=None
+            result = None
 
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
         if result == None:
@@ -123,7 +123,7 @@ def log_in(name=None):
             # Close database
             conn.close()
             session["username"] = username
-            return redirect(url_for('user_page', user_name=username))
+            return redirect(url_for('create'))
     return render_template('login_page.html')
 
 @app.route('/redirect_signup', methods=['GET'])
