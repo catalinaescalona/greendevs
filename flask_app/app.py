@@ -192,10 +192,16 @@ def sign_up():
         # Commit changes and close database
         conn.commit()
         conn.close()
-        
+
+        # Set the session variable with the username
+        session["username"] = user_name
+
+        # Redirect to create a poll page
+        return redirect(url_for("create_poll"))
+    
         #session["username"] = user_name
         #return redirect(url_for("user_page", user_name=user_name))
-        return redirect(url_for("log_in"))
+        #return redirect(url_for("log_in"))
     else:
         return render_template('sign_up.html')
     return render_template('sign_up.html')
