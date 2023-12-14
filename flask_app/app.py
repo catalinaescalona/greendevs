@@ -11,12 +11,20 @@
 from flask import Flask, url_for, request, render_template, redirect, jsonify, session
 import sqlite3
 from random import randint
+from flask_session import Session
 import datetime
 import psycopg2
 import re
 
 app = Flask(__name__)
 app.secret_key = "Pollaris"
+
+# Configure session to use filesystem
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_PERMANENT'] = True
+
+# Initialize the extension
+Session(app)
     
 @app.route('/routes')
 def hello_world():
