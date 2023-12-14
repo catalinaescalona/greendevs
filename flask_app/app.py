@@ -254,6 +254,9 @@ def create_poll(name=None):
         c.execute(sql, new_poll)
         conn.commit()
         conn.close()
+
+        # Redirect to take_a_poll page with the newly created poll_id CHANGED
+        return redirect(url_for("take_a_poll", poll_id=poll_id))
         
     '''Renders an HTML template that allows users to create a poll'''
     return render_template("create_poll.html", name=name)
