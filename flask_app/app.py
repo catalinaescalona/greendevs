@@ -194,11 +194,11 @@ def sign_up():
         conn.close()
 
         # Redirect to create a poll page CHANGED
-        return redirect(url_for("create_poll"))
-    
-        #session["username"] = user_name
-        #return redirect(url_for("user_page", user_name=user_name))
-        #return redirect(url_for("log_in"))
+        # return redirect(url_for("create_poll"))
+        # return redirect(url_for("user_page", user_name=user_name))
+        
+        session["username"] = user_name
+        return redirect(url_for("log_in"))
     else:
         return render_template('sign_up.html')
     #return render_template('sign_up.html')
