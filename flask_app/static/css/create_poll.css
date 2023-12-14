@@ -66,20 +66,3 @@ header {
     cursor: pointer;
 }
 
-.login-bar {
-    margin-top: 20px;
-}
-
-input[type="text"],
-input[type="password"] {
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 10px;
-}
-
-#forgot-password {
-    color: lightgray;
-    cursor: pointer;
-}
