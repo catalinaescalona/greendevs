@@ -43,12 +43,12 @@ def index(name=None):
     conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     c = conn.cursor()
     try:
-        c.execute('''CREATE TABLE IF NOT EXISTS Users(user_id INT NOT NULL, 
+        c.execute('''CREATE TABLE IF NOT EXISTS Users(user_id INT, 
                                                       user_name VARCHAR(30), 
                                                       first_name VARCHAR(50), 
                                                       last_name VARCHAR(50),
-                                                      email VARCHAR(100) NOT NULL,
-                                                      password VARCHAR(60) NOT NULL,
+                                                      email VARCHAR(100),
+                                                      password VARCHAR(60),
                                                       member_since VARCHAR(60),
                                         
                                                       PRIMARY KEY (user_id)
@@ -178,9 +178,11 @@ def sign_up():
         
         timestamp = datetime.datetime.now()
 
+        cols = "(user_id, user_name, first_name, last_name, email, password, member_since)"
+        sql = "INSERT INTO Users " +cols+ "VALUES (%s, %s, %s, %s, %s, %s, %s)
         #insert values into table
         new_user = (new_id, user_name, first, last, email, password, timestamp)
-        c.execute('''INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, ?);''', new_user)
+        c.execute(sql, new_user)
         
         # Commit changes and close database
         conn.commit()
