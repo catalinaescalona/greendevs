@@ -104,7 +104,8 @@ def log_in(name=None):
         if username != "" and password != "":
             # Create string to query database for login credentials and execute query
             login_query = 'SELECT * FROM Users WHERE user_name=%s AND password=%s;'
-            result = c.execute(login_query, (username, password))
+            c.execute(login_query, (username, password))
+            result = c.fetchone()
 
         else:
             result=None
