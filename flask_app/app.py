@@ -123,7 +123,8 @@ def log_in(name=None):
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
         if result == None:
             # display log in error message
-            return render_template('login_page.html')
+            return redirect(url_for('index'))
+            #return render_template('login_page.html')
         else:
             #redirect to user/<user_name>
             session["username"] = username
@@ -192,8 +193,9 @@ def sign_up():
         conn.commit()
         conn.close()
         
-        session["username"] = user_name
-        return redirect(url_for("user_page", user_name=user_name))
+        #session["username"] = user_name
+        #return redirect(url_for("user_page", user_name=user_name))
+        return redirect(url_for("log_in"))
     else:
         return render_template('sign_up.html')
     return render_template('sign_up.html')
