@@ -24,7 +24,7 @@ $(document).ready(function() {
             url: '/redirect_login',
             success: function(response) {
                 // redirect to login URL
-                window.location.href = response.login_url;
+                window.location.href = '/login';
             }
         });
     });
