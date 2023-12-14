@@ -268,7 +268,7 @@ def redirect_vote():
 
 @app.route('/vote_test')
 def vote_test():
-        question = {"Who?":["You", "Me"], "Where?": ["Here", "There", "Everywhere"], "When?": ["Before", "After", "During", "Later"]}
+        question = {"Presentation Poll":["option 1", "option 2", "option 3"]}
         return render_template("vote.html", questions=question)
 
 @app.route('/vote', methods=['GET', 'POST'])
@@ -278,7 +278,7 @@ def take_a_poll(name=None, poll_id=111111111):
     c = conn.cursor()
 
     if poll_id==111111111:
-        poll = {"Who?":["You", "Me"], "Where?": ["Here", "There", "Everywhere"], "When?": ["Before", "After", "During", "Later"]}
+        poll = {"Presentation Poll":["option 1", "option 2", "option 3"]}
     else:
         c.execute('''SELECT poll_data FROM Polls WHERE poll_id="{}";'''.format(poll_id))
         poll = c.fetchone()[0]
