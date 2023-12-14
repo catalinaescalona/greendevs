@@ -179,7 +179,7 @@ def sign_up():
         timestamp = datetime.datetime.now()
 
         cols = "(user_id, user_name, first_name, last_name, email, password, member_since)"
-        sql = "INSERT INTO Users " +cols+ "VALUES (%s, %s, %s, %s, %s, %s, %s)
+        sql = "INSERT INTO Users " +cols+ "VALUES (%s, %s, %s, %s, %s, %s, %s)"
         #insert values into table
         new_user = (new_id, user_name, first, last, email, password, timestamp)
         c.execute(sql, new_user)
