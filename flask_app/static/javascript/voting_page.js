@@ -23,6 +23,9 @@ function submitData() {
         }
     }
 
+    // Display "Thanks for voting!" message
+    showThanksMessage();
+    
     // Perform AJAX call to redirect to the homepage
     $.ajax({
         type: 'POST',  
@@ -32,6 +35,14 @@ function submitData() {
             window.location.href = response.home_url;
         }
     });
+}
+
+// Function to show the "Thanks for voting!" message
+function showThanksMessage() {
+    let messageContainer = document.getElementById("thanks-message");
+    if (messageContainer) {
+        messageContainer.innerHTML = "Thanks for voting!";
+    }
 }
 
 $(document).ready(function () {
@@ -59,12 +70,8 @@ $(document).ready(function () {
         });
     });
 
-    // Bind the AJAX call to the submit button click
-    $("input[name='submit']").on("click", function () {
-        submitData();
-    });
-
+    // Bind the function to the submit button click
     $("#submit-btn").on("click", function () {
-    submitData();
+        submitData();
     });
 });
