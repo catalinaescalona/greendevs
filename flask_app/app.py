@@ -16,6 +16,7 @@ import psycopg2
 import re
 
 app = Flask(__name__)
+app.secret_key = "Pollaris"
     
 @app.route('/routes')
 def hello_world():
