@@ -19,21 +19,18 @@ CSPB 3308 - Fall 2023 - University of Colorado Boulder
 
  ---
  
-# Software Tools - Project Management:
-Trello for Sprint Board
-* This was an effective tool for tracking our project sprints. The card system was very useful for tracking meetings, project tasks, and overall project development.
-  
-Zoom for Weekly Meetings
-* This was a great communication tool that enabled video conferencing and increased team cohesion while working in a remote environment.
+# Software Tools - Backend:
+Flask (Python) for Project Web App Framework
+* This was a great, simple, and dynamic framework for building our site.
 
-iMessage for Team Communication
-* This was a good tool for quick communication and updates, but made keeping a centralized record of tasks and decisions challenging. 
+Jinja (Python) for Template Engine
+* This enabled us to create dynamic content rendering in Flask.
 
-GitHub for Project Repository and Version Control
-* This was a very valuable tool that enabled collaborative development for our team. Merging branches presented some challenges that we worked through.
+Render for Web Hosting of Site and Database
+* This tool simplified our site hosting and deployment processes.
 
-Markdown for Project Documentation
-* This tool was useful in simplifying and maintaining comprehensive project documentation. 
+SQL for Database Queries
+* This was an essential tool for handling our database information.
 
 ---
 
@@ -52,18 +49,21 @@ JavaScript / jQuery for Webpage Dynamic Elements
 
 ---
 
-# Software Tools - Backend:
-Flask (Python) for Project Web App Framework
-* This was a great, simple, and dynamic framework for building our site.
+# Software Tools - Project Management:
+Trello for Sprint Board
+* This was an effective tool for tracking our project sprints. The card system was very useful for tracking meetings, project tasks, and overall project development.
+  
+Zoom for Weekly Meetings
+* This was a great communication tool that enabled video conferencing and increased team cohesion while working in a remote environment.
 
-Jinja (Python) for Template Engine
-* This enabled us to create dynamic content rendering in Flask.
+iMessage for Team Communication
+* This was a good tool for quick communication and updates, but made keeping a centralized record of tasks and decisions challenging. 
 
-Render for Web Hosting of Site and Database
-* This tool simplified our site hosting and deployment processes.
+GitHub for Project Repository and Version Control
+* This was a very valuable tool that enabled collaborative development for our team. Merging branches presented some challenges that we worked through.
 
-SQL for Database Queries
-* This was an essential tool for handling our database information.
+Markdown for Project Documentation
+* This tool was useful in simplifying and maintaining comprehensive project documentation. 
 
 ---
 
