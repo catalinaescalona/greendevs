@@ -167,9 +167,8 @@ def sign_up():
                 result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
 
         # user_name must be unique. return error message indicating user name is taken if not unique
-        new_name_query = c.execute("SELECT * FROM Users WHERE user_name='{}';".format(user_name))
-        new_name = new_name_query.fetchone()
-        if new_name is not None:
+        new_name = c.execute("SELECT * FROM Users WHERE user_name='{}';".format(user_name))
+        if new_name != None:
             conn.close()
             return render_template('sign_up.html')
         # Chech regex match to verify valid email address.
@@ -177,9 +176,8 @@ def sign_up():
             conn.close()
             return render_template('sign_up.html')
         # email must be unique. return error message if email is associated with an account
-        new_email_query = c.execute("SELECT * FROM Users WHERE email='{}';".format(email))
-        new_email = new_email_query.fetchone()
-        if new_email is not None:
+        new_email = c.execute("SELECT * FROM Users WHERE user_name='{}';".format(email))
+        if new_email != None:
             conn.close()
             return render_template('sign_up.html')
         
