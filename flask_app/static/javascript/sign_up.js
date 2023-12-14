@@ -29,7 +29,7 @@ $(document).ready(function() {
         });
     });
 
-    // clicking sign up button redirects to sign up page
+    // clicking sign up button redirects to login page
     $("#signup-btn").on("click", function() {
         // get the form data
         var formData = {
@@ -49,7 +49,7 @@ $(document).ready(function() {
                 // handle response from the server
                 console.log(response);
                 // redirect or show a success message based on the response
-                window.location.href = response.redirect_url;
+                window.location.href = '/create';
             },
             error: function(error) {
                 // handle the error
