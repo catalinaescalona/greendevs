@@ -63,4 +63,8 @@ $(document).ready(function () {
     $("input[name='submit']").on("click", function () {
         submitData();
     });
+
+    $("#submit-btn").on("click", function () {
+    submitData();
+    });
 });
