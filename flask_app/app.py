@@ -220,7 +220,7 @@ def redirect_create():
 
 # GET AJAX METHOD TO WORK HERE
 @app.route('/create_test', methods=["GET", "POST"])
-def create_poll(name=None):
+def create_poll_test(name=None):
     poll_data = request.get_json()  # This is a python dictionary
     if poll_data:
         st = ""
