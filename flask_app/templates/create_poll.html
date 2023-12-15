@@ -89,11 +89,10 @@
           submit = document.getElementById("submit_poll");
           submit.name = JSON.stringify(dict);
 
-	dict = JSON.stringify(dict)
 	$.ajax({
 		url: '/create_test',
 		type: "POST",
-		data: JSON.stringify({"poll_data": dict}),
+		data: JSON.stringify(dict),
 		dataType: "json",
 		contentType: "application/json;charset=utf-8",
 		success: function(){alert("Success: data sent!")},
