@@ -98,41 +98,38 @@ def redirect_login():
     return jsonify(response)
 
 @app.route('/login', methods=['GET', 'POST'])
-def log_in(name=None):
+def log_in():
     '''
-    This function checks log in credentials when a user attempts to log in.
-    It Queries the database for the credentials. 
-    If credentials exist, user is redirected to user/<user_name>. Otherwise login error message is displayed.
+    This function checks login credentials when a user attempts to log in.
+    It queries the database for the credentials.
+    If credentials exist, the user is redirected to their profile page. Otherwise, a login error message is displayed.
     '''
 
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-        # Connect to databse
-        conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+        # Connect to the database
+        conn = connect_to_database()
         c = conn.cursor()
 
         username = request.form['username']
         password = request.form['password']
 
         if username != "" and password != "":
-            # Create string to query database for login credentials and execute query
+            # Create a string to query the database for login credentials and execute the query
             login_query = 'SELECT * FROM Users WHERE user_name=%s AND password=%s;'
             c.execute(login_query, (username, password))
             result = c.fetchone()
-
         else:
             result = None
 
         # If the credentials don't match, the result=c.fetchone() function will return nothing.
-        if result == None:
-            # display log in error message
-                        
-            # Close database
+        if result is None:
+            # Display a login error message
+            # Close the database
             conn.close()
             return render_template('login_page.html')
         else:
-            #redirect to user/<user_name>
-                        
-            # Close database
+            # Redirect to the user's profile page
+            # Close the database
             conn.close()
             session["username"] = username
             return redirect(url_for('create_poll'))
