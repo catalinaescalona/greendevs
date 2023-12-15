@@ -1,143 +1,148 @@
-<!DOCTYPE html>:
+<!DOCTYPE html>
 <html>
 
-  <head>
+<head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/create_poll.css') }}">
     <!--link to jquery library-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <header>
-      <img id="logo" src="static/images/pollaris-logo.png" alt="Pollaris Logo"/>
-      <button id="login-btn" class="btn">Account</button>
-  </header>
+        <img id="logo" src="static/images/pollaris-logo.png" alt="Pollaris Logo" />
+        <button id="login-btn" class="btn">Account</button>
+    </header>
     <div id='questions' class="section">
-      <input type="text" id="question" placeholder='New Question' />
-      <input type="button" id="tutorial" class="btn" value="Add Option" onclick="addOption()" />
-      <hr />
-      <script>
-        function addOption() {
-          var newq = document.createElement("input");
-          newq.type = "radio";
-          newq.name = 'bubble';
-          var newl = document.createElement("input");
-          newl.type = "text";
-          newl.name = "option"
-          newl.placeholder = "Option";
+        <form id="create-poll-form" method="POST" action="/create"> <!-- Add form element here -->
+            <input type="text" id="question" name="question" placeholder='New Question' /> <!-- Add name attribute for form data -->
+            <input type="button" id="tutorial" class="btn" value="Add Option" onclick="addOption()" />
+            <hr />
+        </form>
+        <script>
+            function addOption() {
+                var newq = document.createElement("input");
+                newq.type = "radio";
+                newq.name = 'bubble';
+                var newl = document.createElement("input");
+                newl.type = "text";
+                newl.name = "option";
+                newl.placeholder = "Option";
 
-          var linebreak = document.createElement("br");
+                var linebreak = document.createElement("br");
 
-          div = document.getElementById("questions");
-          div.appendChild(newq);
-          div.appendChild(newl);
-          div.appendChild(linebreak)
-        }
-
-      </script>
+                div = document.getElementById("questions");
+                div.appendChild(newq);
+                div.appendChild(newl);
+                div.appendChild(linebreak);
+            }
+        </script>
     </div>
     <div class="section">
-      <br>
-      <input type="button" id="submit_q" class="btn" value="Create Next Question" onclick=nextQ()>
-      <br>
-      <script>
-        var dict = {};
+        <br>
+        <input type="button" id="submit_q" class="btn" value="Create Next Question" onclick=nextQ()>
+        <br>
+        <script>
+            var dict = {};
 
-        function nextQ() {
-          var arr = [];
-          let question = document.getElementById("question");
-          let opts = document.getElementsByName('option');
-          let bubs = document.getElementsByName('bubble');
-          let brks = document.getElementsByTagName('br');
-          console.log(question.value)
-          for (var i = 0; i < opts.length; i++) {
+            function nextQ() {
+                var arr = [];
+                let question = document.getElementById("question");
+                let opts = document.getElementsByName('option');
+                let bubs = document.getElementsByName('bubble');
+                let brks = document.getElementsByTagName('br');
+                console.log(question.value)
+                for (var i = 0; i < opts.length; i++) {
 
-            console.log(opts[i].value);
-            arr.push(opts[i].value.toString());
+                    console.log(opts[i].value);
+                    arr.push(opts[i].value.toString());
 
-          }
-          dict[question.value] = arr
-          while (opts[0]) {
-            opts[0].parentNode.removeChild(opts[0])
-            bubs[0].parentNode.removeChild(bubs[0])
-            brks[0].parentNode.removeChild(brks[0])
-          }
-          question.value = ""
-          console.log(dict)
-        }
+                }
+                dict[question.value] = arr
+                while (opts[0]) {
+                    opts[0].parentNode.removeChild(opts[0])
+                    bubs[0].parentNode.removeChild(bubs[0])
+                    brks[0].parentNode.removeChild(brks[0])
+                }
+                question.value = ""
+                console.log(dict)
+            }
 
-        function send_poll() {
-          var arr = [];
-          let question = document.getElementById("question");
-          let opts = document.getElementsByName('option');
-          let bubs = document.getElementsByName('bubble');
-          let brks = document.getElementsByTagName('br');
-          console.log(question.value)
-          for (var i = 0; i < opts.length; i++) {
+            function send_poll() {
+                var arr = [];
+                let question = document.getElementById("question");
+                let opts = document.getElementsByName('option');
+                let bubs = document.getElementsByName('bubble');
+                let brks = document.getElementsByTagName('br');
+                console.log(question.value)
+                for (var i = 0; i < opts.length; i++) {
 
-            console.log(opts[i].value);
-            arr.push(opts[i].value);
+                    console.log(opts[i].value);
+                    arr.push(opts[i].value);
 
-          }
-          dict[question.value] = arr
-          while (opts[0]) {
-            opts[0].parentNode.removeChild(opts[0])
-            bubs[0].parentNode.removeChild(bubs[0])
-            brks[0].parentNode.removeChild(brks[0])
-          }
-          question.value = ""
-          submit = document.getElementById("submit_poll");
-          submit.name = JSON.stringify(dict);
+                }
+                dict[question.value] = arr
+                while (opts[0]) {
+                    opts[0].parentNode.removeChild(opts[0])
+                    bubs[0].parentNode.removeChild(bubs[0])
+                    brks[0].parentNode.removeChild(brks[0])
+                }
+                question.value = ""
+                submit = document.getElementById("submit_poll");
+                submit.name = JSON.stringify(dict);
 
-	$.ajax({
-		url: '/create_test',
-		type: "POST",
-		data: JSON.stringify(dict),
-		dataType: "json",
-		contentType: "application/json;charset=utf-8",
-		success: function(){alert("Success: data sent!")},
-		error: function(){console.log("error sending data.")}
-	})
-          
-          console.log(JSON.stringify(dict));
-          dict = {}
+                $.ajax({
+                    url: '/create_test',
+                    type: "POST",
+                    data: JSON.stringify(dict),
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    success: function () {
+                        alert("Success: data sent!")
+                    },
+                    error: function () {
+                        console.log("error sending data.")
+                    }
+                })
 
-          // Redirect to the voting page
-         // window.location.href = "/vote";
-        }
-      </script>
-      <br>
-      <input type="button" id="submit_poll" class="btn" value="Submit Poll" onclick="send_poll()">
-      <br>
-      <br>
+                console.log(JSON.stringify(dict));
+                dict = {}
 
-      <script>
-        $(document).ready(function() {
-          // clicking logo redirects to homepage
-          $("#logo").on("click", function() {
-            $.ajax({
-              type: 'GET',
-              url: '/redirect_home',
-              success: function(response) {
-                // redirect to home URL
-                window.location.href = response.home_url;
-              }
+                // Redirect to the voting page
+                // window.location.href = "/vote";
+            }
+        </script>
+        <br>
+        <input type="button" id="submit_poll" class="btn" value="Submit Poll" onclick="send_poll()">
+        <br>
+        <br>
+
+        <script>
+            $(document).ready(function () {
+                // clicking logo redirects to homepage
+                $("#logo").on("click", function () {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/redirect_home',
+                        success: function (response) {
+                            // redirect to home URL
+                            window.location.href = response.home_url;
+                        }
+                    });
+                });
+                // clicking login button redirects to login page
+                $("#login-btn").on("click", function () {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/redirect_login',
+                        success: function (response) {
+                            // redirect to login URL
+                            window.location.href = '/login';
+                        }
+                    });
+                });
             });
-          });
-          // clicking login button redirects to login page
-          $("#login-btn").on("click", function() {
-            $.ajax({
-              type: 'GET',
-              url: '/redirect_login',
-              success: function(response) {
-                // redirect to login URL
-                window.location.href = '/login';
-              }
-            });
-          });
-        });
-      </script>
+        </script>
     </div>
-  </body>
+</body>
 
 </html>
