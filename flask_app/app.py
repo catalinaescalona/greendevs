@@ -235,44 +235,38 @@ def create_poll_test(name=None):
     return render_template("create_poll.html", name=name)
     
 @app.route('/create', methods=["GET", "POST"])
-def create_poll(name=None):
-    
-    if request.method=="POST":
-        conn = psycopg2.connect("postgres:/pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+def create_poll():
+    if request.method == "POST":
+        # Connect to the database
+        conn = connect_to_database()
         c = conn.cursor()
 
-        c.execute('''SELECT user_id FROM Users WHERE username="{}";'''.format(session['username']))
-        user_id = c.fetchone()[0]
-        
-        poll_id = randint(100000000, 999999999)
-        result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
-        
-        # c.execute will return nothing if the id does not exist.
-        # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
-        if result != None:
-            while result != None:
-                poll_id = randint(100000000, 999999999)
-                result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
-        
-        #NEED TO GET THIS FROM JAVASCRIPT (test dictionary, but fill in with what gets called)
+        # Get the user_id of the current user
+        user_id = get_user_id_by_username(session['username'], c)
+
+        # Generate a unique poll_id
+        poll_id = generate_unique_poll_id(c)
+
+        # Data for the new poll (you should replace this with actual data from your JavaScript form)
         poll_data = {"test": "testing"}
 
+        # Timestamp for when the poll is created
         poll_created = datetime.datetime.now()
 
-         # instert variables into the database
-        sql = "INSERT INTO Polls VALUES (?, ?, ?, ?);"
+        # Insert the new poll into the database
+        sql = "INSERT INTO Polls (poll_id, user_id, poll_data, poll_created) VALUES (%s, %s, %s, %s);"
         new_poll = (poll_id, user_id, poll_data, poll_created)
-        
-        #execute sql statement to insert the values contained in new poll.
+
+        # Execute SQL statement to insert the values into the database
         c.execute(sql, new_poll)
         conn.commit()
         conn.close()
 
-        # Redirect to take_a_poll page with the newly created poll_id CHANGED
+        # Redirect to the take_a_poll page with the newly created poll_id
         return redirect(url_for("take_a_poll", poll_id=poll_id))
-        
-    '''Renders an HTML template that allows users to create a poll'''
-    return render_template("create_poll.html", name=name)
+
+    # Renders an HTML template that allows users to create a poll
+    return render_template("create_poll.html")
 
 @app.route('/redirect_vote', methods=['GET'])
 def redirect_vote():
