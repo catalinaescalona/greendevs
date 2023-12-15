@@ -89,7 +89,7 @@
           submit = document.getElementById("submit_poll");
           submit.name = JSON.stringify(dict);
 
-          fetch(`${window.origin}/create`, {
+          fetch(`${window.origin}/create_test`, {
 	        method: "POST",
                 body: JSON.stringify(data),
 	        headers: new Headers({
