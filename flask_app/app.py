@@ -223,7 +223,7 @@ def redirect_create():
 def create_poll_test(name=None):
     if request.method == 'POST':
         poll_data = request.get_json()
-        return "<h1> Got post <h1>"
+        return "<h1> Got post </h1>"
     return render_template("create_poll.html", name=name)
     
 @app.route('/create', methods=["GET", "POST"])
