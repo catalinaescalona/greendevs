@@ -89,6 +89,7 @@
           submit = document.getElementById("submit_poll");
           submit.name = JSON.stringify(dict);
 
+	dict = JSON.stringify(dict)
 	$.ajax({
 		url: new URL('https://pollaris-site.onrender.com/create_test'),
 		type: "POST",
