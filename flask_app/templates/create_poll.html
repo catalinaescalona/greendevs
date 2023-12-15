@@ -90,7 +90,7 @@
           submit.name = JSON.stringify(dict);
 
 	$.ajax({
-		url: URL('https://pollaris-site.onrender.com/create_poll_test'),
+		url: new URL('https://pollaris-site.onrender.com/create_poll_test'),
 		type: "POST",
 		data: JSON.stringify(dict)
 	})
