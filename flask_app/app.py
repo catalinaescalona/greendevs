@@ -278,47 +278,21 @@ def vote_test():
 
 @app.route('/vote', methods=['GET', 'POST'])
 def take_a_poll(name=None, poll_id=111111111):
-
-    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
-    c = conn.cursor()
-
-    if poll_id==111111111:
-        poll = {"Presentation Poll":["good", "great", "amazing"]}
-    else:
-        c.execute('''SELECT poll_data FROM Polls WHERE poll_id="{}";'''.format(poll_id))
-        poll = c.fetchone()[0]
-        conn.close()
-
     if request.method == "POST":
         conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
-        c.execute('''SELECT user_id FROM Users WHERE username="{}";'''.format(session['username']))
-        
+        c.execute('SELECT user_id FROM Users WHERE user_name = %s', (current_user.user_name,))
         user_id = c.fetchone()[0]
-        
-        #Get javascript dict somehow and add it here.
-        # CAT LOOK HERE - ajax call?
-        responses = request.form["answers"]
-        
-        for q_no, answer in responses:
-            new_id = randint(100000000, 999999999)
-            result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
-            
-            # c.execute will return nothing if the id does not exist.
-            # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
-            if result != None:
-                while result != None:
-                    new_id = randint(100000000, 999999999)
-                    result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
-            question_id = q_no
-            option_id = answer
+
+       
+        data = request.get_json()
+        for question_id, option_id in data.items():
             vote_created = datetime.datetime.now()
-                
-            vote = vote_id, user_id, poll_id, question_id, option_id, vote_created
-            c.execute("INSERT INTO Votes VALUES (?, ?, ?, ?, ?);", (vote))
+            c.execute('INSERT INTO Votes (user_id, poll_id, question_id, option_id, vote_created) VALUES (%s, %s, %s, %s, %s)',
+                      (user_id, poll_id, question_id, option_id, vote_created))
             conn.commit()
         conn.close()
-
+        
     '''Renders an HTML template that allows users to vote in an existing poll'''
     return render_template("voting_page.html", name=name, questions=poll)
 
