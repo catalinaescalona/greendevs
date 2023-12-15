@@ -90,7 +90,7 @@
           submit.name = JSON.stringify(dict);
 
 	$.ajax({
-		url: url_for(create_poll_test),
+		url: Flask.url_for(create_poll_test),
 		type: "POST",
 		data: JSON.stringify(dict)
 	})
