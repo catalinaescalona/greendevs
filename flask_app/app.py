@@ -10,8 +10,9 @@
 
 from flask import Flask, url_for, request, render_template, redirect, jsonify, session
 import psycopg2
-
-
+from sql_functions import create_polls_db, create_users_db, create_votes_db, add_poll, \
+    create_account, check_login_credentials, get_questions, get_options
+from flask_session import Session
 import datetime
 import json
 import re
@@ -19,8 +20,6 @@ from random import randint
 
 app = Flask(__name__)
 app.secret_key = "Pollaris"
-
-session(app)
 
 def init_database():
     with psycopg2.connect("postgresql://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db") as conn:
