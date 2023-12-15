@@ -91,9 +91,10 @@
 
           fetch(`${window.origin}/create_test`, {
 	        method: "POST",
+		credentials: "include",
                 body: JSON.stringify(data),
-	        headers: new Headers({
-			"content-type": "application/json")}
+		cache: "no-cache",
+	        headers: new Headers({"content-type": "application/json")}
           })
 
           
