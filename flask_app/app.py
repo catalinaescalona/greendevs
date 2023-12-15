@@ -229,7 +229,7 @@ def create_poll_test(name=None):
                 st =+ (str(key)+" "+str(value))
             return st
 
-    return render_template(create_poll.html)
+    return render_template("create_poll.html", name=name)
     
 @app.route('/create', methods=["GET", "POST"])
 def create_poll(name=None):
