@@ -1,6 +1,7 @@
 from flask import Flask, url_for, request, render_template, redirect, jsonify, session
 from random import randint
 from urllib.parse import urlparse
+from flask_bcrypt import Bcrypt
 import datetime
 import psycopg2
 import re
@@ -8,6 +9,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = "Pollaris"
+
+bcrypt = Bcrypt(app)
+
 
 # Function to establish a database connection using the provided URL
 def connect_to_database():
