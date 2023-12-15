@@ -95,7 +95,8 @@
 		data: JSON.stringify({"poll_data": dict}),
 		dataType: "json",
 		contentType: "application/json;charset=utf-8",
-		success: function(){alert("Success: data sent!")}
+		success: function(){alert("Success: data sent!")},
+		error: function(){console.log("error sending data.")}
 	})
           
           console.log(dict);
