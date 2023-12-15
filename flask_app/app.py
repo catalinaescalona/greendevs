@@ -1,20 +1,10 @@
-# Prior to running pip install all modules in requirements.txt using the following command:
-# pip install -r requirements.txt
-
-###### To run locally ######
-# Pull the latest commits.
-# Change working directory to ..greendevs/flask_app/
-# Use the following command: flask run
-# you can now test the website using http://127.0.0.1:5000/
-# if you get a 403 error (Access to 127.0.0.1 was denied), you may need to clear cookies.
-
 from flask import Flask, url_for, request, render_template, redirect, jsonify, session
-import sqlite3
 from random import randint
 from urllib.parse import urlparse
 import datetime
 import psycopg2
 import re
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = "Pollaris"
@@ -30,7 +20,25 @@ def connect_to_database():
         'port': url.port
     }
     return psycopg2.connect(**db_params)
-    
+
+# Function to generate a unique user ID
+def generate_unique_user_id(cursor):
+    while True:
+        new_id = randint(100000000, 999999999)
+        cursor.execute("SELECT * FROM Users WHERE user_id=%s;", (new_id,))
+        result = cursor.fetchone()
+        if result is None:
+            return new_id
+
+# Function to generate a unique poll ID
+def generate_unique_poll_id(cursor):
+    while True:
+        new_id = randint(100000000, 999999999)
+        cursor.execute("SELECT * FROM Polls WHERE poll_id=%s;", (new_id,))
+        result = cursor.fetchone()
+        if result is None:
+            return new_id
+
 @app.route('/routes')
 def hello_world():
     return '''Here is a list of all routes currently created in Pollaris: <br>
@@ -57,27 +65,27 @@ def index(name=None):
     conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     c = conn.cursor()
     try:
-        c.execute('''CREATE TABLE IF NOT EXISTS Users(user_id INT, 
-                                                      user_name VARCHAR(30), 
+        c.execute('''CREATE TABLE IF NOT EXISTS Users(user_id INT PRIMARY KEY, 
+                                                      user_name VARCHAR(30) UNIQUE, 
                                                       first_name VARCHAR(50), 
                                                       last_name VARCHAR(50),
-                                                      email VARCHAR(100),
-                                                      password VARCHAR(60),
-                                                      member_since VARCHAR(60)
+                                                      email VARCHAR(100) UNIQUE,
+                                                      password VARCHAR(255),
+                                                      member_since TIMESTAMP
                  );''')
     
-        c.execute('''CREATE TABLE IF NOT EXISTS Polls(poll_id INT,
+        c.execute('''CREATE TABLE IF NOT EXISTS Polls(poll_id INT PRIMARY KEY,
                                                       user_id INT,
                                                       poll_data JSON,
-                                                      poll_created VARCHAR(45)
+                                                      poll_created TIMESTAMP
                 );''')             
         
-        c.execute('''CREATE TABLE IF NOT EXISTS Votes(vote_id INT,
+        c.execute('''CREATE TABLE IF NOT EXISTS Votes(vote_id SERIAL PRIMARY KEY,
                                                       user_id INT,
                                                       poll_id INT,
                                                       question_id INT,
                                                       option_id INT,
-                                                      vote_created VARCHAR(45)
+                                                      vote_created TIMESTAMP
                  );''')
         
         conn.commit()
@@ -116,24 +124,19 @@ def log_in():
 
         if username != "" and password != "":
             # Create a string to query the database for login credentials and execute the query
-            login_query = 'SELECT * FROM Users WHERE user_name=%s AND password=%s;'
-            c.execute(login_query, (username, password))
-            result = c.fetchone()
-        else:
-            result = None
+            login_query = 'SELECT * FROM Users WHERE user_name=%s;'
+            c.execute(login_query, (username,))
+            user_data = c.fetchone()
+            if user_data and check_password_hash(user_data[5], password):
+                # Passwords match
+                conn.close()
+                session["username"] = username
+                return redirect(url_for('create_poll'))
 
-        # If the credentials don't match, the result=c.fetchone() function will return nothing.
-        if result is None:
-            # Display a login error message
-            # Close the database
-            conn.close()
-            return render_template('login_page.html')
-        else:
-            # Redirect to the user's profile page
-            # Close the database
-            conn.close()
-            session["username"] = username
-            return redirect(url_for('create_poll'))
+        # Close the database
+        conn.close()
+        return render_template('login_page.html', error_message='Invalid username or password')
+
     return render_template('login_page.html')
 
 @app.route('/redirect_signup', methods=['GET'])
@@ -159,45 +162,22 @@ def sign_up():
         first = request.form['first']
         last = request.form['last']
 
-        # user_id must be unique!
-        # Create random 9-digit id for user_id. Query database to see if id exists already.
-        new_id = randint(100000000, 999999999)
-        c.execute("SELECT * FROM Users WHERE user_id=%s;", (new_id,))
-        result = c.fetchone()
-        
-        # c.execute will return nothing if the id does not exist.
-        # If user_id already exists, randomly select new 9-digit id until one is chosen that does not exist already.
-        if result is not None:
-            while result is not None:
-                new_id = randint(100000000, 999999999)
-                c.execute("SELECT * FROM Users WHERE user_id=%s;", (new_id,))
-                result = c.fetchone()
+        # Generate a unique user_id
+        new_id = generate_unique_user_id(c)
 
-        # user_name must be unique. Return error message indicating username is taken if not unique.
-        c.execute("SELECT * FROM Users WHERE user_name=%s;", (user_name,))
-        new_name = c.fetchone()
-        if new_name is not None:
-            conn.close()
-            return render_template('sign_up.html')
-        
         # Check regex match to verify a valid email address.
         if not re.match(r'^[A-Za-z\.!#$%\*0-9]+@[A-Za-z0-9]+\.[a-zA-Z]{2,3}$', email):
             conn.close()
-            return render_template('sign_up.html')
-        
-        # Email must be unique. Return an error message if the email is associated with an account.
-        c.execute("SELECT * FROM Users WHERE email=%s;", (email,))
-        new_email = c.fetchone()
-        if new_email is not None:
-            conn.close()
-            return render_template('sign_up.html')
-        
-        timestamp = datetime.datetime.now()
+            return render_template('sign_up.html', error_message='Invalid email address')
 
+        # Hash the password
+        hashed_password = generate_password_hash(password, method='sha256')
+
+        # Insert the new user into the database
         cols = "(user_id, user_name, first_name, last_name, email, password, member_since)"
         sql = "INSERT INTO Users " + cols + " VALUES (%s, %s, %s, %s, %s, %s, %s)"
         # Insert values into the table
-        new_user = (new_id, user_name, first, last, email, password, timestamp)
+        new_user = (new_id, user_name, first, last, email, hashed_password, datetime.datetime.now())
         c.execute(sql, new_user)
         
         # Commit changes
@@ -227,14 +207,6 @@ def redirect_create():
     response = {'create_url': url_for('create_poll')}
     return jsonify(response)
 
-# GET AJAX METHOD TO WORK HERE
-@app.route('/create_test', methods=["GET", "POST"])
-def create_poll_test(name=None):
-    if request.method == 'POST':
-        poll_data = request.get_json()
-        return "<h1> Got post </h1>"
-    return render_template("create_poll.html", name=name)
-    
 @app.route('/create', methods=["GET", "POST"])
 def create_poll():
     if request.method == "POST":
@@ -276,8 +248,8 @@ def redirect_vote():
 
 @app.route('/vote_test')
 def vote_test():
-        question = {"Presentation Poll":["option 1", "option 2", "option 3"]}
-        return render_template("vote.html", questions=question)
+    question = {"Presentation Poll":["option 1", "option 2", "option 3"]}
+    return render_template("vote.html", questions=question)
 
 @app.route('/vote', methods=['GET', 'POST'])
 def take_a_poll(poll_id):
@@ -305,11 +277,7 @@ def take_a_poll(poll_id):
     # Render an HTML template that allows users to vote in an existing poll
     return render_template("voting_page.html", name=session['username'], questions=poll)
 
-
-
 @app.route('/popular')
 def popular_polls(name=None):
     '''Renders an HTML template that displays popular, already-existing polls for users to browse and take'''
     return render_template("popular_polls.html", name=name)
-
-
