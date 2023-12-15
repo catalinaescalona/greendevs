@@ -222,7 +222,7 @@ def redirect_create():
 @app.route('/create_test', methods=["GET", "POST"])
 def create_poll_test(name=None):
     if request.method == 'POST':
-        poll_data = get_json()
+        poll_data = request.get_json()
         if poll_data:
             st = "<p>"
             for key,value in poll_data:
