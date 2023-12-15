@@ -248,15 +248,15 @@ def create_poll():
         # Generate a unique poll_id
         poll_id = generate_unique_poll_id(c)
 
-        # Data for the new poll (you should replace this with actual data from your JavaScript form)
-        poll_data = {"test": "testing"}
+        # Get the JSON data from the request
+        poll_data = request.get_json()
 
         # Timestamp for when the poll is created
         poll_created = datetime.datetime.now()
 
         # Insert the new poll into the database
         sql = "INSERT INTO Polls (poll_id, user_id, poll_data, poll_created) VALUES (%s, %s, %s, %s);"
-        new_poll = (poll_id, user_id, poll_data, poll_created)
+        new_poll = (poll_id, user_id, json.dumps(poll_data), poll_created)  # Convert poll_data to JSON string
 
         # Execute SQL statement to insert the values into the database
         c.execute(sql, new_poll)
