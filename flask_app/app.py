@@ -248,15 +248,8 @@ def create_poll():
         # Generate a unique poll_id
         poll_id = generate_unique_poll_id(c)
 
-        # Get the poll_data from the form data (you should replace this with the actual form field names)
-        question = request.form.get('question')
-        options = request.form.getlist('options')
-
-        # Create a dictionary to store the poll data
-        poll_data = {
-            'question': question,
-            'options': options
-        }
+        # Get the poll_data from the JSON data sent by the client
+        poll_data = request.get_json()
 
         # Timestamp for when the poll is created
         poll_created = datetime.datetime.now()
@@ -272,9 +265,6 @@ def create_poll():
 
         # Redirect to the take_a_poll page with the newly created poll_id
         return redirect(url_for("take_a_poll", poll_id=poll_id))
-
-    # Renders an HTML template that allows users to create a poll
-    return render_template("create_poll.html")
 
 @app.route('/redirect_vote', methods=['GET'])
 def redirect_vote():
