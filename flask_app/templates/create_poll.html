@@ -94,12 +94,11 @@
 		data.append(key, dict[key])
 	}
 
-          fetch(`${window.origin}/create_test`, {
+	test_url = {{ url_for("create_test")|tojson }}
+          fetch(test_url, {
 	        method: "POST",
-		credentials: "include",
+		"headers": {"Content-Type": "application/json"}
                 body: JSON.stringify(data),
-		cache: "no-cache",
-	        "headers": {"Content-Type": "application/json"}
           })
 
           
