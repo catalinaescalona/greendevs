@@ -225,10 +225,11 @@ def create_poll_test(name=None):
         poll_data = request.json
         if poll_data:
             print("POLL DATA: ", poll_data)
-            st = ""
+            st = "<p>"
             for key,value in poll_data:
                 st =+ (str(key)+" "+str(value))
-            render_template("create_poll.html", name=name) 
+            st+= "<p>"
+            return st 
 
     return render_template("create_poll.html", name=name)
     
