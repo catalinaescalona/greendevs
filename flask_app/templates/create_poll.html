@@ -91,7 +91,7 @@
 
 	dict = JSON.stringify(dict)
 	$.ajax({
-		url: new URL('https://pollaris-site.onrender.com/create_test'),
+		url: '/create_test',
 		type: "POST",
 		data: JSON.stringify({"poll_data": dict}),
 		dataType: "json",
