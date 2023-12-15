@@ -17,6 +17,18 @@ import re
 
 app = Flask(__name__)
 app.secret_key = "Pollaris"
+
+# Function to establish a database connection using the provided URL
+def connect_to_database():
+    url = urlparse("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+    db_params = {
+        'dbname': url.path[1:],
+        'user': url.username,
+        'password': url.password,
+        'host': url.hostname,
+        'port': url.port
+    }
+    return psycopg2.connect(**db_params)
     
 @app.route('/routes')
 def hello_world():
