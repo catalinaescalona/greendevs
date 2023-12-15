@@ -1,3 +1,10 @@
+// JavaScript page for Pollaris Create Page
+// Authors: Escalona, Sansbury, Webster
+// Written December 2023
+// CSPB 3308 - Fall 2023 - Knox - Software Development Tools and Methods
+// University of Colorado Boulder
+
+
 // Wait for the DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function () {
     // Add an event listener to the "Create Poll" button
