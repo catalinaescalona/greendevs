@@ -224,6 +224,7 @@ def create_poll_test(name=None):
     if request.method == 'POST':
         poll_data = request.json
         if poll_data:
+            poll_data = jsonify(poll_data)
             print("POLL DATA: ", poll_data)
             st = "<p>"
             for key,value in poll_data:
