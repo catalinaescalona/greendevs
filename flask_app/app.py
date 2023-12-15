@@ -219,8 +219,21 @@ def redirect_create():
     return jsonify(response)
 
 # GET AJAX METHOD TO WORK HERE
+@app.route('/create_test', methods=["GET", "POST"])
+def create_poll(name=None):
+    poll_data = request.get_json()  # This is a python dictionary
+    if poll_data:
+        st = ""
+        for key,value in poll_data:
+            st =+ (str(key)+" "+str(value))
+        return st
+
+    return render_template(create_poll.html)
+    
 @app.route('/create', methods=["GET", "POST"])
 def create_poll(name=None):
+    poll_data = request.get_json()  # This is a python dictionary
+    
     if request.method=="POST":
         conn = psycopg2.connect("postgres:/pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
@@ -239,7 +252,7 @@ def create_poll(name=None):
                 result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
         
         #NEED TO GET THIS FROM JAVASCRIPT (test dictionary, but fill in with what gets called)
-        poll_data = {'test': 'testing'}
+        poll_data = request.get_json()  # This is a python dictionary
 
         poll_created = datetime.datetime.now()
 
