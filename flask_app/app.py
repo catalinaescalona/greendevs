@@ -11,6 +11,7 @@
 from flask import Flask, url_for, request, render_template, redirect, jsonify, session
 import sqlite3
 from random import randint
+from urllib.parse import urlparse
 import datetime
 import psycopg2
 import re
