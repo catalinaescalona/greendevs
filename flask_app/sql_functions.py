@@ -46,18 +46,20 @@ def create_polls_db():
     c = conn.cursor()
     c.execute("DROP TABLE if EXISTS Polls;")
 
-    c.execute('''CREATE TABLE Polls(poll_id INT, 
-                                    user_id INT, 
-                                    question JSON, 
-                                    options JSON,
-                                    poll_created VARCHAR(100),
-                                    poll_expiration VARCHAR(60),
-                                    poll_num INT,
-                                    option_num INT,
-                                    
-                                    PRIMARY KEY (poll_id),
-                                    FOREIGN KEY (user_id) REFERENCES Users(user_id)
-             );''')
+    c.execute('''
+        CREATE TABLE Polls(
+            poll_id INT, 
+            user_id INT, 
+            question JSON, 
+            options JSON,
+            poll_created VARCHAR(100),
+            poll_expiration VARCHAR(60),
+            poll_num INT,
+            option_num INT,
+            PRIMARY KEY (poll_id),
+            FOREIGN KEY (user_id) REFERENCES Users(user_id)
+        );
+    ''')
     
     # Option num may need to be removed and just have a function that tallies from the votes table 
     # using the question num and poll num
