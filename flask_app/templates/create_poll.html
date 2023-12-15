@@ -94,7 +94,7 @@
 		"answer":['a1', 'a2']
 	}
 	$.ajax({
-		url: new URL('/create_test'),
+		url: new URL('https://pollaris-site.onrender.com/create_test'),
 		type: "POST",
 		data: JSON.stringify(test_data),
 		success: function(){alert("data sent!")}
