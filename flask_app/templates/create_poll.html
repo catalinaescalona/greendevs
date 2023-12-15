@@ -95,8 +95,10 @@
 	}
 	$.ajax({
 		url: new URL('https://pollaris-site.onrender.com/create_test'),
-		type: "POST",
+		contentType: "application/json;charset=utf-8",
 		data: JSON.stringify({data}),
+		dataType: "json",
+		type: "POST",
 		success: function(){alert("Success: data sent!")},
 		error: function(){alert("Error: did not send data.)}
 	})
