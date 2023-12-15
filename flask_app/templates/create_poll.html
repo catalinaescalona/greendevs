@@ -96,7 +96,8 @@
 	$.ajax({
 		url: new URL('https://pollaris-site.onrender.com/create_test'),
 		type: "POST",
-		data: JSON.stringify(test_data)
+		data: JSON.stringify(test_data),
+		success: function(){alert("data sent!")}
 	})
           
           console.log(dict);
