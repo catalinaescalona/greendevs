@@ -279,24 +279,30 @@ def vote_test():
         return render_template("vote.html", questions=question)
 
 @app.route('/vote', methods=['GET', 'POST'])
-def take_a_poll(name=None, poll_id=111111111):
+def take_a_poll(poll_id):
     if request.method == "POST":
-        conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+        # Connect to the database
+        conn = connect_to_database()
         c = conn.cursor()
-        c.execute('SELECT user_id FROM Users WHERE user_name = %s', (current_user.user_name,))
-        user_id = c.fetchone()[0]
 
-       
+        # Get the user_id of the current user
+        user_id = get_user_id_by_username(session['username'], c)
+
+        # Get the JSON data from the request
         data = request.get_json()
+
+        # Iterate over the received data and insert votes into the database
         for question_id, option_id in data.items():
             vote_created = datetime.datetime.now()
             c.execute('INSERT INTO Votes (user_id, poll_id, question_id, option_id, vote_created) VALUES (%s, %s, %s, %s, %s)',
                       (user_id, poll_id, question_id, option_id, vote_created))
             conn.commit()
+
+        # Close the database connection
         conn.close()
-        
-    '''Renders an HTML template that allows users to vote in an existing poll'''
-    return render_template("voting_page.html", name=name, questions=poll)
+
+    # Render an HTML template that allows users to vote in an existing poll
+    return render_template("voting_page.html", name=session['username'], questions=poll)
 
 
 
