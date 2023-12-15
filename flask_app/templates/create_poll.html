@@ -94,7 +94,7 @@
 		data.append(key, dict[key])
 	}
 
-	test_url = {{ url_for("create_test")|tojson }}
+	test_url = URL("https://pollaris-site.onrender.com/create_test")
           fetch(test_url, {
 	        method: "POST",
 		"headers": {"Content-Type": "application/json"}
