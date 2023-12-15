@@ -20,7 +20,7 @@ from random import randint
 app = Flask(__name__)
 app.secret_key = "Pollaris"
 
-Session(app)
+session(app)
 
 def init_database():
     with psycopg2.connect("postgresql://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db") as conn:
