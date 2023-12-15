@@ -9,15 +9,32 @@
 # if you get a 403 error (Access to 127.0.0.1 was denied), you may need to clear cookies.
 
 from flask import Flask, url_for, request, render_template, redirect, jsonify, session
-import sqlite3
-from random import randint
-import datetime
 import psycopg2
+from sql_functions import create_polls_db, create_users_db, create_votes_db, add_poll, \
+    create_account, check_login_credentials, get_questions, get_options
+from flask_session import Session
+import datetime
+import json
 import re
+from random import randint
 
 app = Flask(__name__)
 app.secret_key = "Pollaris"
-    
+
+Session(app)
+
+def init_database():
+    with psycopg2.connect("postgresql://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db") as conn:
+        c = conn.cursor()
+        create_users_db(c)
+        create_polls_db(c)
+        create_votes_db(c)
+        conn.commit()
+
+if __name__ == "__main__":
+    init_database()
+    app.run(debug=True)
+
 @app.route('/routes')
 def hello_world():
     return '''Here is a list of all routes currently created in Pollaris: <br>
@@ -35,13 +52,13 @@ def hello_world():
 @app.route('/db_test')
 def testing():
     '''This function tests the connection to the database hosted on Render'''
-    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+    conn = psycopg2.connect("postgresql://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     conn.close()
     return 'Database Connection Successful'
 
 @app.route('/')
 def index(name=None):
-    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+    conn = psycopg2.connect("postgresql://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     c = conn.cursor()
     try:
         c.execute('''CREATE TABLE IF NOT EXISTS Users(user_id INT, 
@@ -95,7 +112,7 @@ def log_in(name=None):
 
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         # Connect to databse
-        conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+        conn = psycopg2.connect("postgresql://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
 
         username = request.form['username']
@@ -139,7 +156,7 @@ def sign_up():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'first' in request.form and 'last' in request.form:
 
         # Connect to database
-        conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+        conn = psycopg2.connect("postgresql://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
         
         # Store form inputs as variables
@@ -228,40 +245,39 @@ def create_poll_test(name=None):
     
 @app.route('/create', methods=["GET", "POST"])
 def create_poll(name=None):
-    
-    if request.method=="POST":
-        conn = psycopg2.connect("postgres:/pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
-        c = conn.cursor()
+    if request.method == "POST":
+        with psycopg2.connect("postgresql://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db") as conn:
+            c = conn.cursor()
 
-        c.execute('''SELECT user_id FROM Users WHERE username="{}";'''.format(session['username']))
-        user_id = c.fetchone()[0]
+            c.execute('''SELECT user_id FROM Users WHERE user_name='{}';'''.format(session['username']))
+            user_id = c.fetchone()[0]
         
-        poll_id = randint(100000000, 999999999)
-        result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
+            poll_id = randint(100000000, 999999999)
+            result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
+            result = c.fetchone()
         
-        # c.execute will return nothing if the id does not exist.
-        # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
-        if result != None:
-            while result != None:
-                poll_id = randint(100000000, 999999999)
-                result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
+            # c.execute will return nothing if the id does not exist.
+            # If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
+            if result != None:
+                while result != None:
+                    poll_id = randint(100000000, 999999999)
+                    result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(poll_id))
         
-        #NEED TO GET THIS FROM JAVASCRIPT (test dictionary, but fill in with what gets called)
-        poll_data = {"test": "testing"}
+            #NEED TO GET THIS FROM JAVASCRIPT (test dictionary, but fill in with what gets called)
+            poll_data = {"test": "testing"}
 
-        poll_created = datetime.datetime.now()
+            poll_created = datetime.datetime.now()
 
-         # instert variables into the database
-        sql = "INSERT INTO Polls VALUES (?, ?, ?, ?);"
-        new_poll = (poll_id, user_id, poll_data, poll_created)
+            # instert variables into the database
+            sql = "INSERT INTO Polls VALUES (?, ?, ?, ?);"
+            new_poll = (poll_id, user_id, poll_data, poll_created)
         
-        #execute sql statement to insert the values contained in new poll.
-        c.execute(sql, new_poll)
-        conn.commit()
-        conn.close()
+            #execute sql statement to insert the values contained in new poll.
+            c.execute("INSERT INTO Polls VALUES (%s, %s, %s, %s);", (poll_id, user_id, poll_data, poll_created))
+            conn.commit()
 
-        # Redirect to take_a_poll page with the newly created poll_id CHANGED
-        return redirect(url_for("take_a_poll", poll_id=poll_id))
+            # Redirect to take_a_poll page with the newly created poll_id CHANGED
+            return redirect(url_for("take_a_poll", poll_id=poll_id))
         
     '''Renders an HTML template that allows users to create a poll'''
     return render_template("create_poll.html", name=name)
@@ -278,19 +294,18 @@ def vote_test():
 
 @app.route('/vote', methods=['GET', 'POST'])
 def take_a_poll(name=None, poll_id=111111111):
-
-    conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
-    c = conn.cursor()
+    with psycopg2.connect("postgresql://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db") as conn:
+        c = conn.cursor()
 
     if poll_id==111111111:
         poll = {"Presentation Poll":["good", "great", "amazing"]}
     else:
-        c.execute('''SELECT poll_data FROM Polls WHERE poll_id="{}";'''.format(poll_id))
+        c.execute('''SELECT poll_data FROM Polls WHERE poll_id='{}';'''.format(poll_id))
         poll = c.fetchone()[0]
         conn.close()
 
     if request.method == "POST":
-        conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+        conn = psycopg2.connect("postgresql://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
         c = conn.cursor()
         c.execute('''SELECT user_id FROM Users WHERE username="{}";'''.format(session['username']))
         
@@ -300,7 +315,7 @@ def take_a_poll(name=None, poll_id=111111111):
         # CAT LOOK HERE - ajax call?
         responses = request.form["answers"]
         
-        for q_no, answer in responses:
+        for q_no, answer in responses.items():
             new_id = randint(100000000, 999999999)
             result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
             
@@ -315,9 +330,8 @@ def take_a_poll(name=None, poll_id=111111111):
             vote_created = datetime.datetime.now()
                 
             vote = vote_id, user_id, poll_id, question_id, option_id, vote_created
-            c.execute("INSERT INTO Votes VALUES (?, ?, ?, ?, ?);", (vote))
+            c.execute("INSERT INTO Votes VALUES (%s, %s, %s, %s, %s, %s);", (vote_id, user_id, poll_id, question_id, option_id, vote_created))
             conn.commit()
-        conn.close()
 
     '''Renders an HTML template that allows users to vote in an existing poll'''
     return render_template("voting_page.html", name=name, questions=poll)
@@ -328,3 +342,18 @@ def take_a_poll(name=None, poll_id=111111111):
 def popular_polls(name=None):
     '''Renders an HTML template that displays popular, already-existing polls for users to browse and take'''
     return render_template("popular_polls.html", name=name)
+
+
+@app.route('/test_database')
+def test_database():
+    try:
+        with psycopg2.connect("postgresql://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db") as conn:
+            c = conn.cursor()
+            c.execute("SELECT 1;")
+            result = c.fetchone()
+            if result:
+                return "Database created successfully!"
+            else:
+                return "Database creation failed."
+    except Exception as e:
+        return f"Error: {str(e)}"
