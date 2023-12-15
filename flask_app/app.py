@@ -138,8 +138,8 @@ def sign_up():
     '''
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'first' in request.form and 'last' in request.form:
 
-        # Connect to database
-        conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
+        # Connect to the database
+        conn = connect_to_database()
         c = conn.cursor()
         
         # Store form inputs as variables
@@ -152,31 +152,33 @@ def sign_up():
         # user_id must be unique!
         # Create random 9-digit id for user_id. Query database to see if id exists already.
         new_id = randint(100000000, 999999999)
-        c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
+        c.execute("SELECT * FROM Users WHERE user_id=%s;", (new_id,))
         result = c.fetchone()
         
         # c.execute will return nothing if the id does not exist.
-        #If user_id already exists, randomly select new 9-digit id until one is chose that does not exist already.
-        if result != None:
-            while result != None:
+        # If user_id already exists, randomly select new 9-digit id until one is chosen that does not exist already.
+        if result is not None:
+            while result is not None:
                 new_id = randint(100000000, 999999999)
-                c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
+                c.execute("SELECT * FROM Users WHERE user_id=%s;", (new_id,))
                 result = c.fetchone()
 
-        # user_name must be unique. return error message indicating user name is taken if not unique
-        c.execute("SELECT * FROM Users WHERE user_name='{}';".format(user_name))
+        # user_name must be unique. Return error message indicating username is taken if not unique.
+        c.execute("SELECT * FROM Users WHERE user_name=%s;", (user_name,))
         new_name = c.fetchone()
-        if new_name != None:
+        if new_name is not None:
             conn.close()
             return render_template('sign_up.html')
-        # Chech regex match to verify valid email address.
+        
+        # Check regex match to verify a valid email address.
         if not re.match(r'^[A-Za-z\.!#$%\*0-9]+@[A-Za-z0-9]+\.[a-zA-Z]{2,3}$', email):
             conn.close()
             return render_template('sign_up.html')
-        # email must be unique. return error message if email is associated with an account
-        c.execute("SELECT * FROM Users WHERE user_name='{}';".format(email))
+        
+        # Email must be unique. Return an error message if the email is associated with an account.
+        c.execute("SELECT * FROM Users WHERE email=%s;", (email,))
         new_email = c.fetchone()
-        if new_email != None:
+        if new_email is not None:
             conn.close()
             return render_template('sign_up.html')
         
@@ -184,7 +186,7 @@ def sign_up():
 
         cols = "(user_id, user_name, first_name, last_name, email, password, member_since)"
         sql = "INSERT INTO Users " + cols + " VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        #insert values into table
+        # Insert values into the table
         new_user = (new_id, user_name, first, last, email, password, timestamp)
         c.execute(sql, new_user)
         
@@ -194,16 +196,13 @@ def sign_up():
         # Set the session variable with the username
         session["username"] = user_name
 
-        # Close database
+        # Close the database
         conn.close()
 
-        # Redirect to create a poll page CHANGED
-        # return redirect(url_for("create_poll"))
-        # return redirect(url_for("user_page", user_name=user_name))
+        # Redirect to the login page
         return redirect(url_for("log_in"))
     else:
         return render_template('sign_up.html')
-    #return render_template('sign_up.html')
 
 @app.route('/user/<user_name>')
 def user_page(user_name):
