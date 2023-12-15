@@ -13,7 +13,8 @@
         <button id="login-btn" class="btn">Account</button>
     </header>
     <div id='questions' class="section">
-        <form id="create-poll-form" method="POST" action="/create"> <!-- Add form element here -->
+        <form id="create-poll-form" method="POST" action="/create">
+            <!-- Add form element here -->
             <input type="text" id="question" name="question" placeholder='New Question' /> <!-- Add name attribute for form data -->
             <input type="button" id="tutorial" class="btn" value="Add Option" onclick="addOption()" />
             <hr />
@@ -52,10 +53,8 @@
                 let brks = document.getElementsByTagName('br');
                 console.log(question.value)
                 for (var i = 0; i < opts.length; i++) {
-
                     console.log(opts[i].value);
                     arr.push(opts[i].value.toString());
-
                 }
                 dict[question.value] = arr
                 while (opts[0]) {
@@ -75,10 +74,8 @@
                 let brks = document.getElementsByTagName('br');
                 console.log(question.value)
                 for (var i = 0; i < opts.length; i++) {
-
                     console.log(opts[i].value);
                     arr.push(opts[i].value);
-
                 }
                 dict[question.value] = arr
                 while (opts[0]) {
@@ -97,18 +94,17 @@
                     dataType: "json",
                     contentType: "application/json;charset=utf-8",
                     success: function () {
-                        alert("Success: data sent!")
+                        alert("Success: data sent!");
+                        // Add any success handling logic here
                     },
                     error: function () {
-                        console.log("error sending data.")
+                        console.log("Error sending data.");
+                        // Add error handling logic here
                     }
-                })
+                });
 
                 console.log(JSON.stringify(dict));
                 dict = {}
-
-                // Redirect to the voting page
-                // window.location.href = "/vote";
             }
         </script>
         <br>
