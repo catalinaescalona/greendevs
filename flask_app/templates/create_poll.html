@@ -90,9 +90,9 @@
           submit.name = JSON.stringify(dict);
 
 	data = new FormData()
-	{% for key, value in dict %}
-		data.append(key, value)
-	{% endfor %}
+	for(var key in dict) {
+		data.append(key, dict[key])
+	}
 
           fetch(`${window.origin}/create_test`, {
 	        method: "POST",
