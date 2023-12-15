@@ -222,8 +222,8 @@ def redirect_create():
 @app.route('/create_test', methods=["GET", "POST"])
 def create_poll_test(name=None):
     if request.method == 'POST':
-        poll_data = request.json['poll_data']
-        return "<h1> Worked <h1>"
+        #poll_data = request.json['poll_data']
+        return "<h1> Got post <h1>"
     return render_template("create_poll.html", name=name)
     
 @app.route('/create', methods=["GET", "POST"])
