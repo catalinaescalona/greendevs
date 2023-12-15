@@ -219,17 +219,17 @@ def redirect_create():
     return jsonify(response)
 
 # GET AJAX METHOD TO WORK HERE
-# @app.route('/create_test', methods=["GET", "POST"])
-# def create_poll_test(name=None):
-#     if request.method == 'POST':
-#         poll_data = request.get_json(force=True)  # This is a python dictionary
-#         if poll_data:
-#             st = ""
-#             for key,value in poll_data:
-#                 st =+ (str(key)+" "+str(value))
-#             return st
+@app.route('/create_test', methods=["GET", "POST"])
+def create_poll_test(name=None):
+    if request.method == 'POST':
+        poll_data = request.json
+        if poll_data:
+            st = ""
+            for key,value in poll_data:
+                st =+ (str(key)+" "+str(value))
+            return st
 
-#     return render_template("create_poll.html", name=name)
+    return render_template("create_poll.html", name=name)
     
 @app.route('/create', methods=["GET", "POST"])
 def create_poll(name=None):
