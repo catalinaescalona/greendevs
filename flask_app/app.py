@@ -174,8 +174,8 @@ def sign_up():
             conn.close()
             return render_template('sign_up.html', error_message='Invalid email address')
 
-        # Hash the password
-        hashed_password = generate_password_hash(password, method='sha256')
+        # Hash the password using 'pbkdf2:sha256'
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
         # Insert the new user into the database
         cols = "(user_id, user_name, first_name, last_name, email, password, member_since)"
