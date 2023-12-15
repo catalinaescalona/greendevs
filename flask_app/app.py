@@ -232,7 +232,6 @@ def create_poll_test(name=None):
     
 @app.route('/create', methods=["GET", "POST"])
 def create_poll(name=None):
-    poll_data = request.get_json()  # This is a python dictionary
     
     if request.method=="POST":
         conn = psycopg2.connect("postgres:/pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
@@ -252,7 +251,7 @@ def create_poll(name=None):
                 result = c.execute("SELECT * FROM Users WHERE user_id='{}';".format(new_id))
         
         #NEED TO GET THIS FROM JAVASCRIPT (test dictionary, but fill in with what gets called)
-        poll_data = request.get_json()  # This is a python dictionary
+        poll_data = {"test": "testing"}
 
         poll_created = datetime.datetime.now()
 
