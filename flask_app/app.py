@@ -11,7 +11,7 @@
 from flask import Flask, url_for, request, render_template, redirect, jsonify, session
 import psycopg2
 
-from flask_session import Session
+
 import datetime
 import json
 import re
