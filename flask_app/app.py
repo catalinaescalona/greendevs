@@ -248,15 +248,15 @@ def create_poll():
         # Generate a unique poll_id
         poll_id = generate_unique_poll_id(c)
 
-        # Get the poll_data from the JSON data sent by the client
-        poll_data = request.get_json()
+        # Data for the new poll (you should replace this with actual data from your JavaScript form)
+        poll_data = {"test": "testing"}
 
         # Timestamp for when the poll is created
         poll_created = datetime.datetime.now()
 
         # Insert the new poll into the database
         sql = "INSERT INTO Polls (poll_id, user_id, poll_data, poll_created) VALUES (%s, %s, %s, %s);"
-        new_poll = (poll_id, user_id, json.dumps(poll_data), poll_created)
+        new_poll = (poll_id, user_id, poll_data, poll_created)
 
         # Execute SQL statement to insert the values into the database
         c.execute(sql, new_poll)
@@ -265,6 +265,10 @@ def create_poll():
 
         # Redirect to the take_a_poll page with the newly created poll_id
         return redirect(url_for("take_a_poll", poll_id=poll_id))
+
+    # Renders an HTML template that allows users to create a poll
+    return render_template("create_poll.html")
+
 
 @app.route('/redirect_vote', methods=['GET'])
 def redirect_vote():
