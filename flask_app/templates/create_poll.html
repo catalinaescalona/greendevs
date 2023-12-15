@@ -89,6 +89,11 @@
           submit = document.getElementById("submit_poll");
           submit.name = JSON.stringify(dict);
 
+	data = new FormData()
+	{% for key, value in dict %}
+		data.append(key, value)
+	{% endfor %}
+
           fetch(`${window.origin}/create_test`, {
 	        method: "POST",
 		credentials: "include",
