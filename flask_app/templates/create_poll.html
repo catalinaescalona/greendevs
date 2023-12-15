@@ -89,10 +89,6 @@
           submit = document.getElementById("submit_poll");
           submit.name = JSON.stringify(dict);
 
-	test_data= {
-		"question": "Q1",
-		"answer":['a1', 'a2']
-	}
 	$.ajax({
 		url: new URL('https://pollaris-site.onrender.com/create_test'),
 		contentType: "application/json;charset=utf-8",
@@ -108,7 +104,7 @@
           dict = {}
 
           // Redirect to the voting page
-          window.location.href = "/vote";
+         // window.location.href = "/vote";
         }
       </script>
       <br>
