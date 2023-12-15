@@ -88,6 +88,15 @@
           question.value = ""
           submit = document.getElementById("submit_poll");
           submit.name = JSON.stringify(dict);
+
+          fetch('${window.origin}/create’, {
+	              method: "POST",
+                body: JSON.stringify(data),
+	              headers: new Headers({
+		            "content-type": "application/json"
+          })
+
+          
           console.log(dict);
           dict = {}
 
