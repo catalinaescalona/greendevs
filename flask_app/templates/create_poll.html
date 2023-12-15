@@ -89,18 +89,11 @@
           submit = document.getElementById("submit_poll");
           submit.name = JSON.stringify(dict);
 
-	// data = new FormData()
-	// for(var key in dict) {
-	// 	data.append(key, dict[key])
-	// }
-
-	// test_url = URL("https://pollaris-site.onrender.com/create_test")
- //          fetch(test_url, {
-	//         method: "POST",
-	// 	"headers": {"Content-Type": "application/json"}
- //                body: JSON.stringify(data),
- //          })
-
+	$.ajax({
+		url: url_for(create_poll_test),
+		type: "POST",
+		data: JSON.stringify(dict)
+	})
           
           console.log(dict);
           dict = {}
