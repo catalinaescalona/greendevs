@@ -327,35 +327,35 @@ def redirect_create():
 @app.route('/create', methods=["POST"])
 def create_poll():
     if request.method == "POST":
-            dict = {}
-            questions = request.form.getlist('question')
-            for i in range(len(questions)):
-                q = str(questions[i])
-                opts = request.form.getlist('option'+str(i)) 
-                dict[q] = opts
-    
-            conn = connect_to_database()
-            c = conn.cursor()
-    
-            # Get the user_id of the current user
-            user_id = get_user_id_by_username(session['username'], c)
-    
-            # Generate a unique poll_id
-            poll_id = generate_unique_poll_id(c)
-    
-            poll_created = datetime.datetime.now()
-    
-            json = str(dict).replace("'", '"')
-    
-            c.execute('INSERT INTO Polls (poll_id, user_id, poll_data, poll_created) VALUES (%s, %s, %s, %s)',
-             (poll_id, user_id, json, poll_created))
-    
-            conn.commit()
-            conn.close()
-    
-            return "<p> Poll ID: "+str(poll_id)+"</p><br>"+"<p> User ID: "+str(user_id)+"</p><br>"+"<p> Data: "+str(dict)+"</p><br>"+"<p> Timestamp: "+str(poll_created)+"</p>"
-        else:
-            return render_template("create_test.html")
+        dict = {}
+        questions = request.form.getlist('question')
+        for i in range(len(questions)):
+            q = str(questions[i])
+            opts = request.form.getlist('option'+str(i)) 
+            dict[q] = opts
+
+        conn = connect_to_database()
+        c = conn.cursor()
+
+        # Get the user_id of the current user
+        user_id = get_user_id_by_username(session['username'], c)
+
+        # Generate a unique poll_id
+        poll_id = generate_unique_poll_id(c)
+
+        poll_created = datetime.datetime.now()
+
+        json = str(dict).replace("'", '"')
+
+        c.execute('INSERT INTO Polls (poll_id, user_id, poll_data, poll_created) VALUES (%s, %s, %s, %s)',
+         (poll_id, user_id, json, poll_created))
+
+        conn.commit()
+        conn.close()
+
+        return "<p> Poll ID: "+str(poll_id)+"</p><br>"+"<p> User ID: "+str(user_id)+"</p><br>"+"<p> Data: "+str(dict)+"</p><br>"+"<p> Timestamp: "+str(poll_created)+"</p>"
+    else:
+        return render_template("create_test.html")
 
 
 
