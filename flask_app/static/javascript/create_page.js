@@ -4,7 +4,6 @@
 // CSPB 3308 - Fall 2023 - Knox - Software Development Tools and Methods
 // University of Colorado Boulder
 
-
 // Wait for the DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function () {
     // Add an event listener to the "Create Poll" button
@@ -33,9 +32,16 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then((response) => response.json())
             .then((data) => {
-                // Handle the response from the server (e.g., show a success message or redirect)
-                console.log("Poll created successfully:", data);
-                // You can add your own logic here for handling the response
+                // Handle the response from the server
+                console.log("Response from the server:", data);
+                if (data.success) {
+                    // Poll created successfully, redirect to the success page
+                    window.location.href = '/create_poll_success';
+                } else {
+                    // Handle any other response or errors here
+                    console.error("Error creating poll:", data.message);
+                    // You can display an error message to the user if needed
+                }
             })
             .catch((error) => {
                 console.error("Error creating poll:", error);
