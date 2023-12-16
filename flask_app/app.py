@@ -276,82 +276,118 @@ def redirect_create():
     return jsonify(response)
 
 #testing new dynamic form
-@app.route('/create_testing', methods=["GET", "POST"])
-def create_testing():
-    if request.method == "POST":
-        dict = {}
-        questions = request.form.getlist('question')
-        for i in range(len(questions)):
-            q = str(questions[i])
-            opts = request.form.getlist('option'+str(i)) 
-            dict[q] = opts
+# @app.route('/create_testing', methods=["GET", "POST"])
+# def create_testing():
+#     if request.method == "POST":
+#         dict = {}
+#         questions = request.form.getlist('question')
+#         for i in range(len(questions)):
+#             q = str(questions[i])
+#             opts = request.form.getlist('option'+str(i)) 
+#             dict[q] = opts
 
-        conn = connect_to_database()
-        c = conn.cursor()
+#         conn = connect_to_database()
+#         c = conn.cursor()
 
-        # Get the user_id of the current user
-        user_id = get_user_id_by_username(session['username'], c)
+#         # Get the user_id of the current user
+#         user_id = get_user_id_by_username(session['username'], c)
 
-        # Generate a unique poll_id
-        poll_id = generate_unique_poll_id(c)
+#         # Generate a unique poll_id
+#         poll_id = generate_unique_poll_id(c)
 
-        poll_created = datetime.datetime.now()
+#         poll_created = datetime.datetime.now()
 
-        json = str(dict).replace("'", '"')
+#         json = str(dict).replace("'", '"')
 
-        c.execute('INSERT INTO Polls (poll_id, user_id, poll_data, poll_created) VALUES (%s, %s, %s, %s)',
-         (poll_id, user_id, json, poll_created))
+#         c.execute('INSERT INTO Polls (poll_id, user_id, poll_data, poll_created) VALUES (%s, %s, %s, %s)',
+#          (poll_id, user_id, json, poll_created))
 
-        conn.commit()
-        conn.close()
+#         conn.commit()
+#         conn.close()
 
-        return "<p>"+str(poll_id)+"</p><br>"+"<p>"+str(user_id)+"</p><br>"+"<p>"+str(dict)+"</p><br>"+"<p>"+str(poll_created)+"</p>"
-    else:
-        return render_template("create_test.html")
+#         return "<p>"+str(poll_id)+"</p><br>"+"<p>"+str(user_id)+"</p><br>"+"<p>"+str(dict)+"</p><br>"+"<p>"+str(poll_created)+"</p>"
+#     else:
+#         return render_template("create_test.html")
 
 
 # GET AJAX METHOD TO WORK HERE
-@app.route('/create_test', methods=["GET", "POST"])
-def create_poll_test(name=None):
-    if request.method == 'POST':
-        poll_data = request.get_json()
-        response = {'message': 'Data Sent Successfully!'}
-        return jsonify(response)
-    return render_template("create_poll.html", name=name)
+# @app.route('/create_test', methods=["GET", "POST"])
+# def create_poll_test(name=None):
+#     if request.method == 'POST':
+#         poll_data = request.get_json()
+#         response = {'message': 'Data Sent Successfully!'}
+#         return jsonify(response)
+#     return render_template("create_poll.html", name=name)
 
 # Existing route for rendering the create poll page with a GET request
-@app.route('/create', methods=["GET"])
-def render_create_poll():
-    return render_template("create_poll.html")
+# @app.route('/create', methods=["GET"])
+# def render_create_poll():
+#     return render_template("create_poll.html")
 
 @app.route('/create', methods=["POST"])
 def create_poll():
     if request.method == "POST":
-        # Connect to the database
-        conn = connect_to_database()
-        c = conn.cursor()
+            dict = {}
+            questions = request.form.getlist('question')
+            for i in range(len(questions)):
+                q = str(questions[i])
+                opts = request.form.getlist('option'+str(i)) 
+                dict[q] = opts
+    
+            conn = connect_to_database()
+            c = conn.cursor()
+    
+            # Get the user_id of the current user
+            user_id = get_user_id_by_username(session['username'], c)
+    
+            # Generate a unique poll_id
+            poll_id = generate_unique_poll_id(c)
+    
+            poll_created = datetime.datetime.now()
+    
+            json = str(dict).replace("'", '"')
+    
+            c.execute('INSERT INTO Polls (poll_id, user_id, poll_data, poll_created) VALUES (%s, %s, %s, %s)',
+             (poll_id, user_id, json, poll_created))
+    
+            conn.commit()
+            conn.close()
+    
+            return "<p> Poll ID: "+str(poll_id)+"</p><br>"+"<p> User ID: "+str(user_id)+"</p><br>"+"<p> Data: "+str(dict)+"</p><br>"+"<p> Timestamp: "+str(poll_created)+"</p>"
+        else:
+            return render_template("create_test.html")
 
-        # Get the user_id of the current user
-        user_id = get_user_id_by_username(session['username'], c)
 
-        # Generate a unique poll_id
-        poll_id = generate_unique_poll_id(c)
 
-        # Extract poll data from the form (you may need to modify this based on your form fields)
-        question = request.form.get('question')
-        options = request.form.getlist('option')
 
-        # Save the poll data to the database
-        save_poll_to_database(c, poll_id, user_id, question, options)
 
-        # Close the database connection
-        conn.close()
+    
+    # if request.method == "POST":
+    #     # Connect to the database
+    #     conn = connect_to_database()
+    #     c = conn.cursor()
 
-        # Redirect to the voting page with the newly created poll_id
-        return redirect(url_for("take_a_poll", poll_id=poll_id))  # Updated redirection
+    #     # Get the user_id of the current user
+    #     user_id = get_user_id_by_username(session['username'], c)
 
-    # Renders an HTML template that allows users to create a poll
-    return render_template("create_poll.html")
+    #     # Generate a unique poll_id
+    #     poll_id = generate_unique_poll_id(c)
+
+    #     # Extract poll data from the form (you may need to modify this based on your form fields)
+    #     question = request.form.get('question')
+    #     options = request.form.getlist('option')
+
+    #     # Save the poll data to the database
+    #     save_poll_to_database(c, poll_id, user_id, question, options)
+
+    #     # Close the database connection
+    #     conn.close()
+
+    #     # Redirect to the voting page with the newly created poll_id
+    #     return redirect(url_for("take_a_poll", poll_id=poll_id))  # Updated redirection
+
+    # # Renders an HTML template that allows users to create a poll
+    # return render_template("create_poll.html")
 
 @app.route('/redirect_vote', methods=['GET'])
 def redirect_vote():
