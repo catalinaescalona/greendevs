@@ -40,31 +40,12 @@
     </div>
     <div class="section">
         <br>
-        <input type="button" id="submit_q" class="btn" value="Create Next Question" onclick=nextQ()>
+        <input type="button" id="submit_poll" class="btn" value="Submit Poll" onclick="send_poll()">
         <br>
+        <br>
+
         <script>
             var dict = {};
-
-            function nextQ() {
-                var arr = [];
-                let question = document.getElementById("question");
-                let opts = document.getElementsByName('option');
-                let bubs = document.getElementsByName('bubble');
-                let brks = document.getElementsByTagName('br');
-                console.log(question.value)
-                for (var i = 0; i < opts.length; i++) {
-                    console.log(opts[i].value);
-                    arr.push(opts[i].value.toString());
-                }
-                dict[question.value] = arr
-                while (opts[0]) {
-                    opts[0].parentNode.removeChild(opts[0])
-                    bubs[0].parentNode.removeChild(bubs[0])
-                    brks[0].parentNode.removeChild(brks[0])
-                }
-                question.value = ""
-                console.log(dict)
-            }
 
             function send_poll() {
                 var arr = [];
@@ -108,10 +89,6 @@
             }
         </script>
         <br>
-        <input type="button" id="submit_poll" class="btn" value="Submit Poll" onclick="send_poll()">
-        <br>
-        <br>
-
         <script>
             $(document).ready(function () {
                 // clicking logo redirects to homepage
@@ -142,6 +119,3 @@
 </body>
 
 </html>
-
-
-
