@@ -16,6 +16,7 @@ import datetime
 import psycopg2
 import re
 import json
+import uuid 
 
 app = Flask(__name__)
 app.secret_key = "Pollaris"
@@ -31,7 +32,47 @@ def connect_to_database():
         'port': url.port
     }
     return psycopg2.connect(**db_params)
-    
+
+# Function to generate a unique poll_id (you can use a library like uuid)
+def generate_unique_poll_id(c):
+    poll_id = str(uuid.uuid4())
+
+    # Check if the generated poll_id already exists in the database
+    while True:
+        c.execute("SELECT * FROM Polls WHERE poll_id = %s;", (poll_id,))
+        existing_poll = c.fetchone()
+        if not existing_poll:
+            break
+        poll_id = str(uuid.uuid4())
+
+    return poll_id
+
+# Function to get the user_id of the current user by username
+def get_user_id_by_username(username, c):
+    c.execute("SELECT user_id FROM Users WHERE user_name = %s;", (username,))
+    user_id = c.fetchone()
+    if user_id:
+        return user_id[0]
+    else:
+        return None
+
+# Function to save the poll data to the database
+def save_poll_to_database(c, poll_id, user_id, question, options):
+    # Create a JSON object to store poll data (question and options)
+    poll_data = {
+        'question': question,
+        'options': options
+    }
+
+    # Get the current timestamp
+    poll_created = datetime.datetime.now()
+
+    # Insert the new poll into the database
+    c.execute(
+        'INSERT INTO Polls (poll_id, user_id, poll_data, poll_created) VALUES (%s, %s, %s, %s)',
+        (poll_id, user_id, json.dumps(poll_data), poll_created)
+    )
+
 @app.route('/routes')
 def hello_world():
     return '''Here is a list of all routes currently created in Pollaris: <br>
@@ -236,7 +277,7 @@ def create_poll_test(name=None):
         response = {'message': 'Data Sent Successfully!'}
         return jsonify(response)
     return render_template("create_poll.html", name=name)
-    
+
 # Existing route for rendering the create poll page with a GET request
 @app.route('/create', methods=["GET"])
 def render_create_poll():
@@ -256,29 +297,21 @@ def create_poll():
         # Generate a unique poll_id
         poll_id = generate_unique_poll_id(c)
 
-        # Data for the new poll (you should replace this with actual data from your JavaScript form)
-        poll_data = {"test": "testing"}
+        # Extract poll data from the form (you may need to modify this based on your form fields)
+        question = request.form.get('question')
+        options = request.form.getlist('option')
 
-        # Timestamp for when the poll is created
-        poll_created = datetime.datetime.now()
+        # Save the poll data to the database
+        save_poll_to_database(c, poll_id, user_id, question, options)
 
-        # Insert the new poll into the database
-        sql = "INSERT INTO Polls (poll_id, user_id, poll_data, poll_created) VALUES (%s, %s, %s, %s);"
-        new_poll = (poll_id, user_id, poll_data, poll_created)
-
-        # Execute SQL statement to insert the values into the database
-        c.execute(sql, new_poll)
-        conn.commit()
+        # Close the database connection
         conn.close()
 
         # Redirect to the voting page with the newly created poll_id
-        # Return the poll_id in the response
-        response = {'message': f'Poll created successfully with ID: {poll_id}'}
-        return render_template("create_poll_success.html", message=response['message'])
+        return render_template("create_poll_success.html", message=f'Poll created successfully with ID: {poll_id}')
 
     # Renders an HTML template that allows users to create a poll
     return render_template("create_poll.html")
-
 
 @app.route('/redirect_vote', methods=['GET'])
 def redirect_vote():
@@ -287,11 +320,11 @@ def redirect_vote():
 
 @app.route('/vote_test')
 def vote_test():
-        question = {"Presentation Poll":["option 1", "option 2", "option 3"]}
-        return render_template("vote.html", questions=question)
+    question = {"Presentation Poll": ["option 1", "option 2", "option 3"]}
+    return render_template("vote.html", questions=question)
 
 @app.route('/vote', methods=['GET', 'POST'])
-def take_a_poll(poll_id):
+def take_a_poll():
     if request.method == "POST":
         # Connect to the database
         conn = connect_to_database()
@@ -300,7 +333,7 @@ def take_a_poll(poll_id):
         # Get the user_id of the current user
         user_id = get_user_id_by_username(session['username'], c)
 
-        # Get the JSON data from the request
+        # Get the JSON data from the request (you may need to modify this based on your frontend)
         data = request.get_json()
 
         # Iterate over the received data and insert votes into the database
@@ -316,13 +349,11 @@ def take_a_poll(poll_id):
     # Render an HTML template that allows users to vote in an existing poll
     return render_template("voting_page.html", name=session['username'], questions=poll)
 
-
-
 @app.route('/popular')
 def popular_polls(name=None):
     '''Renders an HTML template that displays popular, already-existing polls for users to browse and take'''
-    return render_template("popular_polls.html", name=name)
+    return render_template("popular_polls.html")
 
-
-
+if __name__ == '__main__':
+    app.run(debug=True)
 
