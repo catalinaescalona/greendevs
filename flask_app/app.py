@@ -358,7 +358,7 @@ def redirect_vote():
     response = {'vote_url': url_for('take_a_poll')}
     return jsonify(response)
 
-@app.route('/vote_test/<poll_id>')
+@app.route('/vote_test/<poll_id>', methods=["GET", "POST"])
 def vote_test(poll_id):
 
     # Connect to the database
