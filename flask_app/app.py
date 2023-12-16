@@ -324,7 +324,7 @@ def redirect_create():
 # def render_create_poll():
 #     return render_template("create_poll.html")
 
-@app.route('/create', methods=["POST"])
+@app.route('/create', methods=["GET", "POST"])
 def create_poll():
     if request.method == "POST":
         dict = {}
@@ -394,6 +394,7 @@ def redirect_vote():
     response = {'vote_url': url_for('take_a_poll')}
     return jsonify(response)
 
+#THIS WORKS AND WE NEED TO IMPLEMENT WITHIN THE TAKE POLL ROUTE
 @app.route('/vote_test/<poll_id>', methods=["GET", "POST"])
 def vote_test(poll_id):
 
