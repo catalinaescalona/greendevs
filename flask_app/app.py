@@ -270,7 +270,7 @@ def redirect_create():
     return jsonify(response)
 
 #testing new dynamic form
-@app.route('/create_testing', methods=["GET", "POST"]
+@app.route('/create_testing', methods=["GET", "POST"])
 def create_testing():
     if request.method == "POST":
         dict = {}
