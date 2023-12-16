@@ -272,11 +272,12 @@ def create_poll():
         conn.close()
 
         # Redirect to the voting page with the newly created poll_id
-        return redirect(url_for("take_a_poll", poll_id=poll_id))  # Add this line to redirect
+        # Return the poll_id in the response
+        response = {'message': f'Poll created successfully with ID: {poll_id}'}
+        return render_template("create_poll_success.html", message=response['message'])
 
     # Renders an HTML template that allows users to create a poll
     return render_template("create_poll.html")
-
 
 
 @app.route('/redirect_vote', methods=['GET'])
