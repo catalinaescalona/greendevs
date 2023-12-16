@@ -21,20 +21,33 @@
         </form>
         <script>
             function addOption() {
-                var newq = document.createElement("input");
-                newq.type = "radio";
-                newq.name = 'bubble';
-                var newl = document.createElement("input");
-                newl.type = "text";
-                newl.name = "option";
-                newl.placeholder = "Option";
+                // ... (your existing code for adding options)
+            }
 
-                var linebreak = document.createElement("br");
+            var dict = {};
 
-                div = document.getElementById("questions");
-                div.appendChild(newq);
-                div.appendChild(newl);
-                div.appendChild(linebreak);
+            function send_poll() {
+                // ... (your existing code for sending poll data)
+
+                $.ajax({
+                    url: '/create_test',
+                    type: "POST",
+                    data: JSON.stringify(dict),
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    success: function (response) {
+                        // Display the success message returned from the server
+                        alert(response.message);
+                        // You can also update the message on the web page if needed
+                        $("#success-message").text(response.message);
+                    },
+                    error: function () {
+                        console.log("Error sending data.");
+                        // Add error handling logic here
+                    }
+                });
+
+                // ... (your existing code to clear the form and reset dict)
             }
         </script>
     </div>
@@ -44,76 +57,12 @@
         <br>
         <br>
 
-        <script>
-            var dict = {};
-
-            function send_poll() {
-                var arr = [];
-                let question = document.getElementById("question");
-                let opts = document.getElementsByName('option');
-                let bubs = document.getElementsByName('bubble');
-                let brks = document.getElementsByTagName('br');
-                console.log(question.value)
-                for (var i = 0; i < opts.length; i++) {
-                    console.log(opts[i].value);
-                    arr.push(opts[i].value);
-                }
-                dict[question.value] = arr
-                while (opts[0]) {
-                    opts[0].parentNode.removeChild(opts[0])
-                    bubs[0].parentNode.removeChild(bubs[0])
-                    brks[0].parentNode.removeChild(brks[0])
-                }
-                question.value = ""
-                submit = document.getElementById("submit_poll");
-                submit.name = JSON.stringify(dict);
-
-                $.ajax({
-                    url: '/create_test',
-                    type: "POST",
-                    data: JSON.stringify(dict),
-                    dataType: "json",
-                    contentType: "application/json;charset=utf-8",
-                    success: function () {
-                        alert("Success: data sent!");
-                        // Add any success handling logic here
-                    },
-                    error: function () {
-                        console.log("Error sending data.");
-                        // Add error handling logic here
-                    }
-                });
-
-                console.log(JSON.stringify(dict));
-                dict = {}
-            }
-        </script>
+        <!-- Add this div to display the success message -->
+        <div id="success-message"></div>
+        
         <br>
         <script>
-            $(document).ready(function () {
-                // clicking logo redirects to homepage
-                $("#logo").on("click", function () {
-                    $.ajax({
-                        type: 'GET',
-                        url: '/redirect_home',
-                        success: function (response) {
-                            // redirect to home URL
-                            window.location.href = response.home_url;
-                        }
-                    });
-                });
-                // clicking login button redirects to login page
-                $("#login-btn").on("click", function () {
-                    $.ajax({
-                        type: 'GET',
-                        url: '/redirect_login',
-                        success: function (response) {
-                            // redirect to login URL
-                            window.location.href = '/login';
-                        }
-                    });
-                });
-            });
+            // ... (your existing code for handling logo and login button clicks)
         </script>
     </div>
 </body>
