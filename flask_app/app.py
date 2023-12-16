@@ -414,36 +414,52 @@ def vote_test(poll_id):
     
 
 
-@app.route('/take_poll/<poll_id>', methods=['GET'])
+@app.route('/take_poll/<poll_id>', methods=['GET', 'POST'])
 def take_a_poll(poll_id):
-    if request.method == "POST":
-        # Connect to the database
-        conn = connect_to_database()
-        c = conn.cursor()
 
-        # Get the user_id of the current user
-        user_id = get_user_id_by_username(session['username'], c)
+    # Connect to the database
+    conn = connect_to_database()
+    c = conn.cursor()
 
-        # Get the JSON data from the request (you may need to modify this based on your frontend)
-        data = request.get_json()
-
-        # Iterate over the received data and insert votes into the database
-        for question_id, option_id in data.items():
-            vote_created = datetime.datetime.now()
-            c.execute('INSERT INTO Votes (user_id, poll_id, question_id, option_id, vote_created) VALUES (%s, %s, %s, %s, %s)',
-                      (user_id, poll_id, question_id, option_id, vote_created))
-            conn.commit()
-
-        # Close the database connection
+    try:
+        c.execute("SELECT poll_data FROM Polls WHERE poll_id=%s", (poll_id,))
+        poll = c.fetchone()[0]
         conn.close()
+        
+        return render_template("voting_page.html", questions=poll)
+    except:
+        conn.close()
+        return "<h1>Invalid Poll ID</h1>"
 
-    # Render an HTML template that allows users to vote in an existing poll
-    return render_template("voting_page.html", name=session['username'], questions=poll)
+    
+#     if request.method == "POST":
+#         # Connect to the database
+#         conn = connect_to_database()
+#         c = conn.cursor()
 
-@app.route('/popular')
-def popular_polls(name=None):
-    '''Renders an HTML template that displays popular, already-existing polls for users to browse and take'''
-    return render_template("popular_polls.html")
+#         # Get the user_id of the current user
+#         user_id = get_user_id_by_username(session['username'], c)
+
+#         # Get the JSON data from the request (you may need to modify this based on your frontend)
+#         data = request.get_json()
+
+#         # Iterate over the received data and insert votes into the database
+#         for question_id, option_id in data.items():
+#             vote_created = datetime.datetime.now()
+#             c.execute('INSERT INTO Votes (user_id, poll_id, question_id, option_id, vote_created) VALUES (%s, %s, %s, %s, %s)',
+#                       (user_id, poll_id, question_id, option_id, vote_created))
+#             conn.commit()
+
+#         # Close the database connection
+#         conn.close()
+
+#     # Render an HTML template that allows users to vote in an existing poll
+#     return render_template("voting_page.html", name=session['username'], questions=poll)
+
+# @app.route('/popular')
+# def popular_polls(name=None):
+#     '''Renders an HTML template that displays popular, already-existing polls for users to browse and take'''
+#     return render_template("popular_polls.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
