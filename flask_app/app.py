@@ -283,7 +283,6 @@ def create_poll_test(name=None):
 def render_create_poll():
     return render_template("create_poll.html")
 
-# Route for creating a poll with a POST request
 @app.route('/create', methods=["POST"])
 def create_poll():
     if request.method == "POST":
@@ -308,7 +307,7 @@ def create_poll():
         conn.close()
 
         # Redirect to the voting page with the newly created poll_id
-        return redirect(url_for('take_a_poll', poll_id=poll_id))  # Redirect to the voting page
+        return redirect(url_for("take_a_poll", poll_id=poll_id))  # Updated redirection
 
     # Renders an HTML template that allows users to create a poll
     return render_template("create_poll.html")
