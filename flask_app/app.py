@@ -237,8 +237,7 @@ def create_poll_test(name=None):
         return jsonify(response)
     return render_template("create_poll.html", name=name)
     
-@app.route('/create', methods=["GET", "POST"])
-@app.route('/create', methods=["GET", "POST"])
+@app.route('/create', methods=["POST"])
 def create_poll():
     if request.method == "POST":
         # Connect to the database
@@ -266,8 +265,8 @@ def create_poll():
         conn.commit()
         conn.close()
 
-        # Redirect to the take a poll page with the newly created poll_id
-        return redirect(url_for("take_a_poll", poll_id=poll_id))
+        # Render the "Take a Poll" page with the new poll data
+        return render_template("take_poll.html", poll_data=poll_data)
 
     # Renders an HTML template that allows users to create a poll
     return render_template("create_poll.html")
