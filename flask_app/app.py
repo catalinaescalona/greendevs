@@ -36,7 +36,7 @@ def connect_to_database():
 # Function to generate a unique poll_id (you can use a library like uuid)
 def generate_unique_poll_id(c):
     #poll_id = str(uuid.uuid4())
-    poll_id = random.randint(100000000, 999999999)
+    poll_id = randint(100000000, 999999999)
 
     # Check if the generated poll_id already exists in the database
     while True:
@@ -45,7 +45,7 @@ def generate_unique_poll_id(c):
         if not existing_poll:
             break
         #poll_id = str(uuid.uuid4())
-        poll_id = random.randint(100000000, 999999999)
+        poll_id = randint(100000000, 999999999)
 
     return poll_id
 
