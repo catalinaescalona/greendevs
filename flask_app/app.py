@@ -262,18 +262,13 @@ def sign_up():
     else:
         return render_template('sign_up.html')
 
-@app.route('/user/<user_name>')
-def user_page(user_name):
-    '''Temporary function that will eventually render an HTML template that displays user's profile page'''
-    message = "<h1>"
-    message += str(user_name)
-    message += "</h1>"
-    return message
-
-@app.route('/redirect_create', methods=['GET'])
-def redirect_create():
-    response = {'create_url': url_for('create_poll')}
-    return jsonify(response)
+# @app.route('/user/<user_name>')
+# def user_page(user_name):
+#     '''Temporary function that will eventually render an HTML template that displays user's profile page'''
+#     message = "<h1>"
+#     message += str(user_name)
+#     message += "</h1>"
+#     return message
 
 #testing new dynamic form
 # @app.route('/create_testing', methods=["GET", "POST"])
@@ -323,6 +318,11 @@ def redirect_create():
 # @app.route('/create', methods=["GET"])
 # def render_create_poll():
 #     return render_template("create_poll.html")
+
+@app.route('/redirect_create', methods=['GET'])
+def redirect_create():
+    response = {'create_url': url_for('create_poll')}
+    return jsonify(response)
 
 @app.route('/create', methods=["GET", "POST"])
 def create_poll():
@@ -389,31 +389,32 @@ def create_poll():
     # # Renders an HTML template that allows users to create a poll
     # return render_template("create_poll.html")
 
+
+
+#THIS WORKS AND WE NEED TO IMPLEMENT WITHIN THE TAKE POLL ROUTE
+# @app.route('/vote_test/<poll_id>', methods=["GET", "POST"])
+# def vote_test(poll_id):
+
+#     # Connect to the database
+#     conn = connect_to_database()
+#     c = conn.cursor()
+
+#     try:
+#         c.execute("SELECT poll_data FROM Polls WHERE poll_id=%s", (poll_id,))
+#         poll = c.fetchone()[0]
+#         conn.close()
+        
+#         return render_template("voting_page.html", questions=poll)
+#     except:
+#         conn.close()
+#         return "<h1>Invalid Poll ID</h1>"
+    
+
 @app.route('/redirect_vote', methods=['GET'])
 def redirect_vote():
     response = {'vote_url': url_for('take_a_poll')}
     return jsonify(response)
-
-#THIS WORKS AND WE NEED TO IMPLEMENT WITHIN THE TAKE POLL ROUTE
-@app.route('/vote_test/<poll_id>', methods=["GET", "POST"])
-def vote_test(poll_id):
-
-    # Connect to the database
-    conn = connect_to_database()
-    c = conn.cursor()
-
-    try:
-        c.execute("SELECT poll_data FROM Polls WHERE poll_id=%s", (poll_id,))
-        poll = c.fetchone()[0]
-        conn.close()
-        
-        return render_template("voting_page.html", questions=poll)
-    except:
-        conn.close()
-        return "<h1>Invalid Poll ID</h1>"
     
-
-
 @app.route('/take_poll/<poll_id>', methods=['GET', 'POST'])
 def take_a_poll(poll_id):
 
