@@ -96,7 +96,7 @@ def testing():
     conn.close()
     return 'Database Connection Successful'
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def index(name=None):
     conn = psycopg2.connect("postgres://pollaris_db_user:wzlXGhePudWAa8KTs0DKAzIRnoNVrEOp@dpg-clrjq9pjvg7s73ei8g0g-a/pollaris_db")
     c = conn.cursor()
@@ -128,6 +128,10 @@ def index(name=None):
     except:
         pass
     conn.close()
+    
+    if request.method == "POST":
+        poll = request.form['pollid']
+        return render_template("vote_test.html", poll_id=poll)
     
     '''Renders an HTML template with the Pollaris Homepage'''
     return render_template("homepage.html", name=name)
@@ -355,17 +359,17 @@ def redirect_vote():
     return jsonify(response)
 
 @app.route('/vote_test')
-def vote_test():
+def vote_test(poll_id):
 
     # Connect to the database
     conn = connect_to_database()
     c = conn.cursor()
 
     try:
-        c.execute("SELECT poll_data FROM Polls WHERE poll_id=%s", (417758659,))
+        c.execute("SELECT poll_data FROM Polls WHERE poll_id=%s", (poll_id,))
         poll = c.fetchone()[0]
         conn.close()
-        question = {"Presentation Poll": ["option 1", "option 2", "option 3"]}
+        
         return render_template("voting_page.html", questions=poll)
     except:
         conn.close()
