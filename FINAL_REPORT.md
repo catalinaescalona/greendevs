@@ -2,9 +2,23 @@ Make sure that everyone on the team has all code and other materials pushed to t
 
 Create a final report markdown file FINAL_REPORT.md with the following information:
 
-Project Title
-Team members' names
-Project tracker link (Instructor can access)
+# Project Title
+Pollaris: Crafting Polls and Charting Trends  
+A web app where users can create and vote on their own polls.
+
+# Team 
+Team 4  
+Greendevs
+
+Team Member Info (Name, Email, Git Username)
+* Gregory Webster, Gregory.Webster-1@colorado.edu, gregweb4039
+* Ryan Sansbury, Ryan.Sansbury@colorado.edu, ryansansbury
+* Catalina Escalona, Catalina.Escalona@colorado.edu, catalinaescalona
+
+
+Project tracker link  
+enter github link  
+
 Link to 5 minute video: a demo for a potential customer (could be same one you used in the presentation)
 Version control repository link (make sure the instructor(s) have access)
 Include a Final Status Report
