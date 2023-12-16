@@ -15,6 +15,7 @@ from urllib.parse import urlparse
 import datetime
 import psycopg2
 import re
+import json
 
 app = Flask(__name__)
 app.secret_key = "Pollaris"
