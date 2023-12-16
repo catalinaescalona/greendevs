@@ -238,6 +238,7 @@ def create_poll_test(name=None):
     return render_template("create_poll.html", name=name)
     
 @app.route('/create', methods=["GET", "POST"])
+@app.route('/create', methods=["GET", "POST"])
 def create_poll():
     if request.method == "POST":
         # Connect to the database
