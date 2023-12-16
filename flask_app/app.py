@@ -293,7 +293,7 @@ def create_testing():
 
         poll_created = datetime.datetime.now()
 
-        json = str(dict)
+        json = str(dict).replace("'", '"')
 
         c.execute('INSERT INTO Polls (poll_id, user_id, poll_data, poll_created) VALUES (%s, %s, %s, %s)',
          (poll_id, user_id, json, poll_created))
