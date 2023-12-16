@@ -297,7 +297,7 @@ def create_testing():
         conn.commit()
         conn.close()
 
-        return "<p>"str(poll_id)+"</p>+<br>"+"<p>"str(user_id)+"</p>+<br>"+"<p>"+str(dict)+"</p><br>"+"<p>"+str(poll_created)+"</p>"
+        return "<p>"+str(poll_id)+"</p><br>"+"<p>"+str(user_id)+"</p><br>"+"<p>"+str(dict)+"</p><br>"+"<p>"+str(poll_created)+"</p>"
     else:
         return render_template("create_test.html")
 
