@@ -271,11 +271,12 @@ def create_poll():
         conn.commit()
         conn.close()
 
-        # Redirect to the take_a_poll page with the newly created poll_id
-        return redirect(url_for("take_a_poll", poll_id=poll_id))
+        # Redirect to the voting page with the newly created poll_id
+        return redirect(url_for("take_a_poll", poll_id=poll_id))  # Add this line to redirect
 
     # Renders an HTML template that allows users to create a poll
     return render_template("create_poll.html")
+
 
 
 @app.route('/redirect_vote', methods=['GET'])
