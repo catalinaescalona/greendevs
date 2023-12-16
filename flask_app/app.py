@@ -131,7 +131,7 @@ def index(name=None):
     
     if request.method == "POST":
         poll = request.form['pollid']
-        return render_template("vote_test.html", poll_id=poll)
+        return redirect(url_for("vote_test.html", poll_id=poll))
     
     '''Renders an HTML template with the Pollaris Homepage'''
     return render_template("homepage.html", name=name)
