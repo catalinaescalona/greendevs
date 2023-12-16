@@ -6,7 +6,7 @@ Create a final report markdown file FINAL_REPORT.md with the following informati
 Pollaris: Crafting Polls and Charting Trends  
 A web app where users can create and vote on their own polls.
 
-# Team 
+## Team 
 Team 4  
 Greendevs
 
@@ -16,27 +16,40 @@ Team Member Info (Name, Email, Git Username)
 * Catalina Escalona, Catalina.Escalona@colorado.edu, catalinaescalona
 
 
-Project tracker link  
-enter github link  
+## Project Tracker Link  
+paste trello link here  
+(make sure intructor has access)  
 
-Link to 5 minute video: a demo for a potential customer (could be same one you used in the presentation)
-Version control repository link (make sure the instructor(s) have access)
-Include a Final Status Report
+## Demo Video
+paste demo video link here
+
+## Version Control Repository
+paste github repo link here  
+(make sure intructor has access)  
+
+## Final Status Report
 What you completed
 What you were in the middle of implementing
 What you had planned for the future
 Any known problems (bugs, issues)
-List your public hosting site and make sure that it is available
-Make sure that your repository has the following files committed to remote repository:
 
-REAMDE.md
-WEEKLY_STATUS.md
-PAGE_TESTING.md
-SQL_TESTING.md
-FINAL_REPORT.md
-Project presentation files from Presentation Milestone
-Video of demo
-Source code
-Test cases
-Source documentation, and auto-doc files
-Link to Public Deployment Site (Heroku or similar)
+## Public Site Link
+paste render site link here
+(make sure it is live and working)
+
+
+## Project Files
+
+REAMDE.md  
+WEEKLY_STATUS.md  
+PAGE_TESTING.md  
+SQL_TESTING.md  
+FINAL_REPORT.md  
+Project presentation files from Presentation Milestone  
+Video of demo  
+Source code  
+Test cases  
+Source documentation, and auto-doc files  
+Link to Public Deployment Site  
+
+(make sure these files are committed and available in github)
