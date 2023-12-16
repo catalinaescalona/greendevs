@@ -1,8 +1,8 @@
-<!--HTML page for Pollaris Voting Page-->
-<!--Authors: Escalona, Sansbury, Webster-->
-<!--Written December 2023-->
-<!--CSPB 3308 - Fall 2023 - Knox - Software Development Tools and Methods-->
-<!--University of Colorado Boulder-->
+<!-- HTML page for Pollaris Voting Page -->
+<!-- Authors: Escalona, Sansbury, Webster -->
+<!-- Written December 2023 -->
+<!-- CSPB 3308 - Fall 2023 - Knox - Software Development Tools and Methods -->
+<!-- University of Colorado Boulder -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,44 +13,45 @@
     <title>Pollaris Voting</title>
     <link rel="stylesheet" href="static/css/voting_page.css" />
 </head>
+
 <body>
-    	<header>
-        	<img id="logo" src="static/images/pollaris-logo.png" alt="Pollaris Logo">
-        	<button id="login-btn" class="btn">Account</button>
-	</header>
-	<!--<div class="section"><h1>Poll Title</h1></div>-->
-	
-	<div class="section">
-	<form method=“POST”>
-		{% for question, answers in questions.items() %}
-			{% set q_no="q"+loop.index|string %}
-			<div class="question" value={{ q_no }}>
-			<h3>{{loop.index}}. {{question}}</h3>
-			</div>
-	
-			{% for answer in answers  %}
-				{% set a_no=loop.index0|string %}
-				<div class="voting-option">
-				<input type="radio" class="option" name={{q_no}} value={{a_no}}>
-				<label for={{a_no}}>{{answer}}</label>
-				</div>
-			{%endfor%}
-			<hr>
-		{%endfor%}
-		<br>
-		<br>
-		<input type="button" id="submit-btn" class="btn" name="submit" value="Submit" onclick="submitData()"></button>
-		<br>
-		<br>
-		<div id="thanks-message"></div>
-		<br>
-		<br>
-	</form>
-	</div>
-	
-    <!--link to jquery library-->
+    <header>
+        <img id="logo" src="static/images/pollaris-logo.png" alt="Pollaris Logo">
+        <button id="login-btn" class="btn">Account</button>
+    </header>
+    
+    <div class="section">
+        <form method="POST" action="/take_a_poll"> <!-- Modify the form action -->
+            {% for question, answers in questions.items() %}
+                {% set q_no = "q" + loop.index|string %}
+                <div class="question" value="{{ q_no }}"> <!-- Fix double curly braces -->
+                    <h3>{{ loop.index }}. {{ question }}</h3>
+                </div>
+    
+                {% for answer in answers %}
+                    {% set a_no = loop.index0|string %}
+                    <div class="voting-option">
+                        <input type="radio" class="option" name="{{ q_no }}" value="{{ a_no }}">
+                        <label for="{{ a_no }}">{{ answer }}</label>
+                    </div>
+                {% endfor %}
+                <hr>
+            {% endfor %}
+            <br>
+            <br>
+            <input type="hidden" name="poll_data" value="{{ questions|tojson }}"> <!-- Include a hidden input field -->
+            <input type="submit" id="submit-btn" class="btn" name="submit" value="Submit">
+            <br>
+            <br>
+            <div id="thanks-message"></div>
+            <br>
+            <br>
+        </form>
+    </div>
+    
+    <!-- Link to jquery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!--link to javascript file-->
+    <!-- Link to javascript file -->
     <script src="static/javascript/voting_page.js"></script>
 </body>
 </html>
