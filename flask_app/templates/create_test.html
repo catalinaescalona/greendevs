@@ -27,46 +27,47 @@
   </body>
 
 </html>
-
-var poll_data = document.getElementById('poll_data');
-question_no=0
-
-function add_q(){
-	poll_data.appendChild(document.createElement('br'))
-  var newQuestion = document.createElement('input');
-  newQuestion.setAttribute('type','text');
-  newQuestion.setAttribute('name','question');
-  newQuestion.setAttribute('class','question');
-  newQuestion.setAttribute('size',40);
-  newQuestion.setAttribute('placeholder','Type Question Here');
-  poll_data.appendChild(newQuestion);
-  poll_data.appendChild(document.createElement('br'))
-  question_no+=1
-}
-
-function add_o(){
-  var newOptionRadio = document.createElement('input');
-  newOptionRadio.setAttribute('type','radio');
-  newOptionRadio.setAttribute('name','bubble');
-  newOptionRadio.setAttribute('class','bubble');
-  poll_data.appendChild(newOptionRadio);
-  
-  var newOptionText = document.createElement('input');
-  newOptionText.setAttribute('type','text');
-  newOptionText.setAttribute('name','option'+question_no.toString());
-  newOptionText.setAttribute('class','option');
-  newOptionText.setAttribute('siz',50);
-  newOptionText.setAttribute('placeholder','Type Option Here');
-  poll_data.appendChild(newOptionText);
-  poll_data.appendChild(document.createElement('br'))
-}
-
-function test_log(){
-	event.preventDefault();
-  var data = document.getElementById("poll_form");
-  console.log(data.value)
-	for (let i = 0; i < data.length; i++) {
-  	console.log(data[i].value);
-}
-  
-}
+<script>
+	var poll_data = document.getElementById('poll_data');
+	question_no=0
+	
+	function add_q(){
+		poll_data.appendChild(document.createElement('br'))
+	  var newQuestion = document.createElement('input');
+	  newQuestion.setAttribute('type','text');
+	  newQuestion.setAttribute('name','question');
+	  newQuestion.setAttribute('class','question');
+	  newQuestion.setAttribute('size',40);
+	  newQuestion.setAttribute('placeholder','Type Question Here');
+	  poll_data.appendChild(newQuestion);
+	  poll_data.appendChild(document.createElement('br'))
+	  question_no+=1
+	}
+	
+	function add_o(){
+	  var newOptionRadio = document.createElement('input');
+	  newOptionRadio.setAttribute('type','radio');
+	  newOptionRadio.setAttribute('name','bubble');
+	  newOptionRadio.setAttribute('class','bubble');
+	  poll_data.appendChild(newOptionRadio);
+	  
+	  var newOptionText = document.createElement('input');
+	  newOptionText.setAttribute('type','text');
+	  newOptionText.setAttribute('name','option'+question_no.toString());
+	  newOptionText.setAttribute('class','option');
+	  newOptionText.setAttribute('siz',50);
+	  newOptionText.setAttribute('placeholder','Type Option Here');
+	  poll_data.appendChild(newOptionText);
+	  poll_data.appendChild(document.createElement('br'))
+	}
+	
+	function test_log(){
+		event.preventDefault();
+	  var data = document.getElementById("poll_form");
+	  console.log(data.value)
+		for (let i = 0; i < data.length; i++) {
+	  	console.log(data[i].value);
+	}
+	  
+	}
+</script>
