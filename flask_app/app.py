@@ -265,9 +265,8 @@ def create_poll():
         conn.commit()
         conn.close()
 
-        # Display the success message along with the unique poll ID
-        success_message = f'Data Sent Successfully! Unique Poll ID: {poll_id}'
-        return render_template("success.html", message=success_message)
+        # Redirect to the take a poll page with the newly created poll_id
+        return redirect(url_for("take_a_poll", poll_id=poll_id))
 
     # Renders an HTML template that allows users to create a poll
     return render_template("create_poll.html")
