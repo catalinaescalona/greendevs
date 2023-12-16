@@ -274,10 +274,10 @@ def redirect_create():
 def create_testing():
     if request.method == "POST":
         dict = {}
-        questions = request.form.getlist(‘question’)
+        questions = request.form.getlist('question')
         for i in range(len(questions)):
             q = str(questions[i])
-            os = request.form.getlist(‘option’+str(i)) 
+            os = request.form.getlist('option'+str(i)) 
             dict[q] = os
         return "<p>"+str(dict)+"</p>"
     else:
