@@ -27,11 +27,28 @@ paste demo video link here
 paste github repo link here  
 (make sure intructor has access)  
 
-## Final Status Report
-What you completed
-What you were in the middle of implementing
-What you had planned for the future
-Any known problems (bugs, issues)
+## Final Status Report  
+
+What you completed  
+* Built a web application using the following tools:
+    * Python, Flask, Jinja, SQL, Render
+    * Canva, HTML, CSS, JavaScript
+    * Trello, Zoom, iMessage
+    * GitHub, Markdown, Terminal, VS Code  
+* Deployed site and database to the web using Render  
+* (input remaining completed items here)
+
+What you were in the middle of implementing  
+* (input remaining implementations here)
+
+What you had planned for the future  
+* The ability for users to share polls online with a link
+* User account pages that show poll creating and voting history
+* Additional types of polls with different answer types
+* User analytics dashboard showing detailed poll data
+
+Any known problems (bugs, issues)  
+* (input remaining bugs and issues here)
 
 ## Public Site Link
 paste render site link here
