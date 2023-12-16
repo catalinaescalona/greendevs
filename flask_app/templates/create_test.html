@@ -1,16 +1,28 @@
+<!-- HTML page for Pollaris Create Poll Page -->
+<!-- Authors: Escalona, Sansbury, Webster -->
+<!-- Written December 2023 -->
+<!-- CSPB 3308 - Fall 2023 - Knox - Software Development Tools and Methods -->
+<!-- University of Colorado Boulder -->
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
   <head>
-    <title>Dynamic Form</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollaris Create Poll</title>
+    <link rel="stylesheet" href="../static/css/create_test.css" />
   </head>
-
   <body>
-    <h1>Pollaris</h1>
-    <div class="container">
+	<header>
+        <img id="logo" src="../static/images/pollaris-logo.png" alt="Pollaris Logo">
+        <button id="login-btn" class="btn">Account</button>
+    </header>
+		
+    <div class="section">
+		<h1>Pollaris</h1>
       <div class="controls">
-        <button class="add" onclick="add_q()">Add Question</button>
-        <button class="add" onclick="add_o()">Add Option</button>
+        <button class="btn" onclick="add_q()">Add Question</button>
+        <button class="btn" onclick="add_o()">Add Option</button>
       </div>
       <br>
       <form action="" id="poll_form" method="POST">
@@ -20,54 +32,55 @@
         </div>
         <br>
 <!--         <button class="add" onclick="test_log()">Submit</button> -->
-        <input name="submit" type="Submit" value="Submit">
+        <input name="submit" type="Submit" value="Submit" class="btn">
       </form>
 
     </div>
-  </body>
 
+	<script>
+		var poll_data = document.getElementById('poll_data');
+		question_no=0
+		
+		function add_q(){
+			poll_data.appendChild(document.createElement('br'))
+		  var newQuestion = document.createElement('input');
+		  newQuestion.setAttribute('type','text');
+		  newQuestion.setAttribute('name','question');
+		  newQuestion.setAttribute('class','question');
+		  newQuestion.setAttribute('size',40);
+		  newQuestion.setAttribute('placeholder','Type Question Here');
+		  poll_data.appendChild(newQuestion);
+		  poll_data.appendChild(document.createElement('br'))
+		  question_no+=1
+		}
+		
+		function add_o(){
+		  var newOptionRadio = document.createElement('input');
+		  newOptionRadio.setAttribute('type','radio');
+		  newOptionRadio.setAttribute('name','bubble');
+		  newOptionRadio.setAttribute('class','bubble');
+		  poll_data.appendChild(newOptionRadio);
+		  
+		  var newOptionText = document.createElement('input');
+		  newOptionText.setAttribute('type','text');
+		  newOptionText.setAttribute('name','option'+question_no.toString());
+		  newOptionText.setAttribute('class','option');
+		  newOptionText.setAttribute('siz',50);
+		  newOptionText.setAttribute('placeholder','Type Option Here');
+		  poll_data.appendChild(newOptionText);
+		  poll_data.appendChild(document.createElement('br'))
+		}
+		
+		function test_log(){
+			event.preventDefault();
+		  var data = document.getElementById("poll_form");
+		  console.log(data.value)
+			for (let i = 0; i < data.length; i++) {
+			  console.log(data[i].value);
+		}
+		  
+		}
+	</script>
+
+  </body>
 </html>
-<script>
-	var poll_data = document.getElementById('poll_data');
-	question_no=0
-	
-	function add_q(){
-		poll_data.appendChild(document.createElement('br'))
-	  var newQuestion = document.createElement('input');
-	  newQuestion.setAttribute('type','text');
-	  newQuestion.setAttribute('name','question');
-	  newQuestion.setAttribute('class','question');
-	  newQuestion.setAttribute('size',40);
-	  newQuestion.setAttribute('placeholder','Type Question Here');
-	  poll_data.appendChild(newQuestion);
-	  poll_data.appendChild(document.createElement('br'))
-	  question_no+=1
-	}
-	
-	function add_o(){
-	  var newOptionRadio = document.createElement('input');
-	  newOptionRadio.setAttribute('type','radio');
-	  newOptionRadio.setAttribute('name','bubble');
-	  newOptionRadio.setAttribute('class','bubble');
-	  poll_data.appendChild(newOptionRadio);
-	  
-	  var newOptionText = document.createElement('input');
-	  newOptionText.setAttribute('type','text');
-	  newOptionText.setAttribute('name','option'+question_no.toString());
-	  newOptionText.setAttribute('class','option');
-	  newOptionText.setAttribute('siz',50);
-	  newOptionText.setAttribute('placeholder','Type Option Here');
-	  poll_data.appendChild(newOptionText);
-	  poll_data.appendChild(document.createElement('br'))
-	}
-	
-	function test_log(){
-		event.preventDefault();
-	  var data = document.getElementById("poll_form");
-	  console.log(data.value)
-		for (let i = 0; i < data.length; i++) {
-	  	console.log(data[i].value);
-	}
-	  
-	}
-</script>
