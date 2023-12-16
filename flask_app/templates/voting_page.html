@@ -21,7 +21,7 @@
     </header>
     
     <div class="section">
-        <form method="POST" action="/vote_test/{{ poll_id }}">
+        <form method="POST" action="/vote/{{ poll_id }}">
             {% for question, answers in questions.items() %}
                 {% set q_no = "q" + loop.index|string %}
                 <div class="question" value="{{ q_no }}"> 
