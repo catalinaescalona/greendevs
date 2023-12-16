@@ -369,7 +369,7 @@ def vote_test():
         return render_template("voting_page.html", questions=poll)
     except:
         conn.close()
-        return "<h1>Invalid Poll ID</h1>
+        return "<h1>Invalid Poll ID</h1>"
     
 
 
