@@ -269,6 +269,21 @@ def redirect_create():
     response = {'create_url': url_for('create_poll')}
     return jsonify(response)
 
+#testing new dynamic form
+@app.route('/create_testing', methods=["GET", "POST"]
+def create_testing():
+    if request.method == “POST”:
+        dict = {}
+        questions = request.form.getlist(‘question’)
+        for i in range(len(questions)):
+            q = str(questions[i])
+            os = request.form.getlist(‘option’+str(i)) 
+            dict[q] = os
+        return "<p>"+str(dict)+"<p>"
+    else:
+        return render_template("create_test.html")
+
+
 # GET AJAX METHOD TO WORK HERE
 @app.route('/create_test', methods=["GET", "POST"])
 def create_poll_test(name=None):
