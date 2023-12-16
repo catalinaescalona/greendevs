@@ -323,8 +323,8 @@ def vote_test():
     question = {"Presentation Poll": ["option 1", "option 2", "option 3"]}
     return render_template("vote.html", questions=question)
 
-@app.route('/vote', methods=['GET', 'POST'])
-def take_a_poll():
+@app.route('/take_poll/<poll_id>', methods=['GET'])
+def take_a_poll(poll_id):
     if request.method == "POST":
         # Connect to the database
         conn = connect_to_database()
