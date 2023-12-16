@@ -356,8 +356,22 @@ def redirect_vote():
 
 @app.route('/vote_test')
 def vote_test():
-    question = {"Presentation Poll": ["option 1", "option 2", "option 3"]}
-    return render_template("vote.html", questions=question)
+
+    # Connect to the database
+    conn = connect_to_database()
+    c = conn.cursor()
+
+    try:
+        c.execute("SELECT poll_data FROM Polls WHERE poll_id=%s", (417758659,))
+        poll = c.fetchone()[0]
+        conn.close()
+        question = {"Presentation Poll": ["option 1", "option 2", "option 3"]}
+        return render_template("voting_page.html", questions=poll)
+    except:
+        conn.close()
+        return "<h1>Invalid Poll ID</h1>
+    
+
 
 @app.route('/take_poll/<poll_id>', methods=['GET'])
 def take_a_poll(poll_id):
