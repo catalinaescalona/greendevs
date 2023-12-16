@@ -237,6 +237,12 @@ def create_poll_test(name=None):
         return jsonify(response)
     return render_template("create_poll.html", name=name)
     
+# Existing route for rendering the create poll page with a GET request
+@app.route('/create', methods=["GET"])
+def render_create_poll():
+    return render_template("create_poll.html")
+
+# Route for creating a poll with a POST request
 @app.route('/create', methods=["POST"])
 def create_poll():
     if request.method == "POST":
@@ -270,7 +276,6 @@ def create_poll():
 
     # Renders an HTML template that allows users to create a poll
     return render_template("create_poll.html")
-
 
 
 @app.route('/redirect_vote', methods=['GET'])
