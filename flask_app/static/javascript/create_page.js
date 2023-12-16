@@ -10,26 +10,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const createPollButton = document.getElementById("create-poll-button");
     createPollButton.addEventListener("click", createPoll);
 
-    // Function to create a new poll and send data to the Flask backend
     function createPoll() {
-        // Get the question and options from the form
-        const question = document.getElementById("question").value;
-        const options = Array.from(document.querySelectorAll(".option-input")).map((input) => input.value);
+    // Get the question and options from the form
+    const question = document.getElementById("question").value;
+    const options = Array.from(document.querySelectorAll(".option-input")).map((input) => input.value);
 
-        // Create an object to hold the poll data
-        const pollData = {
-            question: question,
-            options: options,
-        };
+    // Create an object to hold the poll data, including poll_id
+    const pollData = {
+        question: question,
+        options: options,
+        poll_id: poll_id // Include the poll_id here
+    };
 
-        // Send the pollData object as JSON to the Flask backend
-        fetch("/create", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(pollData),
-        })
+    // Send the pollData object as JSON to the Flask backend
+    fetch("/create", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pollData),
+    })
             .then((response) => response.json())
             .then((data) => {
                 // Handle the response from the server
