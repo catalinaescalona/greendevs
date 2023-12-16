@@ -292,7 +292,7 @@ def create_testing():
         poll_created = datetime.datetime.now()
 
         c.execute('INSERT INTO Polls (poll_id, user_id, dict, poll_created) VALUES (%s, %s, %s, %s)',
-         (poll_id, user_id, dict, poll_created)
+         (poll_id, user_id, dict, poll_created))
 
         conn.commit()
         conn.close()
