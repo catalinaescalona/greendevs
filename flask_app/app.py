@@ -445,17 +445,18 @@ def take_a_poll(poll_id):
                 ans = request.form.getlist(opt_name)
                 options.append(ans[0])
 
-            # html_txt = "<h1>Thank you for voting! The following options were recorded:</h1><br>"
-            # for i in range(len(questions)):
-            #     o_no = int(options[i])
-            #     html_txt += "<h3>"+str(i+1)+". "+str(questions[i])+"</h3><br>"
-            #     for j in answers[i]:
-            #         if j == o_no:
-            #             html_txt += "<b>"+str(j+1)+". "+str(answers[i][o_no])+"</b><br>"
-            #         else:
-            #             html_txt += "<p>"+str(j+1)+". "+str(answers[i][j])+"</p>"
-                
-            return "<p>"+str(questions)+"</p>"+"<p>"+str(answers)+"</p>"+"<p>"+str(options)+"</p>"
+            html_txt = "<h1>Thank you for voting! The following options were recorded:</h1><br>"
+            for i in range(len(questions)):
+                o_no = int(options[i])
+                html_txt += "<h3>"+str(i+1)+". "+str(questions[i])+"</h3><br>"
+                for j in range(len(answers[i])):
+                    if j == o_no:
+                        html_txt += "<b>"+str(j+1)+". "+str(answers[i][o_no])+"</b><br>"
+                    else:
+                        html_txt += "<p>"+str(j+1)+". "+str(answers[i][j])+"</p>"
+
+            return html_txt
+            #return "<p>"+str(questions)+"</p>"+"<p>"+str(answers)+"</p>"+"<p>"+str(options)+"</p>"
             
 
         # # Iterate over the received data and insert votes into the database
