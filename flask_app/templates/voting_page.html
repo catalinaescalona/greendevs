@@ -23,7 +23,8 @@
     <div class="section">
         <form method="POST">
             {% for question, answers in questions.items() %}
-                {% set q_no = "q" + loop.index|string %}
+                {% set num = loop.index|string %}
+                {% set q_no = "q" + num %}
                 <div class="question" value="{{ q_no }}"> 
                     <h3>{{ loop.index }}. {{ question }}</h3>
                 </div>
@@ -32,7 +33,7 @@
                     {% set a_no = loop.index0|string %}
                     
                     <div class="voting-option">
-                        <input type="radio" class="option" name="option"+"{{q_no}}" value="{{ a_no }}">
+                        <input type="radio" class="option" name="option"+"num" value="{{ a_no }}" required>
                         <label for="{{ a_no }}">{{ answer }}</label>
                     </div>
                 {% endfor %}
