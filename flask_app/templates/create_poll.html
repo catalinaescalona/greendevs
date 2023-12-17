@@ -9,7 +9,9 @@
 
 <body>
     <header>
-        <img id="logo" src="static/images/pollaris-logo.png" alt="Pollaris Logo" />
+        <a id="logo-link" href="/"> <!-- Add the href attribute to the logo link -->
+            <img id="logo" src="static/images/pollaris-logo.png" alt="Pollaris Logo" />
+        </a>
         <button id="login-btn" class="btn">Account</button>
     </header>
     <div id='questions' class="section">
@@ -105,7 +107,7 @@
     <script>
         $(document).ready(function () {
             // clicking logo redirects to homepage
-            $("#logo").on("click", function () {
+            $("#logo-link").on("click", function () {
                 $.ajax({
                     type: 'GET',
                     url: '/redirect_home',
