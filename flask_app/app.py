@@ -469,6 +469,7 @@ def take_a_poll(poll_id):
                         html_txt += "<h2>"+str(j+1)+". "+str(answers[i][o_no])+"</h2>"
                     else:
                         html_txt += "<p>"+str(j+1)+". "+str(answers[i][j])+"</p>"
+                html_txt += "<hr>"
 
             poll_id=int(poll_id)
             vote_created = datetime.datetime.now()
