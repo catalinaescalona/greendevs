@@ -438,8 +438,8 @@ def take_a_poll(poll_id):
             # Get poll option data
             options = request.form.getlist('option')
 
-            questions = poll
-            return "<p>"+str(options)+"</p><br><p>"+str(options)+"</p>"
+            questions = poll.values()
+            return "<p>"+str(options)+"</p><br><p>"+str(questions)+"</p>"
             
 
         # # Iterate over the received data and insert votes into the database
