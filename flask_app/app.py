@@ -458,8 +458,8 @@ def take_a_poll(poll_id):
             # Iterate over the received data and insert votes into the database
             for i in range(len(question)):
                 vote_created = datetime.datetime.now()
-                question_id = str(i)
-                option_id = options[i]
+                question_id = i
+                option_id = int(options[i])
                 c.execute('INSERT INTO Votes (user_id, poll_id, question_id, option_id, vote_created) VALUES (%s, %s, %s, %s, %s)',
                           (user_id, poll_id, question_id, option_id, vote_created))
                 conn.commit()
