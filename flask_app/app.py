@@ -436,9 +436,15 @@ def take_a_poll(poll_id):
             user_id = get_user_id_by_username(session['username'], c)
     
             # Get poll option data
-            options = request.form.getlist('option')
+            options = []
 
-            questions = poll.values()
+            questions = poll.keys()
+            for i in range(len(questions)):
+                opt_name = "option"+str(i)
+                ans = request.form[opt_name]
+                options.append(ans)
+                
+                
             return "<p>"+str(options)+"</p><br><p>"+str(questions)+"</p>"
             
 
