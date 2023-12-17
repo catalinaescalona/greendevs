@@ -473,7 +473,7 @@ def take_a_poll(poll_id):
             poll_id=int(poll_id)
             vote_created = datetime.datetime.now()
             # Iterate over the received data and insert votes into the database
-            for i in range(len(question)):
+            for i in range(len(questions)):
                 question_id = i
                 option_id = int(options[i])
                 vote_id = generate_unique_vote_id(c)
