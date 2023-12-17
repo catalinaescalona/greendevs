@@ -31,9 +31,10 @@
     
                 {% for answer in answers %}
                     {% set a_no = loop.index0|string %}
+                    {% set opt_name = "option"+num %}
                     
                     <div class="voting-option">
-                        <input type="radio" class="option" name="option"+"num" value="{{ a_no }}" required>
+                        <input type="radio" class="option" name="{{opt_name}}" value="{{ a_no }}" required>
                         <label for="{{ a_no }}">{{ answer }}</label>
                     </div>
                 {% endfor %}
