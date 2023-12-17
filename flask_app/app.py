@@ -438,7 +438,7 @@ def take_a_poll(poll_id):
             # Get poll option data
             options = []
 
-            questions = poll.keys()
+            questions = list(poll)
             answers = poll.values()
             for i in range(len(questions)):
                 opt_name = "option"+str(i+1)
@@ -450,7 +450,7 @@ def take_a_poll(poll_id):
             #     o_no = int(options[i])
             #     html_txt += "<h3>"+str(i)+". "+str(questions[i])+"</h3><br><p>"+str(o_no)+". "+str(answers[o_no])+"</p><br>"
                 
-            return "<p>"+str(questions[0])+"</p><br>"+"<p>"+str(options)+"</p><br>"
+            return "<p>"+str(questions)+"</p><br>"+"<p>"+str(options)+"</p><br>"+"<p>"+str(answers)+"</p><br>"
             
 
         # # Iterate over the received data and insert votes into the database
