@@ -473,16 +473,16 @@ def take_a_poll(poll_id):
             poll_id=int(poll_id)
             vote_created = datetime.datetime.now()
             # Iterate over the received data and insert votes into the database
-            # for i in range(len(question)):
-            #     question_id = i
-            #     option_id = int(options[i])
-            #     vote_id = generate_unique_vote_id(c)
-            #     c.execute('INSERT INTO Votes (vote_id, user_id, poll_id, question_id, option_id, vote_created) VALUES (%s, %s, %s, %s, %s, %s)',
-            #               (user_id, poll_id, question_id, option_id, vote_created))
-            #     conn.commit()
+            for i in range(len(question)):
+                question_id = i
+                option_id = int(options[i])
+                vote_id = generate_unique_vote_id(c)
+                c.execute('INSERT INTO Votes (vote_id, user_id, poll_id, question_id, option_id, vote_created) VALUES (%s, %s, %s, %s, %s, %s)',
+                          (vote_id, user_id, poll_id, question_id, option_id, vote_created))
+                conn.commit()
 
-            # # Close the database connection
-            # conn.close()
+            # Close the database connection
+            conn.close()
 
             return html_txt
             # return "<p>"+str(questions)+"</p>"+"<p>"+str(answers)+"</p>"+"<p>"+str(options)+"</p>"
