@@ -444,11 +444,6 @@ def take_a_poll(poll_id):
                 opt_name = "option"+str(i+1)
                 ans = request.form.getlist(opt_name)[0]
                 options.append(ans)
-
-            html_txt = ''
-            for i in range(len(questions)):
-               
-                
                 
             return "<p>"+questions+"</p><br>"+"<p>"+options+"</p><br>"
             
