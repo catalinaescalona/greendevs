@@ -445,12 +445,12 @@ def take_a_poll(poll_id):
                 ans = request.form.getlist(opt_name)
                 options.append(ans[0])
 
-            # html_txt = ""
-            # for i in range(len(questions)):
-            #     o_no = int(options[i][0])
-            #     html_txt += "<h3>"+str(i)+". "+str(questions[i])+"</h3><br><p>"+str(o_no)+". "+str(answers[o_no])+"</p><br>"
+            html_txt = ""
+            for i in range(len(questions)):
+                o_no = int(options[0])
+                html_txt += "<h3>"+str(i+1)+". "+str(questions[i])+"</h3><br><p>"+str(o_no+1)+". "+str(answers[i][o_no])+"</p><br>"
                 
-            return "<p>"+str(questions)+"</p><br>"+"<p>"+str(options)+"</p><br>"+"<p>"+str(answers)+"</p><br><p>"+str(options)+"</p>"
+            return html_txt
             
 
         # # Iterate over the received data and insert votes into the database
