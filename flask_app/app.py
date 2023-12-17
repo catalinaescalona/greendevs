@@ -453,7 +453,7 @@ def take_a_poll(poll_id):
                     if j == o_no:
                         html_txt += "<b>"+str(o_no+1)+". "+str(answers[i][o_no])+"</b><br>"
                     else:
-                        html_txt += "<p>"+str(o_no+1)+". "+str(answers[i][o_no])+"</p><br>"
+                        html_txt += "<p>"+str(j)+". "+str(answers[i][j])+"</p><br>"
                 
             return html_txt
             
