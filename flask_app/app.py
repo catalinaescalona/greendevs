@@ -445,10 +445,10 @@ def take_a_poll(poll_id):
                 ans = request.form.getlist(opt_name)
                 options.append(ans)
 
-            html_txt = ""
-            for i in range(len(questions)):
-                o_no = int(options[i])
-                html_txt += "<h3>"+str(i)+". "+str(questions[i])+"</h3><br><p>"+str(o_no)+". "+str(answers[o_no])+"</p><br>"
+            # html_txt = ""
+            # for i in range(len(questions)):
+            #     o_no = int(options[i])
+            #     html_txt += "<h3>"+str(i)+". "+str(questions[i])+"</h3><br><p>"+str(o_no)+". "+str(answers[o_no])+"</p><br>"
                 
             return "<p>"+str(questions)+"</p><br>"+"<p>"+str(options)+"</p><br>"
             
