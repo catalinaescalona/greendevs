@@ -49,6 +49,21 @@ def generate_unique_poll_id(c):
 
     return poll_id
 
+def generate_unique_vote_id(c):
+    #vote_id = str(uuid.uuid4())
+    vote_id = randint(100000000, 999999999)
+
+    # Check if the generated poll_id already exists in the database
+    while True:
+        c.execute("SELECT * FROM Votes WHERE vote_id = %s;", (vote_id,))
+        existing_vote = c.fetchone()
+        if not existing_vote:
+            break
+        #vote_id = str(uuid.uuid4())
+        vote_id = randint(100000000, 999999999)
+
+    return vote_id
+
 # Function to get the user_id of the current user by username
 def get_user_id_by_username(username, c):
     c.execute("SELECT user_id FROM Users WHERE user_name = %s;", (username,))
@@ -461,7 +476,8 @@ def take_a_poll(poll_id):
                 vote_created = datetime.datetime.now()
                 question_id = i
                 option_id = int(options[i])
-                c.execute('INSERT INTO Votes (user_id, poll_id, question_id, option_id, vote_created) VALUES (%s, %s, %s, %s, %s)',
+                vote_id = generate_unique_vote_id(c)
+                c.execute('INSERT INTO Votes (vote_id, user_id, poll_id, question_id, option_id, vote_created) VALUES (%s, %s, %s, %s, %s, %s)',
                           (user_id, poll_id, question_id, option_id, vote_created))
                 conn.commit()
 
