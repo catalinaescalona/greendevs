@@ -455,6 +455,7 @@ def take_a_poll(poll_id):
                     else:
                         html_txt += "<p>"+str(j+1)+". "+str(answers[i][j])+"</p>"
 
+            poll_id=int(poll_id)
             # Iterate over the received data and insert votes into the database
             for i in range(len(question)):
                 vote_created = datetime.datetime.now()
