@@ -447,13 +447,13 @@ def take_a_poll(poll_id):
 
             html_txt = "<h1>Thank you for voting! The following options were recorded:</h1><br>"
             for i in range(len(questions)):
-                o_no = int(options[0])
+                o_no = int(options[i][0])
                 html_txt += "<h3>"+str(i+1)+". "+str(questions[i])+"</h3><br>"
                 for j in answers[i]:
                     if j == o_no:
-                        html_txt += "<b>"+str(o_no+1)+". "+str(answers[i][o_no])+"</b><br>"
+                        html_txt += "<b>"+str(j+1)+". "+str(answers[i][o_no])+"</b><br>"
                     else:
-                        html_txt += "<p>"+str(j)+". "+str(answers[i][j])+"</p><br>"
+                        html_txt += "<p>"+str(j+1)+". "+str(answers[i][j])+"</p>"
                 
             return html_txt
             
