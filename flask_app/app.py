@@ -440,8 +440,8 @@ def take_a_poll(poll_id):
 
             questions = poll.keys()
             for i in range(len(questions)):
-                opt_name = "option"+str(i)
-                ans = request.form.getlist(opt_name)
+                opt_name = "option"+str(i+1)
+                ans = request.form.getlist(opt_name)[0]
                 options.append(ans)
                 
                 
