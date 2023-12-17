@@ -447,10 +447,10 @@ def take_a_poll(poll_id):
 
             html_txt = ''
             for i in range(len(questions)):
-                html_txt += "<h4>"+str(i)+". "+str(questions[i])+"</h4><br><p>"+str(ans[i])". "+str(answers[i]+"</p><br>"
+                html_txt += "<h4>"+str(i)+". "+str(questions[i])+"</h4><br><p>"+str(ans[i])". "+str(answers[i])+"</p><br>"
                 
                 
-            return (html_txt)
+            return html_txt
             
 
         # # Iterate over the received data and insert votes into the database
