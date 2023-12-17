@@ -451,26 +451,24 @@ def take_a_poll(poll_id):
                 html_txt += "<h2>"+str(i+1)+". "+str(questions[i])+"</h2>"
                 for j in range(len(answers[i])):
                     if j == o_no:
-                        html_txt += "<h3>"+str(j+1)+". "+str(answers[i][o_no])+"</h3>"
+                        html_txt += "<h2>"+str(j+1)+". "+str(answers[i][o_no])+"</h2>"
                     else:
                         html_txt += "<p>"+str(j+1)+". "+str(answers[i][j])+"</p>"
 
+            # Iterate over the received data and insert votes into the database
+            for i in range(len(question)):
+                vote_created = datetime.datetime.now()
+                question_id = str(i)
+                option_id = options[i]
+                c.execute('INSERT INTO Votes (user_id, poll_id, question_id, option_id, vote_created) VALUES (%s, %s, %s, %s, %s)',
+                          (user_id, poll_id, question_id, option_id, vote_created))
+                conn.commit()
+
+            # Close the database connection
+            conn.close()
+
             return html_txt
-            #return "<p>"+str(questions)+"</p>"+"<p>"+str(answers)+"</p>"+"<p>"+str(options)+"</p>"
-            
-
-        # # Iterate over the received data and insert votes into the database
-        # for question_id, option_id in data.items():
-        #     vote_created = datetime.datetime.now()
-        #     c.execute('INSERT INTO Votes (user_id, poll_id, question_id, option_id, vote_created) VALUES (%s, %s, %s, %s, %s)',
-        #               (user_id, poll_id, question_id, option_id, vote_created))
-        #     conn.commit()
-
-        # # Close the database connection
-        # conn.close()
-
-        # # Render an HTML template that allows users to vote in an existing poll
-        # return render_template("voting_page.html", name=session['username'], questions=poll)
+            # return "<p>"+str(questions)+"</p>"+"<p>"+str(answers)+"</p>"+"<p>"+str(options)+"</p>"
         
         return render_template("voting_page.html", questions=poll)
     except:
