@@ -1,8 +1,7 @@
-# Project Title
-Pollaris: Crafting Polls and Charting Trends  
-A web app where users can create and vote on their own polls.
+# Pollaris: Crafting Polls and Charting Trends  
+Pollaris is a web app where users can create their own polls, share them with others, and analyze the trends.
 
-## Team 
+## Team Information
 Team 4 - Greendevs
 
 Team Member Info (Name, Email, GitHub Username)
@@ -11,19 +10,17 @@ Team Member Info (Name, Email, GitHub Username)
 * Catalina Escalona, Catalina.Escalona@colorado.edu, catalinaescalona
 
 ## Project Tracker Link  
-https://trello.com/b/CH2jhShS/sprint-board  
-(make sure intructor has access)  
+https://trello.com/b/CH2jhShS/sprint-board 
 
-## Demo Video
-paste demo video link here
+## Demo Video Link
+https://youtu.be/bTbrynV8egg
 
 ## Version Control Repository
-https://github.com/catalinaescalona/greendevs.git   
-(make sure intructor has access)  
+https://github.com/catalinaescalona/greendevs
 
 ## Final Status Report  
 
-Project Tasks Completed  
+Project Tasks Completed:
 * Built a web application using the following tools:
     * Python, Flask, Jinja, SQL, Render
     * Canva, HTML, CSS, JavaScript
@@ -32,33 +29,30 @@ Project Tasks Completed
 * Deployed site and database to the web using Render  
 * (input remaining completed items here)
 
-Project Tasks Remaining  
+Project Tasks Remaining:
 * (input remaining implementations here)
 
-Project Future Tasks  
+Project Future Tasks:
 * The ability for users to share polls online with a link
 * User account pages that show poll creating and voting history
 * Additional types of polls with different answer types
 * User analytics dashboard showing detailed poll data
 
-Project Bugs and Issues  
+Project Bugs and Issues:
 * (input remaining bugs and issues here)
+* Test cases - test driven development was diffuclt
+* Source documentation, and auto-doc files - could have been more comprehensive  
 
 ## Public Site Link
-paste render site link here  
-(make sure it is live and working)  
+https://pollaris-site.onrender.com/
 
-## Project Files
-REAMDE.md  
-WEEKLY_STATUS.md  
-PAGE_TESTING.md  
-SQL_TESTING.md  
-FINAL_REPORT.md  
-Project presentation files from Presentation Milestone  
-Video of demo  
-Source code  
-Test cases  
-Source documentation, and auto-doc files  
-Link to Public Deployment Site  
-
-(make sure these files are committed and available in github)
+## Project Files Overview
+* REAMDE.md  
+* WEEKLY_STATUS.md  
+* PAGE_TESTING.md  
+* SQL_TESTING.md  
+* FINAL_REPORT.md  
+* Project presentation files: PRESENTATION.md / PRESENTATION.pdf 
+* Demo Video: https://youtu.be/bTbrynV8egg
+* Source code / test cases / source documentation: located in flask_app in GitHub repository
+* Public Deployment Site: https://pollaris-site.onrender.com/
