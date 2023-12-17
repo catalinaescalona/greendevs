@@ -438,7 +438,7 @@ def take_a_poll(poll_id):
             # Get poll option data
             options = request.form.getlist('option')
 
-            questions = poll.values()
+            questions = poll
             return "<p>"+str(options)+"</p><br><p>"+str(options)+"</p>"
             
 
