@@ -427,22 +427,18 @@ def take_a_poll(poll_id):
         poll = c.fetchone()[0]
         conn.close()
 
-        # if request.method == "POST":
-        # # Connect to the database
-
-        # questions = request.form.getlist('question')
-        # for i in range(len(questions)):
-        #     q = str(questions[i])
-        #     opts = request.form.getlist('option'+str(i)) 
-        
-        # conn = connect_to_database()
-        # c = conn.cursor()
-
-        # # Get the user_id of the current user
-        # user_id = get_user_id_by_username(session['username'], c)
-
-        # # Get poll data
-        
+        if request.method == "POST":
+            # Connect to the database
+            conn = connect_to_database()
+            c = conn.cursor()
+    
+            # Get the user_id of the current user
+            user_id = get_user_id_by_username(session['username'], c)
+    
+            # Get poll option data
+            options = request.form.getlist('option')
+            return "<p>"+str(options)+"</p>"
+            
 
         # # Iterate over the received data and insert votes into the database
         # for question_id, option_id in data.items():
@@ -454,8 +450,8 @@ def take_a_poll(poll_id):
         # # Close the database connection
         # conn.close()
 
-    # Render an HTML template that allows users to vote in an existing poll
-    return render_template("voting_page.html", name=session['username'], questions=poll)
+        # # Render an HTML template that allows users to vote in an existing poll
+        # return render_template("voting_page.html", name=session['username'], questions=poll)
         
         return render_template("voting_page.html", questions=poll)
     except:
