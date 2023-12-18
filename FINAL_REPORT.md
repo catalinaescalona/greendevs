@@ -27,11 +27,11 @@ Project Tasks Completed:
     * Trello, Zoom, iMessage
     * GitHub, Markdown, Terminal, VS Code  
 * Deployed site and database to the web using Render
-* Fully completed routes with html and css include: home page, log in page, sign up page, create a poll page, and vote on a poll page.
-* (input remaining completed items here)
+* Fully completed routes with html and css include:
+    * home page, log in page, sign up page
+    * create a poll page, and vote on a poll page.
 
 Project Tasks Remaining:
-* (input remaining implementations here)
 * Complete route with html and css to summarize votes for a user immediately after submitting a poll
 * Complete route with html and css to summarize a poll immediately after it is created
 * Set up the ability to add a poll title
@@ -44,7 +44,6 @@ Project Future Tasks:
 * User analytics dashboard showing detailed poll data with visualizations
 
 Project Bugs and Issues:
-* (input remaining bugs and issues here)
 * Test cases - test driven development was diffuclt after we lost a team member
 * Source documentation, and auto-doc files - could have been more comprehensive
 * Users can vote as many times as they want, ideally we would restrict this to only one vote per user
