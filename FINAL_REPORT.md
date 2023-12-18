@@ -26,22 +26,27 @@ Project Tasks Completed:
     * Canva, HTML, CSS, JavaScript
     * Trello, Zoom, iMessage
     * GitHub, Markdown, Terminal, VS Code  
-* Deployed site and database to the web using Render  
+* Deployed site and database to the web using Render
+* Fully completed routes with html and css include: home page, log in page, sign up page, create a poll page, and vote on a poll page.
 * (input remaining completed items here)
 
 Project Tasks Remaining:
 * (input remaining implementations here)
+* Complete route with html and css to summarize votes for a user immediately after submitting a poll
+* Complete route with html and css to summarize a poll immediately after it is created
 
 Project Future Tasks:
 * The ability for users to share polls online with a link
 * User account pages that show poll creating and voting history
 * Additional types of polls with different answer types
-* User analytics dashboard showing detailed poll data
+* The ability to remove options/questions and edit more easily while creating a poll
+* User analytics dashboard showing detailed poll data with visualizations
 
 Project Bugs and Issues:
 * (input remaining bugs and issues here)
-* Test cases - test driven development was diffuclt
-* Source documentation, and auto-doc files - could have been more comprehensive  
+* Test cases - test driven development was diffuclt after we lost a team member
+* Source documentation, and auto-doc files - could have been more comprehensive
+* After creating a poll, if you refresh the same data
 
 ## Public Site Link
 https://pollaris-site.onrender.com/
