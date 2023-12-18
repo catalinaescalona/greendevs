@@ -48,7 +48,7 @@ Project Bugs and Issues:
 * Test cases - test driven development was diffuclt after we lost a team member
 * Source documentation, and auto-doc files - could have been more comprehensive
 * Users can vote as many times as they want, ideally we would restrict this to only one vote per user
-* After creating a poll, if you refresh the display page the poll id and timestamp get updated. Not sure if this adds additional identical polls with a different id to the database.
+* After creating a poll, if you refresh the display page the poll id and timestamp get updated in the display and a identical poll with a different id gets added to the database.
 
 ## Public Site Link
 https://pollaris-site.onrender.com/
