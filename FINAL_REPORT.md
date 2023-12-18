@@ -34,6 +34,7 @@ Project Tasks Remaining:
 * (input remaining implementations here)
 * Complete route with html and css to summarize votes for a user immediately after submitting a poll
 * Complete route with html and css to summarize a poll immediately after it is created
+* Set up the ability to add a poll title
 
 Project Future Tasks:
 * The ability for users to share polls online with a link
