@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else {
                     // Handle any other response or errors here
                     console.error("Error creating poll:", data.message);
-                    // You can display an error message to the user if needed
+                    
                 }
             })
             .catch((error) => {
