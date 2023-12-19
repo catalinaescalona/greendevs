@@ -14,7 +14,7 @@
     </header>
     <div id='questions' class="section">
         <form id="create-poll-form" method="POST" action="/create">
-            <!-- Add form element here -->
+            
             <input type="text" id="question" name="question" placeholder='New Question' />
             <input type="button" id="add-option" class="btn" value="Add Option" onclick="addOption()" />
             <input type="button" id="create-question" class="btn" value="Create Question" onclick="createQuestion()" />
@@ -82,11 +82,11 @@
                         var successMessage = document.getElementById("success-message");
                         successMessage.innerHTML = "Success: Poll created!";
 
-                        // Add any additional success handling logic here
+                        
                     },
                     error: function () {
                         console.log("Error sending data.");
-                        // Add error handling logic here
+                        
                     }
                 });
             }
@@ -99,7 +99,7 @@
         <br>
     </div>
 
-    <!-- Add a container for displaying the success message -->
+    
     <div id="success-message"></div>
 
     <script>
